@@ -12,3 +12,6 @@ echo "OK: TypeScript build"
 
 node "$ROOT/scripts/check-docs.mjs"
 echo "OK: docs helpers"
+
+node "$ROOT/scripts/check-safety.mjs"
+echo "OK: safety helpers"

@@ -1,3 +1,5 @@
+import { assertApiCallAllowed, formatDryRunPreview } from "./safety.js";
+
 const BASE_URL = "https://api.samotpravil.ru";
 const TIMEOUT = 30_000;
 
@@ -17,9 +19,16 @@ export interface ApiRequestOptions {
   query?: Record<string, string | number | boolean | undefined>;
   body?: unknown;
   contentType?: string;
+  dryRun?: boolean;
 }
 
 export async function samotpravilRequest(options: ApiRequestOptions): Promise<string> {
+  assertApiCallAllowed(options.method, options.path);
+
+  if (options.dryRun) {
+    return formatDryRunPreview(options);
+  }
+
   const apiKey = getApiKey();
   const method = options.method.toUpperCase();
   const normalizedPath = options.path.startsWith("/") ? options.path : `/${options.path}`;

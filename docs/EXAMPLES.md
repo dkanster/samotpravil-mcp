@@ -27,7 +27,7 @@
 }
 ```
 
-### С API-ключом
+### С API-ключом и safety preset
 
 ```json
 {
@@ -36,12 +36,16 @@
       "command": "npx",
       "args": ["-y", "samotpravil-mcp@latest"],
       "env": {
-        "SAMOTPRAVIL_API_KEY": "your_api_key_here"
+        "SAMOTPRAVIL_API_KEY": "your_api_key_here",
+        "SAMOTPRAVIL_READ_ONLY": "1",
+        "SAMOTPRAVIL_ALLOW_SEND": "0"
       }
     }
   }
 }
 ```
+
+`READ_ONLY=1` — только GET. `ALLOW_SEND=0` — блок `send_email`, `send_mail_v2`, package send. На typed tools и `api_request` можно передать `dry_run: true`.
 
 После правок: **Settings → MCP → Reload**.
 

@@ -25,13 +25,36 @@ MCP-сервер вокруг [документации API СамОтправи
 
 ## Инструменты
 
-| Tool | Нужен ключ | Описание |
-|------|------------|----------|
-| `get_overview` | нет | Авторизация, SMTP, лимиты, категории |
-| `list_endpoints` | нет | Список всех методов API |
-| `search_docs` | нет | Поиск по документации |
-| `get_endpoint` | нет | Подробности по методу |
-| `api_request` | да | HTTP-запрос к API |
+### Документация (без API-ключа)
+
+| Tool | Описание |
+|------|----------|
+| `get_overview` | Авторизация, SMTP, лимиты, категории |
+| `list_endpoints` | Список всех методов API |
+| `search_docs` | Поиск по документации |
+| `get_endpoint` | Подробности по методу |
+
+### Typed API (нужен `SAMOTPRAVIL_API_KEY`)
+
+| Tool | Описание |
+|------|----------|
+| `send_email` | POST `/api/v1/smtp_send` |
+| `send_mail_v2` | POST `/api/v2/mail/send` |
+| `get_delivery_status` | GET `/api/v2/issue/status` |
+| `get_package_status` | GET `/api/v2/package/status` |
+| `search_stop_list` | Поиск email в стоп-листах |
+| `add_stop_list_email` / `remove_stop_list_email` | Управление стоп-листом |
+| `validate_email` | Валидация адреса |
+| `list_allowed_domains` | Разрешённые домены |
+| `api_request` | Generic escape hatch |
+
+### Безопасность
+
+| Env | Эффект |
+|-----|--------|
+| `SAMOTPRAVIL_READ_ONLY=1` | Только GET/HEAD |
+| `SAMOTPRAVIL_ALLOW_SEND=0` | Блок send/package endpoints |
+| `dry_run: true` | Preview запроса без отправки |
 
 ## Быстрый старт (рекомендуется)
 
@@ -44,14 +67,16 @@ MCP-сервер вокруг [документации API СамОтправи
       "command": "npx",
       "args": ["-y", "samotpravil-mcp@latest"],
       "env": {
-        "SAMOTPRAVIL_API_KEY": "your_api_key_here"
+        "SAMOTPRAVIL_API_KEY": "your_api_key_here",
+        "SAMOTPRAVIL_READ_ONLY": "1",
+        "SAMOTPRAVIL_ALLOW_SEND": "0"
       }
     }
   }
 }
 ```
 
-`SAMOTPRAVIL_API_KEY` можно опустить, если нужна только документация (без `api_request`).
+`SAMOTPRAVIL_API_KEY` можно опустить для docs-only. Флаги `READ_ONLY` / `ALLOW_SEND` — опционально (безопасный preset выше).
 
 В Cursor: **Settings → MCP → Reload**.
 
