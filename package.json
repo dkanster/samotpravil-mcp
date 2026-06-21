@@ -17,6 +17,7 @@
     "build": "tsc",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
+    "test": "bash scripts/check.sh",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
