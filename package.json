@@ -1,6 +1,6 @@
 {
   "name": "samotpravil-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for Samotpravil SMTP API — documentation search and API proxy. Interim npm: samotpravil-mcp; future: @samotpravil/mcp after org migration.",
   "type": "module",
   "main": "dist/index.js",
@@ -32,6 +32,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "mcpName": "io.github.dkanster/samotpravil-mcp",
   "keywords": [
     "mcp",
     "mcp-server",

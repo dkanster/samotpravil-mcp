@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Установка Samotpravil MCP в проект Cursor.
+# Локальная установка Samotpravil MCP из git clone (разработка / fork).
+# Для production используйте npx — см. docs/EXAMPLES.md
 #   ./setup.sh                  # текущая директория = проект
 #   ./setup.sh /path/to/project # явный путь к проекту
 set -euo pipefail
@@ -65,7 +66,7 @@ npm run build --prefix "$PACKAGE_ROOT"
 ok "Build OK"
 
 echo ""
-echo "Готово. Дальше в Cursor:"
+echo "Готово (local dev launcher). Для production см. docs/EXAMPLES.md (npx)."
 echo "  1. Settings → MCP → Reload"
 echo "  2. Для api_request добавьте SAMOTPRAVIL_API_KEY в ${ENV_FILE#$ROOT/}"
 echo "  3. Проверка: «Покажи обзор API СамОтправил» или «Найди метод smtp_send»"

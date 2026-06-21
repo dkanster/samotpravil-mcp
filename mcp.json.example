@@ -1,8 +1,11 @@
 {
   "mcpServers": {
     "samotpravil": {
-      "command": ".cursor/samotpravil-mcp.sh",
-      "args": []
+      "command": "npx",
+      "args": ["-y", "samotpravil-mcp@latest"],
+      "env": {
+        "SAMOTPRAVIL_API_KEY": "your_api_key_here"
+      }
     }
   }
 }

@@ -33,21 +33,45 @@ MCP-сервер вокруг [документации API СамОтправи
 | `get_endpoint` | нет | Подробности по методу |
 | `api_request` | да | HTTP-запрос к API |
 
-## Быстрый старт
+## Быстрый старт (рекомендуется)
+
+Добавьте в `.cursor/mcp.json` (или аналог в вашем MCP-клиенте):
+
+```json
+{
+  "mcpServers": {
+    "samotpravil": {
+      "command": "npx",
+      "args": ["-y", "samotpravil-mcp@latest"],
+      "env": {
+        "SAMOTPRAVIL_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+`SAMOTPRAVIL_API_KEY` можно опустить, если нужна только документация (без `api_request`).
+
+В Cursor: **Settings → MCP → Reload**.
+
+Подробнее: **[docs/EXAMPLES.md](./docs/EXAMPLES.md)** (Cursor, Claude Desktop, VS Code).
+
+### npm
 
 ```bash
-git clone <repo> samotpravil-mcp
+npx -y samotpravil-mcp@latest
+```
+
+Пакет: https://www.npmjs.com/package/samotpravil-mcp (после первого publish — см. [docs/PUBLISH.md](./docs/PUBLISH.md)).
+
+### Из git clone (разработка / fork)
+
+```bash
+git clone https://github.com/dkanster/samotpravil-mcp.git
 cd your-workspace
 /path/to/samotpravil-mcp/setup.sh .
 ```
-
-Или из корня репозитория:
-
-```bash
-./setup.sh /path/to/your-project
-```
-
-В Cursor: **Settings → MCP → Reload**.
 
 ## Конфигурация
 
