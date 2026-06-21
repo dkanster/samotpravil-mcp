@@ -1,0 +1,145 @@
+import type { EndpointDoc } from "./types.js";
+import {
+  DOCS_BASE_URL,
+  findEndpoint,
+  formatEndpoint,
+  formatOverview,
+  loadDocumentation,
+} from "./docs.js";
+
+export const RESOURCE_URIS = {
+  overview: "samotpravil://overview",
+  endpoints: "samotpravil://endpoints",
+  errors: "samotpravil://errors",
+  integration: "samotpravil://integration",
+  endpointTemplate: "samotpravil://endpoint/{slug}",
+} as const;
+
+export function endpointSlug(endpoint: EndpointDoc): string {
+  const pathMatch = endpoint.url.match(/\/api\/(?:v\d+\/)?([^/?]+)/);
+  if (pathMatch?.[1]) return pathMatch[1];
+
+  return endpoint.name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 48);
+}
+
+export function findEndpointBySlug(endpoints: EndpointDoc[], slug: string): EndpointDoc | undefined {
+  const needle = slug.trim().toLowerCase();
+  return endpoints.find((endpoint) => endpointSlug(endpoint).toLowerCase() === needle);
+}
+
+export async function readOverviewResource(): Promise<string> {
+  const { overview } = await loadDocumentation();
+  return formatOverview(overview);
+}
+
+export async function readEndpointsIndexResource(): Promise<string> {
+  const { endpoints } = await loadDocumentation();
+  const lines = endpoints.map((endpoint) => {
+    const slug = endpointSlug(endpoint);
+    return `- [${slug}](samotpravil://endpoint/${slug}) — ${endpoint.method} ${endpoint.name} (${endpoint.category})`;
+  });
+
+  return [
+    "# Индекс API методов СамОтправил",
+    "",
+    `Всего: ${endpoints.length}. Документация: ${DOCS_BASE_URL}`,
+    "",
+    ...lines,
+  ].join("\n");
+}
+
+export function readErrorsResource(): string {
+  return [
+    "# Популярные ошибки СамОтправил",
+    "",
+    "| Ошибка | Причина | Что делать |",
+    "|--------|---------|------------|",
+    "| `550 bounced check filter` | Email в стоп-листе | Проверить stop-list, не отправлять повторно без обработки |",
+    "| `501 from domain not trusted` | Домен отправителя не верифицирован | Добавить домен в разрешённые, настроить SPF/DKIM |",
+    "| `421 SMTP command timeout` | Долгое SMTP-соединение без активности | Переиспользовать соединение или закрывать после отправки |",
+    "| `450 ratelimit exceeded` | Превышен лимит отправки (100/5 мин по умолчанию) | Throttling, запрос увеличения лимита в поддержку |",
+    "| HTTP `429` / `E429` | Превышен лимит API или пакетов | Подождать, exponential backoff |",
+    "",
+    "Подробнее: https://mailganer.com/ru/explanation/oshibki-nedostavki",
+    "Стоп-листы: https://mailganer.com/ru/explanation/stop-listy-smtp",
+  ].join("\n");
+}
+
+export function readIntegrationResource(): string {
+  return [
+    "# Интеграция с СамОтправил",
+    "",
+    "## SMTP",
+    "- Host: `api.samotpravil.ru`",
+    "- Ports: `1126` (plain), `1127` (TLS)",
+    "- Auth: LOGIN, логин + API key",
+    "",
+    "## HTTP API",
+    "- Base URL: `https://api.samotpravil.ru`",
+    "- Header: `Authorization: {api_key}`",
+    "",
+    "## X-Track-ID",
+    "Уникальный ID каждой отправки. Рекомендуемый формат:",
+    "`{login}-{timestamp}-{campaign_id}-{email_id}`",
+    "",
+    "Передавайте в заголовке письма и в API-параметре `x_track_id`.",
+    "",
+    "## Трекинг открытий и кликов",
+    "- Open pixel: `{domain}/open/{X-Track-ID}`",
+    "- Click redirect: `{domain}/click/{X-Track-ID}?goto_url={url}`",
+    "- Domain: `track.smtprvl.ru` или свой (через поддержку)",
+    "",
+    "В API: `track_open`, `track_click`, `track_domain`.",
+    "",
+    "## Лимиты (по умолчанию)",
+    "- API: 10 000 req/min",
+    "- Отправка: 100 писем / 5 мин",
+    "- Пакеты: 40 / 5 мин",
+    "- Размер письма: до 50 MB",
+    "",
+    "## SDK",
+    "- Python: https://pypi.org/project/samotpravil/",
+    "- PHP: https://github.com/kostikpenzin/samotpravil",
+    "- Ruby: https://rubygems.org/gems/mailganer-client",
+    "",
+    `Документация: ${DOCS_BASE_URL}`,
+  ].join("\n");
+}
+
+export async function readEndpointResource(slug: string): Promise<string> {
+  const { endpoints } = await loadDocumentation();
+  const endpoint = findEndpointBySlug(endpoints, slug) ?? findEndpoint(endpoints, slug);
+
+  if (!endpoint) {
+    throw new Error(`Endpoint not found for slug: ${slug}`);
+  }
+
+  return formatEndpoint(endpoint);
+}
+
+export async function listEndpointResources(): Promise<
+  Array<{ uri: string; name: string; description?: string }>
+> {
+  const { endpoints } = await loadDocumentation();
+  return endpoints.map((endpoint) => ({
+    uri: `${RESOURCE_URIS.endpointTemplate.replace("{slug}", endpointSlug(endpoint))}`,
+    name: endpoint.name,
+    description: `${endpoint.method} ${endpoint.url}`,
+  }));
+}
+
+export function resourceTextResult(uri: string, text: string) {
+  return {
+    contents: [
+      {
+        uri,
+        mimeType: "text/markdown",
+        text,
+      },
+    ],
+  };
+}

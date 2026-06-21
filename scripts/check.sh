@@ -15,3 +15,6 @@ echo "OK: docs helpers"
 
 node "$ROOT/scripts/check-safety.mjs"
 echo "OK: safety helpers"
+
+node "$ROOT/scripts/check-resources.mjs"
+echo "OK: MCP resources"

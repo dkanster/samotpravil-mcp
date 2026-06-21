@@ -56,6 +56,16 @@ MCP-сервер вокруг [документации API СамОтправи
 | `SAMOTPRAVIL_ALLOW_SEND=0` | Блок send/package endpoints |
 | `dry_run: true` | Preview запроса без отправки |
 
+### MCP Resources (без tool calls)
+
+| URI | Содержимое |
+|-----|------------|
+| `samotpravil://overview` | Обзор API |
+| `samotpravil://endpoints` | Индекс методов |
+| `samotpravil://endpoint/{slug}` | Один метод (напр. `smtp_send`) |
+| `samotpravil://errors` | Популярные ошибки |
+| `samotpravil://integration` | SMTP, X-Track-ID, трекинг |
+
 ## Быстрый старт (рекомендуется)
 
 Добавьте в `.cursor/mcp.json` (или аналог в вашем MCP-клиенте):

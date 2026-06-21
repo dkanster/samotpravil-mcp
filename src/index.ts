@@ -34,6 +34,7 @@ import {
   stopListEmailSchema,
   validateEmailSchema,
 } from "./tools/index.js";
+import { registerResources, RESOURCE_COUNT } from "./registerResources.js";
 
 const PACKAGE_VERSION = JSON.parse(
   readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "package.json"), "utf8"),
@@ -127,6 +128,8 @@ function createMcpServer(): McpServer {
     async (params) => ({ content: [{ type: "text", text: await handleListAllowedDomains(params) }] }),
   );
 
+  registerResources(server);
+
   return server;
 }
 
@@ -135,7 +138,7 @@ async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
   console.error(
-    `[samotpravil-mcp] v${PACKAGE_VERSION} (stdio). ${TOOL_COUNT} tools. Docs: https://documentation.samotpravil.ru/`,
+    `[samotpravil-mcp] v${PACKAGE_VERSION} (stdio). ${TOOL_COUNT} tools, ${RESOURCE_COUNT} resources. Docs: https://documentation.samotpravil.ru/`,
   );
 }
 
@@ -144,4 +147,4 @@ main().catch((error) => {
   process.exit(1);
 });
 
-export { createMcpServer, TOOL_COUNT };
+export { createMcpServer, TOOL_COUNT, RESOURCE_COUNT };
