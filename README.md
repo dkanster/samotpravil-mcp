@@ -94,7 +94,10 @@ npm run dev
 ## Источник документации
 
 - Сайт: https://documentation.samotpravil.ru/
-- Postman collection JSON: публичный endpoint documenter
+- Live JSON: публичный Postman collection endpoint
+- **Offline:** bundled snapshot в `data/collection.snapshot.json` (fallback)
+- Обновить snapshot: `npm run sync-docs`
+- Режим загрузки: `SAMOTPRAVIL_DOCS_MODE=auto` (default) | `live` | `snapshot`
 - API base URL: https://api.samotpravil.ru
 - SMTP: `api.samotpravil.ru:1126` / `:1127` (TLS)
 

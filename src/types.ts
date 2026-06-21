@@ -26,12 +26,16 @@ export interface DocsOverview {
   limits: string[];
   categories: string[];
   endpointCount: number;
+  docsSource: "live" | "snapshot";
+  publishDate?: string;
+  syncedAt?: string;
 }
 
 export interface PostmanCollection {
   info?: {
     name?: string;
     description?: string;
+    publishDate?: string;
   };
   item?: PostmanItem[];
 }
