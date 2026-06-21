@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "samotpravil": {
+      "command": ".cursor/samotpravil-mcp.sh",
+      "args": []
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "samotpravil-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Samotpravil SMTP API — documentation search and API proxy",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "samotpravil-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "samotpravil",
+    "smtp",
+    "mailganer",
+    "api"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dkanster/samotpravil-mcp.git"
+  },
+  "homepage": "https://github.com/dkanster/samotpravil-mcp#readme"
+}
