@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Roadmap v1.1
+    url: https://github.com/dkanster/samotpravil-mcp/blob/main/docs/ROADMAP.md
+    about: План улучшений и milestones
+  - name: Org migration
+    url: https://github.com/dkanster/samotpravil-mcp/blob/main/docs/ORG_MIGRATION.md
+    about: Будущий переезд в org Samotpravil

@@ -1,0 +1,22 @@
+---
+name: Bug report
+about: Something is broken in samotpravil-mcp
+title: "bug: "
+labels: ["bug"]
+assignees: []
+---
+
+## Что случилось
+
+## Как воспроизвести
+
+1.
+2.
+
+## Ожидание
+
+## Окружение
+
+- MCP client (Cursor / Claude / …):
+- Node:
+- Package version / commit:
