@@ -16,7 +16,10 @@ import {
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SNAPSHOT = join(ROOT, "data", "collection.snapshot.json");
-const OUTPUT = join(ROOT, "data", "openapi.yaml");
+const OUTPUTS = [
+  join(ROOT, "data", "openapi.yaml"),
+  join(ROOT, "docs", "swagger", "openapi.yaml"),
+];
 
 function yamlQuote(value) {
   if (/[:#{}[\],&*?]|^\s|\s$/.test(value)) return JSON.stringify(value);
@@ -127,5 +130,9 @@ for (const [pathKey, methods] of Object.entries(paths).sort(([a], [b]) => a.loca
   }
 }
 
-writeFileSync(OUTPUT, `${lines.join("\n")}\n`, "utf8");
-console.log(`Wrote ${OUTPUT} (${apiEndpoints.length} operations)`);
+const content = `${lines.join("\n")}\n`;
+for (const output of OUTPUTS) {
+  writeFileSync(output, content, "utf8");
+  console.log(`Wrote ${output}`);
+}
+console.log(`${apiEndpoints.length} operations exported`);

@@ -67,11 +67,14 @@ npx samotpravil-mcp --http --port 3000
 # POST http://127.0.0.1:3000/mcp
 ```
 
-### OpenAPI
+### OpenAPI & Swagger UI
 
 ```bash
-npm run export-openapi   # → data/openapi.yaml
+npm run export-openapi   # → data/openapi.yaml + docs/swagger/openapi.yaml
+npm run docs:swagger     # локальный Swagger UI на http://127.0.0.1:8080
 ```
+
+Статическая оболочка: [docs/swagger/index.html](./docs/swagger/index.html). Каноническая документация остаётся на [documentation.samotpravil.ru](https://documentation.samotpravil.ru/).
 
 ### Безопасность
 

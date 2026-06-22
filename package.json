@@ -22,6 +22,7 @@
     "test": "bash scripts/check.sh",
     "sync-docs": "node scripts/sync-docs.mjs",
     "export-openapi": "npm run build && node scripts/export-openapi.mjs",
+    "docs:swagger": "npm run export-openapi && node scripts/serve-swagger.mjs",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

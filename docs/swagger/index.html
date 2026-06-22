@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Samotpravil API — Swagger UI</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui.css" />
+    <style>
+      html {
+        box-sizing: border-box;
+        overflow-y: scroll;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      body {
+        margin: 0;
+        background: #fafafa;
+      }
+      .swagger-banner {
+        padding: 0.75rem 1.25rem;
+        background: #1b1b1b;
+        color: #f5f5f5;
+        font: 14px/1.4 system-ui, -apple-system, sans-serif;
+      }
+      .swagger-banner a {
+        color: #61affe;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="swagger-banner">
+      Сгенерировано из Postman snapshot в
+      <a href="https://github.com/dkanster/samotpravil-mcp">samotpravil-mcp</a>.
+      Каноническая документация:
+      <a href="https://documentation.samotpravil.ru/">documentation.samotpravil.ru</a>.
+      Для Try it out укажите API-ключ в <code>Authorization</code>.
+    </div>
+    <div id="swagger-ui"></div>
+    <script src="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui-bundle.js" crossorigin></script>
+    <script>
+      window.ui = SwaggerUIBundle({
+        url: "./openapi.yaml",
+        dom_id: "#swagger-ui",
+        deepLinking: true,
+        presets: [SwaggerUIBundle.presets.apis, SwaggerUIBundle.SwaggerUIStandalonePreset],
+        layout: "StandaloneLayout",
+        persistAuthorization: true,
+        tryItOutEnabled: true,
+        displayRequestDuration: true,
+        filter: true,
+        syntaxHighlight: { activate: true, theme: "agate" },
+      });
+    </script>
+  </body>
+</html>
