@@ -117,8 +117,10 @@ node scripts/probe-endpoints.mjs --json # машинный вывод
 
 Текущий `export-openapi.mjs` — базовая конвертация из Postman:
 
+- группировка как в Postman: тег = папка верхнего уровня, `summary` = имя запроса;
+- порядок папок и операций совпадает с `collection.snapshot.json` (не алфавитный);
 - есть summary, description, query-параметры, схемы тел по полям примеров;
 - нет saved responses, примеров ответов и полных JSON Schema;
-- версия спеки фиксирована как `1.0.0` (не привязана к дате snapshot).
+- SMTP-эндпоинт и папка «Вебхуки» не попадают в OpenAPI (не HTTP REST на `api.samotpravil.ru`).
 
 Улучшения экспорта — в [ROADMAP_v1.2.md](./ROADMAP_v1.2.md).
