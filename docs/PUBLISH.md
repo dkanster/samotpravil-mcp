@@ -33,3 +33,35 @@ npm publish --access public
 npx -y samotpravil-mcp@latest --help 2>&1 | head -1
 # или запуск через MCP config из docs/EXAMPLES.md
 ```
+
+---
+
+## MCP Registry
+
+Метаданные сервера: [`server.json`](../server.json).  
+`package.json` → `mcpName` **должен совпадать** с `server.json` → `name`.
+
+### CI (рекомендуется)
+
+При push tag `v*` workflow [.github/workflows/mcp-registry.yml](../.github/workflows/mcp-registry.yml) публикует в [registry.modelcontextprotocol.io](https://registry.modelcontextprotocol.io) через GitHub OIDC.
+
+Ручной запуск:
+
+```bash
+gh workflow run "Publish MCP Registry" --repo dkanster/samotpravil-mcp
+```
+
+### Локально
+
+```bash
+brew install mcp-publisher
+mcp-publisher validate server.json
+mcp-publisher login github
+mcp-publisher publish server.json
+```
+
+### Проверка
+
+```bash
+curl -s "https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.dkanster/samotpravil-mcp" | head -c 500
+```
