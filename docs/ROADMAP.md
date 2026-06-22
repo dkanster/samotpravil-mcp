@@ -82,7 +82,9 @@ CONTRIBUTING, CHANGELOG, EXAMPLES, issue templates.
 
 ---
 
-## v1.2 (после org migration)
+## v1.2 (по желанию)
+
+См. **[ROADMAP_v1.2.md](./ROADMAP_v1.2.md)** — auto typed tools, MCP Prompts, OpenAPI, `--http`, MCP Registry.
 
 - Typed tools для всех HTTP-методов
 - MCP Registry / Smithery

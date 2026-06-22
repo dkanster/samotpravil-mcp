@@ -1,4 +1,5 @@
 import type { EndpointDoc } from "./types.js";
+import { endpointApiPath } from "./endpointMeta.js";
 import {
   DOCS_BASE_URL,
   findEndpoint,
@@ -15,9 +16,28 @@ export const RESOURCE_URIS = {
   endpointTemplate: "samotpravil://endpoint/{slug}",
 } as const;
 
-export function endpointSlug(endpoint: EndpointDoc): string {
-  const pathMatch = endpoint.url.match(/\/api\/(?:v\d+\/)?([^/?]+)/);
-  if (pathMatch?.[1]) return pathMatch[1];
+export function endpointSlug(endpoint: EndpointDoc, allEndpoints?: EndpointDoc[]): string {
+  const apiPath = endpointApiPath(endpoint.url);
+  const short = apiPath.match(/\/api\/(?:v\d+\/)?([^/?]+)/)?.[1];
+
+  if (short && allEndpoints) {
+    const duplicates = allEndpoints.filter((item) => {
+      const match = endpointApiPath(item.url).match(/\/api\/(?:v\d+\/)?([^/?]+)/);
+      return match?.[1] === short;
+    });
+    if (duplicates.length === 1) return short;
+  }
+
+  if (short && !allEndpoints) return short;
+
+  if (apiPath.startsWith("/api/")) {
+    return apiPath
+      .replace(/^\/api\//, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase()
+      .slice(0, 64);
+  }
 
   return endpoint.name
     .toLowerCase()
@@ -28,7 +48,7 @@ export function endpointSlug(endpoint: EndpointDoc): string {
 
 export function findEndpointBySlug(endpoints: EndpointDoc[], slug: string): EndpointDoc | undefined {
   const needle = slug.trim().toLowerCase();
-  return endpoints.find((endpoint) => endpointSlug(endpoint).toLowerCase() === needle);
+  return endpoints.find((endpoint) => endpointSlug(endpoint, endpoints).toLowerCase() === needle);
 }
 
 export async function readOverviewResource(): Promise<string> {
@@ -39,7 +59,7 @@ export async function readOverviewResource(): Promise<string> {
 export async function readEndpointsIndexResource(): Promise<string> {
   const { endpoints } = await loadDocumentation();
   const lines = endpoints.map((endpoint) => {
-    const slug = endpointSlug(endpoint);
+    const slug = endpointSlug(endpoint, endpoints);
     return `- [${slug}](samotpravil://endpoint/${slug}) — ${endpoint.method} ${endpoint.name} (${endpoint.category})`;
   });
 
@@ -126,7 +146,7 @@ export async function listEndpointResources(): Promise<
 > {
   const { endpoints } = await loadDocumentation();
   return endpoints.map((endpoint) => ({
-    uri: `${RESOURCE_URIS.endpointTemplate.replace("{slug}", endpointSlug(endpoint))}`,
+    uri: `${RESOURCE_URIS.endpointTemplate.replace("{slug}", endpointSlug(endpoint, endpoints))}`,
     name: endpoint.name,
     description: `${endpoint.method} ${endpoint.url}`,
   }));

@@ -2,9 +2,13 @@
 
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { isHttpMode, resolveHttpPort, startHttpServer } from "./http.js";
+import { registerAutoTools } from "./registerAutoTools.js";
+import { PROMPT_COUNT, registerPrompts } from "./registerPrompts.js";
+import { registerResources, RESOURCE_COUNT } from "./registerResources.js";
 import {
   apiRequestSchema,
   getDeliveryStatusSchema,
@@ -34,20 +38,15 @@ import {
   stopListEmailSchema,
   validateEmailSchema,
 } from "./tools/index.js";
-import { registerResources, RESOURCE_COUNT } from "./registerResources.js";
 
 const PACKAGE_VERSION = JSON.parse(
   readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "package.json"), "utf8"),
 ).version as string;
 
-const TOOL_COUNT = 14;
+/** Docs (4) + api_request + 9 hand-written typed API tools */
+export const MANUAL_TOOL_COUNT = 14;
 
-function createMcpServer(): McpServer {
-  const server = new McpServer({
-    name: "samotpravil-mcp",
-    version: PACKAGE_VERSION,
-  });
-
+function registerManualTools(server: McpServer): void {
   server.tool("get_overview", "Обзор API СамОтправил.", getOverviewSchema.shape, async () => ({
     content: [{ type: "text", text: await handleGetOverview() }],
   }));
@@ -127,24 +126,46 @@ function createMcpServer(): McpServer {
     listAllowedDomainsSchema.shape,
     async (params) => ({ content: [{ type: "text", text: await handleListAllowedDomains(params) }] }),
   );
+}
 
+export async function createMcpServer(): Promise<{ server: McpServer; autoToolCount: number }> {
+  const server = new McpServer({
+    name: "samotpravil-mcp",
+    version: PACKAGE_VERSION,
+  });
+
+  registerManualTools(server);
   registerResources(server);
+  registerPrompts(server);
+  const autoToolCount = await registerAutoTools(server);
 
-  return server;
+  return { server, autoToolCount };
 }
 
 async function main() {
-  const server = createMcpServer();
+  if (isHttpMode(process.argv)) {
+    const port = resolveHttpPort(process.argv);
+    await startHttpServer(() => createMcpServer().then((result) => result.server), port);
+    return;
+  }
+
+  const { server, autoToolCount } = await createMcpServer();
   const transport = new StdioServerTransport();
   await server.connect(transport);
+
+  const totalTools = MANUAL_TOOL_COUNT + autoToolCount;
   console.error(
-    `[samotpravil-mcp] v${PACKAGE_VERSION} (stdio). ${TOOL_COUNT} tools, ${RESOURCE_COUNT} resources. Docs: https://documentation.samotpravil.ru/`,
+    `[samotpravil-mcp] v${PACKAGE_VERSION} (stdio). ${totalTools} tools, ${PROMPT_COUNT} prompts, ${RESOURCE_COUNT} resources. Docs: https://documentation.samotpravil.ru/`,
   );
 }
 
-main().catch((error) => {
-  console.error("[samotpravil-mcp] Ошибка:", error);
-  process.exit(1);
-});
+const isDirectRun = import.meta.url === pathToFileURL(process.argv[1] ?? "").href;
 
-export { createMcpServer, TOOL_COUNT, RESOURCE_COUNT };
+if (isDirectRun) {
+  main().catch((error) => {
+    console.error("[samotpravil-mcp] Ошибка:", error);
+    process.exit(1);
+  });
+}
+
+export { RESOURCE_COUNT, PROMPT_COUNT };

@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .cache/
+.env.npmjs
 .env.samotpravil
 *.log
 .DS_Store

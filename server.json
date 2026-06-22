@@ -1,0 +1,44 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.dkanster/samotpravil-mcp",
+  "title": "Samotpravil MCP",
+  "description": "MCP server for Samotpravil SMTP API — documentation search, typed API tools, and safety flags.",
+  "websiteUrl": "https://github.com/dkanster/samotpravil-mcp",
+  "repository": {
+    "url": "https://github.com/dkanster/samotpravil-mcp",
+    "source": "github"
+  },
+  "version": "1.2.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "samotpravil-mcp",
+      "version": "1.2.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SAMOTPRAVIL_API_KEY",
+          "description": "API key for api.samotpravil.ru (Authorization header)",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "SAMOTPRAVIL_READ_ONLY",
+          "description": "When true, block mutating HTTP methods except GET/HEAD",
+          "isRequired": false,
+          "format": "string"
+        },
+        {
+          "name": "SAMOTPRAVIL_ALLOW_SEND",
+          "description": "When false, block send/package endpoints",
+          "isRequired": false,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}

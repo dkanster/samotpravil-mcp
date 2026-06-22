@@ -18,3 +18,9 @@ echo "OK: safety helpers"
 
 node "$ROOT/scripts/check-resources.mjs"
 echo "OK: MCP resources"
+
+node "$ROOT/scripts/check-v12.mjs"
+echo "OK: v1.2 auto tools and prompts"
+
+node "$ROOT/scripts/export-openapi.mjs"
+echo "OK: OpenAPI export"

@@ -12,14 +12,16 @@ MCP-сервер вокруг [документации API СамОтправи
 
 ## Roadmap
 
-План v1.1 (milestones, issues, фазы): **[docs/ROADMAP.md](./docs/ROADMAP.md)**
+План v1.1 (milestones, issues, фазы): **[docs/ROADMAP.md](./docs/ROADMAP.md)**  
+**v1.2 (в работе):** **[docs/ROADMAP_v1.2.md](./docs/ROADMAP_v1.2.md)** — auto typed tools, prompts, OpenAPI, `--http`
 
 | Milestone | Фокус |
 |-----------|--------|
 | [Phase 0](https://github.com/dkanster/samotpravil-mcp/milestone/1) | Подготовка, interim hosting |
 | [Phase 1–6](https://github.com/dkanster/samotpravil-mcp/milestones) | npm, snapshot, typed tools, resources, docs, promo |
 | [v1.1.0](https://github.com/dkanster/samotpravil-mcp/milestone/8) | Релиз |
-| [Future](https://github.com/dkanster/samotpravil-mcp/milestone/9) | Org migration, v1.2 |
+| [Future](https://github.com/dkanster/samotpravil-mcp/milestone/9) | Org migration |
+| **v1.2** | Auto tools, prompts, OpenAPI, HTTP transport |
 
 **GitHub Project:** создайте board «Samotpravil MCP v1.1» — см. [docs/ROADMAP.md#github-project](./docs/ROADMAP.md#github-project).
 
@@ -47,6 +49,29 @@ MCP-сервер вокруг [документации API СамОтправи
 | `validate_email` | Валидация адреса |
 | `list_allowed_domains` | Разрешённые домены |
 | `api_request` | Generic escape hatch |
+| `api_{method}_{path}` | Auto tools для остальных HTTP-методов (~42), напр. `api_get_v2_issue_ext_status` |
+
+### MCP Prompts
+
+| Prompt | Описание |
+|--------|----------|
+| `integration_overview` | Обзор SMTP + HTTP + лимиты |
+| `send_transactional` | Чеклист отправки письма |
+| `stop_list_workflow` | Работа со стоп-листами |
+| `check_delivery` | Статус по X-Track-ID / выпуску |
+
+### HTTP transport (v1.2)
+
+```bash
+npx samotpravil-mcp --http --port 3000
+# POST http://127.0.0.1:3000/mcp
+```
+
+### OpenAPI
+
+```bash
+npm run export-openapi   # → data/openapi.yaml
+```
 
 ### Безопасность
 

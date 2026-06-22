@@ -1,0 +1,694 @@
+openapi: 3.0.3
+info:
+  title: Samotpravil SMTP API
+  description: Generated from Postman snapshot (samotpravil-mcp)
+  version: snapshot
+  contact:
+    url: https://documentation.samotpravil.ru/
+servers:
+  - url: https://api.samotpravil.ru
+    description: Production API
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+security:
+  - ApiKeyAuth: []
+paths:
+  /api/v1/add_json_package:
+    post:
+      summary: Отправка JSON v1
+      description: Название Переменная Тип Обязательный Комментарий Имейл отправителя email_from Строка ✔ Имя отправителя name_from Строка ✔ Тема письма subject Строка ✔ Вёрстка письма message_text Строка ✔ AMP вёрстка письма message_text_amp Строка Проверка по локальному (клиентскому) стоп-листу check_local_stop_list Булев Выключает проверку по локальному стоп-листу. По дефолту true. Для подключения данной фичи обратитесь в службу поддержки Проверка по глобальному стоп-листу check_global_stop_list Булев Отслежива
+      responses:
+        "200":
+          description: Successful response
+  /api/v1/add_package:
+    get:
+      summary: Отправка XML v1
+      description: "Возможные значения поля статус (#ed40973f-9603-41df-811d-0fbbd0d968c2) Пример XML-пакета <list> <body> <Data> <![CDATA[ <html> <img class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; src=\"cid:de43239e9118fe7c44d915072f99cd15\"/> // пример как встроить файл вёрстку Код: {{f"
+      parameters:
+        - name: url
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v1/get_fbl_report:
+    get:
+      summary: Отчёт о пожаловавшихся v1
+      description: "Отчет о всех пришедших жалобах за этот день Для работы этого функционала подключите обработку fbl и настройте переадресацию отчетов на fbl@samotpravil.ru (mailto:fbl@samotpravil.ru)"
+      parameters:
+        - name: key
+          in: query
+          schema:
+            type: string
+        - name: date
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v1/get_issue_stat:
+    get:
+      summary: Отчет по выпуску
+      description: Отчет по выпуску
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v1/get_smtp_issue_stat:
+    get:
+      summary: Сводный отчет за сутки v1
+      description: Сводный отчет за сутки v1
+      parameters:
+        - name: key
+          in: query
+          schema:
+            type: string
+        - name: date
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v1/get_stop_report:
+    get:
+      summary: Отчёт о недоставках v1
+      description: Отчет о всех недоставленных письмах за этот день
+      parameters:
+        - name: key
+          in: query
+          schema:
+            type: string
+        - name: date
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v1/package_report:
+    get:
+      summary: Недоставки пакетной отправки v1
+      description: "Данный метод следует считать устаревшим. Используйте Недоставки по выпуску https://documentation.samotpravil.ru/#f7a7690a-ad7c-4cc0-ac03-301200259199 (https://documentation.samotpravil.ru/#f7a7690a-ad7c-4cc0-ac03-301200259199)"
+      parameters:
+        - name: key
+          in: query
+          schema:
+            type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v1/package_report_fbl:
+    get:
+      summary: Жалобы пакетной отправки v1
+      description: "Данный метод следует считать устаревшим. Используйте Недоставки по выпуску https://documentation.samotpravil.ru/#9b28ba17-7fd4-4e80-b647-c9baf9d2d979 (https://documentation.samotpravil.ru/#9b28ba17-7fd4-4e80-b647-c9baf9d2d979)"
+      parameters:
+        - name: key
+          in: query
+          schema:
+            type: string
+        - name: pack_id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v1/package_status:
+    get:
+      summary: Статус отправки v1
+      description: Код Описание E000 Неверный API ключ E001 Не передан URL E002 Не передан pack_id E003 Информация о пакете не найдена E004 Недостаточно трафика E005 Не оплачен тариф E006 Некорректные данные в пакете S001 Пакет не был найден по указанному URL S002 Пакет загружен на сервер S004 Пакет рассылается S005 Пакет отправлен. Ожидаем удаление информации о пакете из системы. S006 Во время отправки произошли ошибки S007 Некорректный формат пакета S008 Превышено время ожидания ответа сервера S009 Пакет получен
+      parameters:
+        - name: key
+          in: query
+          schema:
+            type: string
+        - name: pack_id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v1/package_stop:
+    get:
+      summary: Остановить отправку
+      description: Остановить отправку
+      parameters:
+        - name: pack_id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v1/smtp_send:
+    post:
+      summary: Отправка через API
+      description: "В этом методе можно использовать синтаксис Jinja2. Такие констуркции, как: {% if %}{% endif %} {% for %}{% endfor %} Название Переменная Тип Обязательный Комментарий Отправитель email_from Строка ✔ Формат: ИмяОтправителя <ИмейлОтправителя> Получатель email_to Строка ✔ Тема письма subject Строка ✔ Вёрстка письма message_text Строка ✔ если не передан template_id ID шаблона в Mailganer template_id ✔ если не передан message_text Для работы необходимо передать заголовок Mg-Api-Key с API-ключом от Mai"
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/authkey:
+    get:
+      summary: Получить информацию об API-ключе
+      description: Получить информацию об API-ключе
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/authkey/create:
+    post:
+      summary: Создать API-ключ
+      description: Создать API-ключ
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/blist:
+    get:
+      summary: Информация о рассылке
+      description: "Поле Значение Комментарий id 123 name some_name active true check_stop_list true webhook_active true webhook_url https://webhook.samotpravil.ru/webhook_endpoint (https://webhook.samotpravil.ru/webhook_endpoint) webhook_send_accepted_delivered false Отправлять вебхуки для статусов accepted и delivered в XML рассылках. Важно! При большой рассылке активация этого поля может создать большую нагрузку на ваш эндпоинт. dns_key XXX-XXXX-XXX-XXXX DNS-ключ, который должен быть добавлен на домен type_stop_"
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/blist/create:
+    post:
+      summary: Создать рассылку
+      description: Создать рассылку
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/blist/domains:
+    get:
+      summary: Список разрешенных доменов
+      description: Список разрешенных доменов
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/blist/domains/add:
+    post:
+      summary: Добавить домен
+      description: "Для добавления домена с помощью API необходимо провести верификацию домена (https://samotpravil.ru/verifikaciya-domena-otpravitelya). В DNS-записях также необходимо создать TXT-запись, в которой указать ключ верификации домена. Значение ключа вам вернется в методе создания рассылки (https://documentation.samotpravil.ru/#530de922-c273-41e2-8872-fd211c173847), либо вы можете получить его через Службу поддержки. Проверить верификацию домена можно с помощью метода (https://documentation.samotpravil."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/blist/domains/remove:
+    post:
+      summary: Удалить домен
+      description: Удалить домен
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/blist/domains/verify:
+    post:
+      summary: Проверка верификации
+      description: client - опциональный параметр для владельцев Whitelabel. Проверяет данные для вашего SPF и DKIM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/blist/report/fbl:
+    get:
+      summary: Жалобы за период
+      description: "Если имейл из копии (CC) или скрытой копии (BCC) пожаловался на письмо, то в отчете будет указан только имейл из заголовка TO"
+      parameters:
+        - name: date_from
+          in: query
+          schema:
+            type: string
+        - name: date_to
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: cursor_next
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/blist/report/non-delivery:
+    get:
+      summary: Недоставки за период
+      description: Недоставки за период
+      parameters:
+        - name: date_from
+          in: query
+          schema:
+            type: string
+        - name: date_to
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: cursor_next
+          in: query
+          schema:
+            type: string
+        - name: order
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/blist/report/unsubscribe:
+    get:
+      summary: Отписки за период
+      description: Отписки за период
+      parameters:
+        - name: date_from
+          in: query
+          schema:
+            type: string
+        - name: date_to
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: cursor_next
+          in: query
+          schema:
+            type: string
+        - name: order
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/blist/update:
+    post:
+      summary: Обновить рассылку
+      description: Обновить рассылку
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/email/check:
+    post:
+      summary: Проверить верстку
+      description: "Метод проверяет HTML-письмо на соответствие ряду правил качества и доступности. Возвращает найденные проблемы по категориям. Тело запроса (JSON) Поле Тип Обязательность Описание body string да HTML-контент письма для проверки. checks array да Список проверок, которые требуется выполнить. Каждый объект должен содержать поле category, а некоторые — дополнительный параметр limit. Поддерживаемые категории проверок missingAltText — отсутствие alt-текста у изображений missingImageLink — изображения бе"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/emails/activity/:
+    post:
+      summary: Активность
+      description: "Активность имейла - это метод, позволяющий получить информацию о том, как данный подписчик взаимодействует со своей почтой. Данные предоставляются в обезличенном формате на основе сборной аналитики клиентов сервиса. Поле Тип Описание timestamp string Дата последнего взаимодйствия с письмами в формате Timestamp activity_category string Категория подписчика Описание категорий подписчиков Категория Описание A Читал и переходил по письмам за последние 15 дней B Читал и переходил по письмам за послед"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/emails/clean/:
+    post:
+      summary: Стандартизация
+      description: "Поле Тип Обязательность Описание email string да Имейл, по которому был сделал запрос corrected string да Исправленный имейл local string да Локальная часть (до собаки @) domain string да Домен имейла type string да personal - личный (@mail.ru, @yandex.ru) corp - корпоративный (@myshop.ru) role - «ролевой» (info@, support@) temp - одноразовый (@temp-mail.ru)"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/emails/validate/:
+    post:
+      summary: Валидация
+      description: "Валидация — это проверка имейла на соответствие требованиям к адресам электронной почты, на которые можно отправлять рассылки. Валидный имейл — это реально существующий и действующий адрес электронной почты. Поле Тип Обязательность Описание email string да Имейл, по которому был сделал запрос status string да Статус имейла. Возможные варианты: unknown - статус неизвестен valid - имейл валиден not valid - имейл невалиден is_valid bool нет Булевый ответ является ли имейл валидным."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/ip:
+    get:
+      summary: Информация об IP-адресе
+      description: "Метод возвращает массив IP-адресов, с которых производится отправка писем."
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/issue/ext_status:
+    get:
+      summary: Все статусы
+      description: "Возвращает ВСЮ историю статусов доставки по message_id или x_track_id. Таблица с описанием статусов https://documentation.samotpravil.ru/view/26779685/2s93RZM9in#9381971e-6b2d-4476-8614-8f1e68306b6c (https://documentation.samotpravil.ru/view/26779685/2s93RZM9in#9381971e-6b2d-4476-8614-8f1e68306b6c) Обратите внимание, что поле created_at возвращает timestamp в UTC+3"
+      parameters:
+        - name: x_track_id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/issue/report/fbl:
+    get:
+      summary: Жалобы на выпуск
+      description: "Если имейл из копии (CC) или скрытой копии (BCC) пожаловался на письмо, то в отчете будет указан только имейл из заголовка TO"
+      parameters:
+        - name: issuen
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: cursor_next
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/issue/report/non-delivery:
+    get:
+      summary: Недоставки по выпуску
+      description: Недоставки по выпуску
+      parameters:
+        - name: issuen
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: cursor_next
+          in: query
+          schema:
+            type: string
+        - name: order
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/issue/report/unsubscribe:
+    get:
+      summary: Отписки по выпуску
+      description: Отписки по выпуску
+      parameters:
+        - name: issuen
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: cursor_next
+          in: query
+          schema:
+            type: string
+        - name: order
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/issue/statistics:
+    get:
+      summary: Отчет за период
+      description: "В момент отправки письма происходит проверка получателя по активным стоп-листам, если имейл есть в соответствующем стопе, то значение счетчиков stop, fbl, bad будет инкрементировано. Поле Описание total Общее количество запросов. Инкрементируется при запросе со стороны клиента. send_ok Количество успешно отправленных писем. Не учитывает cc и bcc заголовки send_fail Количество системных ошибок при отправке. open_msg Общее количество прочитанных писем. open_msg_uniq Уникальное количество прочитанн"
+      parameters:
+        - name: date_from
+          in: query
+          schema:
+            type: string
+        - name: date_to
+          in: query
+          schema:
+            type: string
+        - name: timestamp_from
+          in: query
+          schema:
+            type: string
+        - name: timestamp_to
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: cursor_next
+          in: query
+          schema:
+            type: string
+        - name: blist_id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/issue/status:
+    get:
+      summary: Статус доставки
+      description: "Возвращает последний статус доставки по message_id или x_track_id. Возможные возвращаемые статусы: accepted delivered failed fbl unsubscribe Данный метод заточен под быструю скорость отдачи и НЕ возвращает статусы open click Таблица с описанием статусов https://documentation.samotpravil.ru/view/26779685/2s93RZM9in#9381971e-6b2d-4476-8614-8f1e68306b6c (https://documentation.samotpravil.ru/view/26779685/2s93RZM9in#9381971e-6b2d-4476-8614-8f1e68306b6c) Обратите внимание, что поле created_at возвращ"
+      parameters:
+        - name: x_track_id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/mail/send:
+    post:
+      summary: Отправка через API v2
+      description: "Название Переменная Тип Обязательный Комментарий Отправитель email_from Строка ✔ Формат: ИмяОтправителя <ИмейлОтправителя> Получатель email_to Строка ✔ Тема письма subject Строка ✔ Вёрстка письма message_text Строка ✔ Свои переменные params json-массив Передайте пары переменная-значение. Значения должны быть string Валидация имейла check_stop_list Булев Включает проверку по стоп-листам (https://mailganer.com/ru/explanation/stop-listy-smtp) Проверка по локальному (клиентскому) стоп-листу check_lo"
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/package/status:
+    get:
+      summary: Статус пакета
+      description: "Код Описание E000 Неверный API ключ E001 Не передан URL E002 Не передан pack_id E003 Информация о пакете не найдена S004 Пакет отправляется S005 Пакет принят S007 В процессе обработки возникла ошибка S009 В очереди на генерацию S011 Пакет обрабатывается S013 Рассылка отменена пользователем S018 Пакет отправлен S020 Пакет на модерации S021 Прошёл модерацию S022 Не прошёл модерацию Визуализация (https://www.figma.com/board/WiashNNIHSFSBdFScoiMZe/%D0%A1%D0%BC%D0%B5%D0%BD%D0%B0-%D1%81%D1%82%D0%B0%D1"
+      parameters:
+        - name: issuen
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/stop-list/add:
+    post:
+      summary: Добавить имейл
+      description: Добавить имейл
+      parameters:
+        - name: mail_from
+          in: query
+          schema:
+            type: string
+        - name: email
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/stop-list/export:
+    get:
+      summary: Список задач
+      description: Список статусов задач Статус Описание processing Задача в обработке ready Файл готов к скачиванию not_found Задача не найден failed Не удалось создать файл для скачивания
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+    post:
+      summary: Создать задачу на экспорт
+      description: Асинхронные методы на скачивание Стоп-листа по логину. Данный метод создает задачу на экспорт стоп-листа и возвращает в ответе ссылку для последующего опроса и скачивания .csv файла в архиве
+      responses:
+        "200":
+          description: Successful response
+  "/api/v2/stop-list/export/:token":
+    delete:
+      summary: Удалить задачу
+      description: Удалить задачу
+      responses:
+        "200":
+          description: Successful response
+    get:
+      summary: Скачать стоп-лист
+      description: "Метод на скачивание стоп-листа. Необходимо обращаться с названием файла, который вернулся при создании задачи. Данный метод отдает два успешных кода: 204 - файл еще не готов, нужно прийти позже 200 - отдается архив с csv файлом. Ниже представлен код на Python для обработки и сохранения архива: import requests as rq from io import BytesIO import gzip import time def save_file(filename: str): url = f\"https://api.samotpravil.ru/api/v2/stop-list/export/{filename}.gz\" for i in range(60): r = rq.get(u"
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/stop-list/failed:
+    get:
+      summary: Список Недоставок
+      description: "Метод возвращает стоп-лист имейлов, на которые не удалась доставка с причинами недоставки"
+      parameters:
+        - name: cursor_next
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/stop-list/fbl:
+    get:
+      summary: Список FBL
+      description: "Метод возвращает стоп-лист имейлов, которые пожаловались на рассылку"
+      parameters:
+        - name: cursor_next
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/stop-list/remove:
+    post:
+      summary: Удалить имейл
+      description: Удалить имейл
+      parameters:
+        - name: mail_from
+          in: query
+          schema:
+            type: string
+        - name: email
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/stop-list/search:
+    get:
+      summary: Поиск имейла
+      description: "Поле Описание ttl Массив с датой автоматического выхода имейла из стопа ttl.domain Домен ttl.date Дата выхода из стопа для этого домена. Возможные значения: Дата yyyy-mm-dd 0 - имейл может быть удален только вручную domains Массив доменов, для которых искомый имейл находится в стопе bounces Массив отлупов (причины попадания в стоп-лист) user_unsubscribe Массив отписок (подписчик отписался от рассылок) fbl_report Массив жалоб (подписчик пожаловался на спам)"
+      parameters:
+        - name: email
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/stop-list/unsubscribe:
+    get:
+      summary: Список отписавшихся
+      description: "Метод возвращает стоп-лист имейлов, которые отписались от рассылки"
+      parameters:
+        - name: cursor_next
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /api/v2/tickets:
+    get:
+      summary: Список обращений
+      description: Список обращений
+      responses:
+        "200":
+          description: Successful response
+    post:
+      summary: Создать обращение на выделенный IP
+      description: Создать обращение на выделенный IP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Successful response
+  "/api/v2/tickets/:id/":
+    get:
+      summary: Отдельное обращение
+      description: Отдельное обращение
+      responses:
+        "200":
+          description: Successful response
+    post:
+      summary: Обновить обращение
+      description: Обновить обращение
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Successful response

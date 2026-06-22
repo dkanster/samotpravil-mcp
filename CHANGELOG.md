@@ -4,6 +4,18 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.2.0] - 2026-06-22
+
+### Added
+
+- Auto typed tools (`api_*`) для всех HTTP-методов `api.samotpravil.ru`, не покрытых ручными tools (~42)
+- MCP Prompts: `integration_overview`, `send_transactional`, `stop_list_workflow`, `check_delivery`
+- HTTP transport: `npx samotpravil-mcp --http [--port 3000]` (Streamable HTTP, stateless)
+- `npm run export-openapi` → `data/openapi.yaml`
+- `server.json` для MCP Registry
+- Уникальные endpoint slugs при коллизиях (`smtp_send` сохранён)
+- [docs/ROADMAP_v1.2.md](./docs/ROADMAP_v1.2.md)
+
 ## [1.1.0] - 2026-06-21
 
 ### Added

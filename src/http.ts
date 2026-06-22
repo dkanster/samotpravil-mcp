@@ -1,0 +1,109 @@
+import { createServer } from "node:http";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+
+function readJsonBody(req: import("node:http").IncomingMessage): Promise<unknown> {
+  return new Promise((resolve, reject) => {
+    const chunks: Buffer[] = [];
+    req.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
+    req.on("end", () => {
+      const raw = Buffer.concat(chunks).toString("utf8").trim();
+      if (!raw) {
+        resolve(undefined);
+        return;
+      }
+      try {
+        resolve(JSON.parse(raw));
+      } catch (error) {
+        reject(error);
+      }
+    });
+    req.on("error", reject);
+  });
+}
+
+function methodNotAllowed(res: import("node:http").ServerResponse): void {
+  res.writeHead(405, { "Content-Type": "application/json" });
+  res.end(
+    JSON.stringify({
+      jsonrpc: "2.0",
+      error: { code: -32000, message: "Method not allowed." },
+      id: null,
+    }),
+  );
+}
+
+export async function startHttpServer(
+  createServerFn: () => Promise<McpServer>,
+  port: number,
+): Promise<void> {
+  const httpServer = createServer(async (req, res) => {
+    const url = req.url ?? "/";
+
+    if (url !== "/mcp" && url !== "/mcp/") {
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Not found. MCP endpoint: POST /mcp");
+      return;
+    }
+
+    if (req.method !== "POST") {
+      methodNotAllowed(res);
+      return;
+    }
+
+    const server = await createServerFn();
+
+    try {
+      const transport = new StreamableHTTPServerTransport({
+        sessionIdGenerator: undefined,
+      });
+      await server.connect(transport);
+      const body = await readJsonBody(req);
+      await transport.handleRequest(req, res, body);
+
+      res.on("close", () => {
+        transport.close().catch(() => undefined);
+        server.close().catch(() => undefined);
+      });
+    } catch (error) {
+      console.error("[samotpravil-mcp] HTTP error:", error);
+      if (!res.headersSent) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(
+          JSON.stringify({
+            jsonrpc: "2.0",
+            error: { code: -32603, message: "Internal server error" },
+            id: null,
+          }),
+        );
+      }
+    }
+  });
+
+  await new Promise<void>((resolve, reject) => {
+    httpServer.listen(port, () => resolve());
+    httpServer.on("error", reject);
+  });
+
+  console.error(`[samotpravil-mcp] HTTP transport on http://127.0.0.1:${port}/mcp (stateless)`);
+}
+
+export function resolveHttpPort(argv: string[]): number {
+  const portFlagIndex = argv.findIndex((arg) => arg === "--port" || arg === "-p");
+  if (portFlagIndex >= 0 && argv[portFlagIndex + 1]) {
+    const parsed = Number.parseInt(argv[portFlagIndex + 1] ?? "", 10);
+    if (Number.isFinite(parsed) && parsed > 0) return parsed;
+  }
+
+  const envPort = process.env.SAMOTPRAVIL_HTTP_PORT?.trim();
+  if (envPort) {
+    const parsed = Number.parseInt(envPort, 10);
+    if (Number.isFinite(parsed) && parsed > 0) return parsed;
+  }
+
+  return 3000;
+}
+
+export function isHttpMode(argv: string[]): boolean {
+  return argv.includes("--http");
+}
