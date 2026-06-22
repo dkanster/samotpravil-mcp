@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { samotpravilRequest } from "../client.js";
+import { assertGenericApiAllowed } from "../safety.js";
 
 export const dryRunSchema = z.object({
   dry_run: z.boolean().optional().describe("Показать запрос без отправки на API"),
@@ -16,6 +17,7 @@ export const apiRequestSchema = dryRunSchema.extend({
 });
 
 export async function handleApiRequest(params: z.infer<typeof apiRequestSchema>): Promise<string> {
+  assertGenericApiAllowed();
   return samotpravilRequest({
     method: params.method,
     path: params.path,

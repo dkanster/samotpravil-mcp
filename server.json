@@ -37,6 +37,24 @@
           "description": "When false, block send/package endpoints",
           "isRequired": false,
           "format": "string"
+        },
+        {
+          "name": "SAMOTPRAVIL_ALLOW_MUTATIONS",
+          "description": "When false, block stop-list, domain, authkey and other mutating endpoints",
+          "isRequired": false,
+          "format": "string"
+        },
+        {
+          "name": "SAMOTPRAVIL_ALLOW_GENERIC_API",
+          "description": "When false, disable the generic api_request tool",
+          "isRequired": false,
+          "format": "string"
+        },
+        {
+          "name": "SAMOTPRAVIL_HTTP_HOST",
+          "description": "Bind address for --http transport (default 127.0.0.1)",
+          "isRequired": false,
+          "format": "string"
         }
       ]
     }

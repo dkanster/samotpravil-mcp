@@ -65,7 +65,7 @@ function registerManualTools(server: McpServer): void {
 
   server.tool(
     "api_request",
-    "Generic HTTP к api.samotpravil.ru (READ_ONLY / ALLOW_SEND / dry_run).",
+    "Generic HTTP к api.samotpravil.ru (safety flags, dry_run). Отключается через SAMOTPRAVIL_ALLOW_GENERIC_API=0.",
     apiRequestSchema.shape,
     async (params) => ({ content: [{ type: "text", text: await handleApiRequest(params) }] }),
   );

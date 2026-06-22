@@ -117,9 +117,14 @@ npm run swagger-mcp           # запуск (stdio)
 
 | Env | Эффект |
 |-----|--------|
-| `SAMOTPRAVIL_READ_ONLY=1` | Только GET/HEAD |
+| `SAMOTPRAVIL_READ_ONLY=1` | Только безопасные GET/HEAD (без отправки и остановки пакетов) |
 | `SAMOTPRAVIL_ALLOW_SEND=0` | Блок send/package endpoints |
+| `SAMOTPRAVIL_ALLOW_MUTATIONS=0` | Блок stop-list, доменов, authkey и прочих изменений |
+| `SAMOTPRAVIL_ALLOW_GENERIC_API=0` | Отключить инструмент `api_request` |
+| `SAMOTPRAVIL_HTTP_HOST=127.0.0.1` | Адрес bind для `--http` (по умолчанию localhost) |
 | `dry_run: true` | Preview запроса без отправки |
+
+Ответы API с полями `api_key` и query-параметр `key=` автоматически маскируются в выводе MCP.
 
 ### MCP Resources (без tool calls)
 
@@ -144,7 +149,9 @@ npm run swagger-mcp           # запуск (stdio)
       "env": {
         "SAMOTPRAVIL_API_KEY": "your_api_key_here",
         "SAMOTPRAVIL_READ_ONLY": "1",
-        "SAMOTPRAVIL_ALLOW_SEND": "0"
+        "SAMOTPRAVIL_ALLOW_SEND": "0",
+        "SAMOTPRAVIL_ALLOW_MUTATIONS": "0",
+        "SAMOTPRAVIL_ALLOW_GENERIC_API": "0"
       }
     }
   }

@@ -23,7 +23,8 @@ src/
   index.ts              # MCP server entry, tools registration
   docs.ts               # Postman collection loader, search, format
   client.ts             # HTTP client to api.samotpravil.ru
-  safety.ts             # READ_ONLY, ALLOW_SEND, dry_run
+  safety.ts             # READ_ONLY, ALLOW_SEND, ALLOW_MUTATIONS, ALLOW_GENERIC_API, dry_run
+  redact.ts             # маскировка api_key и секретов в ответах
   resources.ts          # MCP Resources content
   registerResources.ts  # Resource registration
   tools/

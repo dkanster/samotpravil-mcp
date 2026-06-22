@@ -55,7 +55,16 @@ import json, sys
 from pathlib import Path
 mcp_path, example_path = Path(sys.argv[1]), Path(sys.argv[2])
 servers = {
-    "samotpravil": {"command": ".cursor/samotpravil-mcp.sh", "args": []},
+    "samotpravil": {
+        "command": ".cursor/samotpravil-mcp.sh",
+        "args": [],
+        "env": {
+            "SAMOTPRAVIL_READ_ONLY": "1",
+            "SAMOTPRAVIL_ALLOW_SEND": "0",
+            "SAMOTPRAVIL_ALLOW_MUTATIONS": "0",
+            "SAMOTPRAVIL_ALLOW_GENERIC_API": "0",
+        },
+    },
     "swagger-mcp": {"command": ".cursor/swagger-mcp.sh", "args": []},
     "postman": {"command": ".cursor/postman-mcp.sh", "args": []},
 }

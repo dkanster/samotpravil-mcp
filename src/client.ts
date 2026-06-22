@@ -1,3 +1,4 @@
+import { redactApiResponse } from "./redact.js";
 import { assertApiCallAllowed, formatDryRunPreview } from "./safety.js";
 
 const BASE_URL = "https://api.samotpravil.ru";
@@ -69,23 +70,14 @@ export async function samotpravilRequest(options: ApiRequestOptions): Promise<st
     });
 
     const text = await response.text();
-    const contentType = response.headers.get("content-type") ?? "text/plain";
 
-    let formattedBody = text;
-    if (contentType.includes("application/json") && text) {
-      try {
-        formattedBody = JSON.stringify(JSON.parse(text), null, 2);
-      } catch {
-        formattedBody = text;
-      }
-    }
-
-    return [
-      `${method} ${url.toString()}`,
+    return redactApiResponse(
+      method,
+      url.toString(),
       `Status: ${response.status} ${response.statusText}`,
-      "",
-      formattedBody || "(empty body)",
-    ].join("\n");
+      text,
+      apiKey,
+    );
   } finally {
     clearTimeout(timer);
   }

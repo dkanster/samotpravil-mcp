@@ -80,12 +80,19 @@ export async function startHttpServer(
     }
   });
 
+  const host = resolveHttpHost();
+
   await new Promise<void>((resolve, reject) => {
-    httpServer.listen(port, () => resolve());
+    httpServer.listen(port, host, () => resolve());
     httpServer.on("error", reject);
   });
 
-  console.error(`[samotpravil-mcp] HTTP transport on http://127.0.0.1:${port}/mcp (stateless)`);
+  console.error(`[samotpravil-mcp] HTTP transport on http://${host}:${port}/mcp (stateless)`);
+}
+
+function resolveHttpHost(): string {
+  const host = process.env.SAMOTPRAVIL_HTTP_HOST?.trim();
+  return host && host.length > 0 ? host : "127.0.0.1";
 }
 
 export function resolveHttpPort(argv: string[]): number {
