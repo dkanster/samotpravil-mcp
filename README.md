@@ -116,7 +116,7 @@ cd your-workspace
 SAMOTPRAVIL_API_KEY=your_key_here
 ```
 
-Ключ нужен только для `api_request`. Получить доступ: https://samotpravil.ru/get-access
+Ключ нужен для typed tools и `api_request`. Docs tools и resources работают без ключа. Получить доступ: https://samotpravil.ru/get-access
 
 ## Локальная разработка
 
@@ -124,7 +124,10 @@ SAMOTPRAVIL_API_KEY=your_key_here
 npm install
 npm run build
 npm run dev
+npm test
 ```
+
+Contributing: **[CONTRIBUTING.md](./CONTRIBUTING.md)** · Сценарии: **[docs/EXAMPLES.md](./docs/EXAMPLES.md)**
 
 ## Источник документации
 

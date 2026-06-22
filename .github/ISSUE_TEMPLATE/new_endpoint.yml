@@ -1,0 +1,34 @@
+---
+name: New API endpoint
+about: Postman collection has a new method to expose in MCP
+title: "feat: typed tool for "
+labels: ["enhancement", "phase-3"]
+assignees: []
+---
+
+## Endpoint
+
+- **Method:**
+- **Path:** `/api/...`
+- **Postman name:**
+
+## Ссылка в документации
+
+<!-- URL якоря на documentation.samotpravil.ru -->
+
+## Предлагаемое имя tool
+
+<!-- e.g. get_foo_bar -->
+
+## Обязательные параметры
+
+-
+
+## Нужен ли send-guard?
+
+- [ ] Да — блокировать при `SAMOTPRAVIL_ALLOW_SEND=0`
+- [ ] Нет — read-only / GET
+
+## Дополнительно
+
+См. [CONTRIBUTING.md](../CONTRIBUTING.md#добавить-typed-tool)

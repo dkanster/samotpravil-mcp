@@ -6,3 +6,6 @@ contact_links:
   - name: Org migration
     url: https://github.com/dkanster/samotpravil-mcp/blob/main/docs/ORG_MIGRATION.md
     about: Будущий переезд в org Samotpravil
+  - name: Contributing guide
+    url: https://github.com/dkanster/samotpravil-mcp/blob/main/CONTRIBUTING.md
+    about: Как разрабатывать и отправлять PR

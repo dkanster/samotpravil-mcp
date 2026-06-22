@@ -1,8 +1,9 @@
-# Примеры конфигурации MCP
+# Примеры: конфигурация и сценарии
 
 Рекомендуемый способ — **`npx`** (без clone и `setup.sh`).
 
-Ключ API нужен только для инструмента `api_request`. Документационные tools работают без ключа.
+- **Документация** (tools + resources) — без API-ключа
+- **Typed API** — нужен `SAMOTPRAVIL_API_KEY`
 
 Получить ключ: https://samotpravil.ru/get-access
 
@@ -10,11 +11,13 @@
 
 ---
 
-## Cursor
+## Конфигурация MCP
 
-Файл: `.cursor/mcp.json` в корне проекта (или глобально в Cursor Settings → MCP).
+### Cursor
 
-### Только документация (без API-ключа)
+Файл: `.cursor/mcp.json` в корне проекта (или Settings → MCP).
+
+**Только документация:**
 
 ```json
 {
@@ -27,7 +30,7 @@
 }
 ```
 
-### С API-ключом и safety preset
+**С API и safety preset:**
 
 ```json
 {
@@ -38,25 +41,19 @@
       "env": {
         "SAMOTPRAVIL_API_KEY": "your_api_key_here",
         "SAMOTPRAVIL_READ_ONLY": "1",
-        "SAMOTPRAVIL_ALLOW_SEND": "0"
+        "SAMOTPRAVIL_ALLOW_SEND": "0",
+        "SAMOTPRAVIL_DOCS_MODE": "auto"
       }
     }
   }
 }
 ```
 
-`READ_ONLY=1` — только GET. `ALLOW_SEND=0` — блок `send_email`, `send_mail_v2`, package send. На typed tools и `api_request` можно передать `dry_run: true`.
-
 После правок: **Settings → MCP → Reload**.
 
----
+### Claude Desktop
 
-## Claude Desktop
-
-Файл: `claude_desktop_config.json`
-
-- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+`~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
 
 ```json
 {
@@ -72,13 +69,9 @@
 }
 ```
 
-Перезапустите Claude Desktop.
+### VS Code (Copilot MCP)
 
----
-
-## VS Code (GitHub Copilot MCP)
-
-Файл: `.vscode/mcp.json` в workspace или User settings (MCP section).
+`.vscode/mcp.json`:
 
 ```json
 {
@@ -95,13 +88,7 @@
 }
 ```
 
-Требуется VS Code с поддержкой MCP (Copilot). Перезагрузите окно после изменений.
-
----
-
-## Локальная разработка (из git clone)
-
-Если вы разрабатываете сам пакет или используете `setup.sh`:
+### Локальная разработка
 
 ```json
 {
@@ -110,21 +97,9 @@
       "command": "node",
       "args": ["/absolute/path/to/samotpravil-mcp/dist/index.js"],
       "env": {
-        "SAMOTPRAVIL_API_KEY": "your_api_key_here"
+        "SAMOTPRAVIL_API_KEY": "your_api_key_here",
+        "SAMOTPRAVIL_DOCS_MODE": "snapshot"
       }
-    }
-  }
-}
-```
-
-Или через launcher после `./setup.sh .`:
-
-```json
-{
-  "mcpServers": {
-    "samotpravil": {
-      "command": ".cursor/samotpravil-mcp.sh",
-      "args": []
     }
   }
 }
@@ -132,17 +107,96 @@
 
 ---
 
-## Проверка
+## Сценарий 1: Отправка транзакционного письма
 
-Примеры запросов в чате:
+**Цель:** отправить одно письмо через API v1 с трекингом.
 
-- «Покажи обзор API СамОтправил»
-- «Найди документацию по smtp_send»
-- «Какие параметры у stop-list search?»
+**Шаги для агента:**
 
-С ключом:
+1. Прочитать resource `samotpravil://integration` (X-Track-ID, track_open)
+2. Уточнить `email_from`, `email_to`, `subject`, HTML-тело
+3. Вызвать tool `send_email` с `dry_run: true` — проверить payload
+4. Убрать `dry_run` и отправить (нужен `SAMOTPRAVIL_ALLOW_SEND` ≠ 0)
 
-- «Проверь статус доставки для x_track_id …» (через `api_request` или будущие typed tools)
+**Пример параметров `send_email`:**
+
+```json
+{
+  "dry_run": true,
+  "email_from": "My App <noreply@yourdomain.ru>",
+  "email_to": "user@example.com",
+  "subject": "Заказ #123 подтверждён",
+  "message_text": "<p>Спасибо за заказ!</p>",
+  "x_track_id": "login-1719000000-order-123",
+  "track_open": true,
+  "track_click": true,
+  "track_domain": "track.samotpravil.ru"
+}
+```
+
+**Промпт в чате:**
+
+> Найди в документации параметры smtp_send и подготовь dry_run отправку письма с темой «Тест» на test@example.com
+
+---
+
+## Сценарий 2: Стоп-лист
+
+**Цель:** проверить, есть ли адрес в стоп-листе, и при необходимости удалить.
+
+**Шаги:**
+
+1. `search_stop_list` с `email`
+2. При необходимости `remove_stop_list_email` с `mail_from` и `email`
+3. Для добавления — `add_stop_list_email`
+
+**Промпт:**
+
+> Проверь, есть ли user@example.com в стоп-листе. Если да — покажи результат и объясни ошибку 550 bounced check filter
+
+**Resource:** `samotpravil://errors` — расшифровка 550.
+
+---
+
+## Сценарий 3: Статус доставки
+
+**Цель:** узнать, доставлено ли письмо по `x_track_id`.
+
+**Шаги:**
+
+1. `get_delivery_status` с `x_track_id` из вашей отправки
+2. Для пакетной рассылки — `get_package_status` с `issuen`
+
+**Промпт:**
+
+> Покажи статус доставки для x_track_id `1234-1719000000-campaign-1` (только GET, read-only)
+
+С `SAMOTPRAVIL_READ_ONLY=1` агент не сможет случайно отправить письмо.
+
+---
+
+## MCP Resources (без tools)
+
+Агент может читать напрямую:
+
+| URI | Когда использовать |
+|-----|-------------------|
+| `samotpravil://overview` | Первое знакомство с API |
+| `samotpravil://endpoints` | Найти нужный метод |
+| `samotpravil://endpoint/smtp_send` | Детали одного метода |
+| `samotpravil://errors` | Разбор bounce / 429 |
+| `samotpravil://integration` | SMTP, трекинг, лимиты |
+
+---
+
+## Переменные окружения
+
+| Variable | Default | Описание |
+|----------|---------|----------|
+| `SAMOTPRAVIL_API_KEY` | — | Ключ API |
+| `SAMOTPRAVIL_READ_ONLY` | off | Только GET/HEAD |
+| `SAMOTPRAVIL_ALLOW_SEND` | on | Блок send/package |
+| `SAMOTPRAVIL_DOCS_MODE` | `auto` | `live` \| `snapshot` \| `auto` |
 
 ---
 
@@ -150,7 +204,17 @@
 
 | Проблема | Решение |
 |----------|---------|
-| MCP не стартует | Node.js ≥ 18, `node -v` |
+| MCP не стартует | Node ≥ 18, `node -v` |
 | `npx` долго первый раз | Нормально — скачивается пакет |
-| `SAMOTPRAVIL_API_KEY не задан` | Только для `api_request`; docs tools работают без ключа |
-| Старый кэш npx | `npx -y samotpravil-mcp@1.0.1` с явной версией |
+| `SAMOTPRAVIL_API_KEY не задан` | Нужен для typed tools и `api_request` |
+| Документация не грузится | `SAMOTPRAVIL_DOCS_MODE=snapshot` (offline) |
+| Отправка заблокирована | `SAMOTPRAVIL_ALLOW_SEND=0` — снимите или используйте `dry_run` |
+| Старый кэш npx | `npx -y samotpravil-mcp@1.0.4` |
+
+---
+
+## Дополнительно
+
+- [CONTRIBUTING.md](../CONTRIBUTING.md) — разработка и PR
+- [PUBLISH.md](./PUBLISH.md) — релиз в npm
+- [ROADMAP.md](./ROADMAP.md) — план v1.1
