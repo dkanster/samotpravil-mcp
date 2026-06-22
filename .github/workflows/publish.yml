@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -19,8 +20,16 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org
           cache: npm
+      - name: Verify npm auth token
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error::NPM_TOKEN secret is missing or empty. Create an Automation token at npmjs.com and run: gh secret set NPM_TOKEN"
+            exit 1
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm ci
       - run: npm test
       - run: npm publish --provenance --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_NVUCZNPHKV26BGP1O3LQ69VVLJRT6N0O0CEU }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
