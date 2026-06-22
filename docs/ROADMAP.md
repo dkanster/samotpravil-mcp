@@ -78,7 +78,7 @@ Roadmap, org migration checklist, interim `dkanster` hosting.
 CONTRIBUTING, CHANGELOG, EXAMPLES, issue templates.
 
 ### Phase 6 — Официальная интеграция
-Ссылка в [documentation.samotpravil.ru](https://documentation.samotpravil.ru/).
+Ссылка в [documentation.samotpravil.ru](https://documentation.samotpravil.ru/) — материалы: **[docs/official/](./official/)**
 
 ---
 

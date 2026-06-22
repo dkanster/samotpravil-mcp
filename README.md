@@ -90,7 +90,7 @@ MCP-сервер вокруг [документации API СамОтправи
 
 В Cursor: **Settings → MCP → Reload**.
 
-Подробнее: **[docs/EXAMPLES.md](./docs/EXAMPLES.md)** (Cursor, Claude Desktop, VS Code).
+Подробнее: **[docs/EXAMPLES.md](./docs/EXAMPLES.md)** · Официальная публикация: **[docs/official/](./docs/official/)**
 
 ### npm
 

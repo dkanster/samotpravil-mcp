@@ -4,6 +4,17 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.0] - 2026-06-21
+
+### Added
+
+- [docs/official/](./docs/official/) — HTML-блок, snippet для get-access, черновик блога, запрос для docs-команды
+- Milestone v1.1.0: docs tools, typed API, resources, offline snapshot, safety, contributor docs
+
+### Note
+
+Публикация на documentation.samotpravil.ru требует правки Postman-коллекции командой Samotpravil — см. [docs/official/README.md](./docs/official/README.md).
+
 ## [1.0.5] - 2026-06-21
 
 ### Added
@@ -53,6 +64,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Initial release: docs tools + `api_request`
 - Postman collection loader from documentation.samotpravil.ru
 
+[1.1.0]: https://github.com/dkanster/samotpravil-mcp/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/dkanster/samotpravil-mcp/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/dkanster/samotpravil-mcp/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/dkanster/samotpravil-mcp/compare/v1.0.2...v1.0.3
