@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 bash -n "$ROOT/samotpravil-mcp.sh"
+bash -n "$ROOT/swagger-mcp.sh"
 bash -n "$ROOT/setup.sh"
 echo "OK: shell scripts syntax"
 

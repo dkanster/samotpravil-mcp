@@ -1,7 +1,11 @@
 node_modules/
 dist/
 .cache/
+vendor/swagger-mcp/
+swagger-cache/
+.swagger-mcp
 .env.npmjs
 .env.samotpravil
+.env.swaggerhub
 *.log
 .DS_Store

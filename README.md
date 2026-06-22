@@ -67,14 +67,45 @@ npx samotpravil-mcp --http --port 3000
 # POST http://127.0.0.1:3000/mcp
 ```
 
-### OpenAPI & Swagger UI
+### OpenAPI
 
 ```bash
-npm run export-openapi   # → data/openapi.yaml + docs/swagger/openapi.yaml
-npm run docs:swagger     # локальный Swagger UI на http://127.0.0.1:8080
+npm run export-openapi        # → data/openapi.yaml
+npm run upload-swaggerhub     # публикация на SwaggerHub (нужен .env.swaggerhub)
+npm run check-swaggerhub      # проверка API key и owner
 ```
 
-Статическая оболочка: [docs/swagger/index.html](./docs/swagger/index.html). Каноническая документация остаётся на [documentation.samotpravil.ru](https://documentation.samotpravil.ru/).
+**Опубликовано:** [mailganer/samotpravil-smtp-api@1.0.0](https://app.swaggerhub.com/apis/mailganer/samotpravil-smtp-api/1.0.0) · Подробнее: **[docs/SWAGGERHUB.md](./docs/SWAGGERHUB.md)**
+
+### Swagger-MCP ([Vizioz/Swagger-MCP](https://github.com/Vizioz/Swagger-MCP))
+
+MCP-сервер для работы с OpenAPI: список эндпоинтов, модели, генерация MCP tool definitions.
+
+```bash
+npm run prepare-swagger-mcp   # один раз: clone + build в vendor/swagger-mcp
+npm run swagger-mcp           # запуск (stdio)
+```
+
+Источник спецификации (по приоритету):
+
+1. `SAMOTPRAVIL_SWAGGER_URL` — явный URL
+2. Публичный SwaggerHub (`SWAGGERHUB_OWNER` + `SWAGGERHUB_API_NAME`)
+3. Локальный `data/openapi.yaml` (временный HTTP на 127.0.0.1)
+
+**Cursor** — добавьте в `.cursor/mcp.json` (или через `setup.sh`):
+
+```json
+{
+  "mcpServers": {
+    "swagger-mcp": {
+      "command": ".cursor/swagger-mcp.sh",
+      "args": []
+    }
+  }
+}
+```
+
+Инструменты: `listEndpoints`, `listEndpointModels`, `generateModelCode`, `generateEndpointToolCode`.
 
 ### Безопасность
 
@@ -146,6 +177,8 @@ SAMOTPRAVIL_API_KEY=your_key_here
 
 Ключ нужен для typed tools и `api_request`. Docs tools и resources работают без ключа. Получить доступ: https://samotpravil.ru/get-access
 
+**SwaggerHub** (опционально, для `upload-swaggerhub` и Swagger-MCP): скопируйте [`.env.swaggerhub.example`](./.env.swaggerhub.example) → `.env.swaggerhub`. См. [docs/SWAGGERHUB.md](./docs/SWAGGERHUB.md).
+
 ## Локальная разработка
 
 ```bash
@@ -163,6 +196,7 @@ Contributing: **[CONTRIBUTING.md](./CONTRIBUTING.md)** · Сценарии: **[d
 - Live JSON: публичный Postman collection endpoint
 - **Offline:** bundled snapshot в `data/collection.snapshot.json` (fallback)
 - Обновить snapshot: `npm run sync-docs`
+- OpenAPI: `npm run export-openapi` → `data/openapi.yaml`; публикация — [docs/SWAGGERHUB.md](./docs/SWAGGERHUB.md)
 - Режим загрузки: `SAMOTPRAVIL_DOCS_MODE=auto` (default) | `live` | `snapshot`
 - API base URL: https://api.samotpravil.ru
 - SMTP: `api.samotpravil.ru:1126` / `:1127` (TLS)

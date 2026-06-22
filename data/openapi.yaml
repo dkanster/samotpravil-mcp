@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Samotpravil SMTP API
   description: Generated from Postman snapshot (samotpravil-mcp)
-  version: snapshot
+  version: 1.0.0
   contact:
     url: https://documentation.samotpravil.ru/
 servers:

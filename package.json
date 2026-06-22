@@ -22,7 +22,13 @@
     "test": "bash scripts/check.sh",
     "sync-docs": "node scripts/sync-docs.mjs",
     "export-openapi": "npm run build && node scripts/export-openapi.mjs",
-    "docs:swagger": "npm run export-openapi && node scripts/serve-swagger.mjs",
+    "upload-swaggerhub": "node scripts/upload-swaggerhub.mjs",
+    "check-swaggerhub": "node scripts/check-swaggerhub.mjs",
+    "resolve-swaggerhub-owner": "node scripts/resolve-swaggerhub-owner.mjs",
+    "test-swagger-connection": "node scripts/test-swagger-connection.mjs",
+    "prepare-swagger-mcp": "node scripts/ensure-swagger-mcp.mjs",
+    "swagger-mcp": "npm run prepare-swagger-mcp && node scripts/swagger-mcp-launcher.mjs",
+    "test:swagger": "node scripts/test-swagger-connection.mjs",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

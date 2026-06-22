@@ -51,6 +51,29 @@
 
 После правок: **Settings → MCP → Reload**.
 
+### Swagger-MCP (OpenAPI tooling)
+
+Для генерации MCP tool definitions из OpenAPI — [Vizioz/Swagger-MCP](https://github.com/Vizioz/Swagger-MCP):
+
+```bash
+npm run prepare-swagger-mcp   # clone + build (один раз)
+```
+
+Локальная разработка (через `setup.sh`):
+
+```json
+{
+  "mcpServers": {
+    "swagger-mcp": {
+      "command": ".cursor/swagger-mcp.sh",
+      "args": []
+    }
+  }
+}
+```
+
+Спецификация берётся из `data/openapi.yaml` (или SwaggerHub, если настроен `.env.swaggerhub`). См. **[docs/SWAGGERHUB.md](./SWAGGERHUB.md)**.
+
 ### Claude Desktop
 
 `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):

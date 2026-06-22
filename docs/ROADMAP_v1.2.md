@@ -42,7 +42,10 @@
 
 ```bash
 npm run export-openapi   # → data/openapi.yaml
+npm run upload-swaggerhub
 ```
+
+Публикация и workflow: **[docs/SWAGGERHUB.md](./SWAGGERHUB.md)** (SwaggerHub: `mailganer/samotpravil-smtp-api@1.0.0`).
 
 Генерация из `data/collection.snapshot.json` для внешних инструментов и документации.
 

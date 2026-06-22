@@ -12,6 +12,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - MCP Prompts: `integration_overview`, `send_transactional`, `stop_list_workflow`, `check_delivery`
 - HTTP transport: `npx samotpravil-mcp --http [--port 3000]` (Streamable HTTP, stateless)
 - `npm run export-openapi` → `data/openapi.yaml`
+- SwaggerHub: upload/check scripts, [docs/SWAGGERHUB.md](./docs/SWAGGERHUB.md) (публично: `mailganer/samotpravil-smtp-api@1.0.0`)
 - `server.json` для MCP Registry
 - Уникальные endpoint slugs при коллизиях (`smtp_send` сохранён)
 - [docs/ROADMAP_v1.2.md](./docs/ROADMAP_v1.2.md)

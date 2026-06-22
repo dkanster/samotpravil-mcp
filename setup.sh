@@ -9,7 +9,9 @@ PACKAGE_ROOT="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(cd "${1:-.}" && pwd)"
 
 TEMPLATE="$PACKAGE_ROOT/samotpravil-mcp.sh"
+SWAGGER_TEMPLATE="$PACKAGE_ROOT/swagger-mcp.sh"
 LAUNCHER="$ROOT/.cursor/samotpravil-mcp.sh"
+SWAGGER_LAUNCHER="$ROOT/.cursor/swagger-mcp.sh"
 MCP_JSON="$ROOT/.cursor/mcp.json"
 MCP_EXAMPLE="$PACKAGE_ROOT/mcp.json.example"
 ENV_EXAMPLE="$PACKAGE_ROOT/.env.samotpravil.example"
@@ -35,18 +37,26 @@ sed "s|__SAMOTPRAVIL_MCP_HOME__|$PACKAGE_ROOT|g" "$TEMPLATE" > "$LAUNCHER"
 chmod +x "$LAUNCHER"
 ok "Launcher: .cursor/samotpravil-mcp.sh"
 
+[[ -f "$SWAGGER_TEMPLATE" ]] || fail "Не найден: $SWAGGER_TEMPLATE"
+sed "s|__SAMOTPRAVIL_MCP_HOME__|$PACKAGE_ROOT|g" "$SWAGGER_TEMPLATE" > "$SWAGGER_LAUNCHER"
+chmod +x "$SWAGGER_LAUNCHER"
+ok "Launcher: .cursor/swagger-mcp.sh"
+
 python3 - "$MCP_JSON" "$MCP_EXAMPLE" <<'PY'
 import json, sys
 from pathlib import Path
 mcp_path, example_path = Path(sys.argv[1]), Path(sys.argv[2])
-entry = {"command": ".cursor/samotpravil-mcp.sh", "args": []}
+servers = {
+    "samotpravil": {"command": ".cursor/samotpravil-mcp.sh", "args": []},
+    "swagger-mcp": {"command": ".cursor/swagger-mcp.sh", "args": []},
+}
 if mcp_path.exists():
     data = json.loads(mcp_path.read_text(encoding="utf-8"))
 elif example_path.exists():
     data = json.loads(example_path.read_text(encoding="utf-8"))
 else:
     data = {"mcpServers": {}}
-data.setdefault("mcpServers", {})["samotpravil"] = entry
+data.setdefault("mcpServers", {}).update(servers)
 mcp_path.parent.mkdir(parents=True, exist_ok=True)
 mcp_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 PY
@@ -64,6 +74,10 @@ info "Сборка samotpravil-mcp…"
 npm install --prefix "$PACKAGE_ROOT" >/dev/null
 npm run build --prefix "$PACKAGE_ROOT"
 ok "Build OK"
+
+info "Swagger-MCP (Vizioz)…"
+npm run prepare-swagger-mcp --prefix "$PACKAGE_ROOT"
+ok "Swagger-MCP OK"
 
 echo ""
 echo "Готово (local dev launcher). Для production см. docs/EXAMPLES.md (npx)."

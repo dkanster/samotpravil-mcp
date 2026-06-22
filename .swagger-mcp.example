@@ -1,0 +1,3 @@
+# Swagger MCP (https://github.com/Vizioz/Swagger-MCP)
+# Подсказка для агентов: путь к локальному OpenAPI, если не задан --swagger-url.
+SWAGGER_FILEPATH=data/openapi.yaml

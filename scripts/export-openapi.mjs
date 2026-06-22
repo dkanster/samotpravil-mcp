@@ -16,10 +16,7 @@ import {
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SNAPSHOT = join(ROOT, "data", "collection.snapshot.json");
-const OUTPUTS = [
-  join(ROOT, "data", "openapi.yaml"),
-  join(ROOT, "docs", "swagger", "openapi.yaml"),
-];
+const OUTPUT = join(ROOT, "data", "openapi.yaml");
 
 function yamlQuote(value) {
   if (/[:#{}[\],&*?]|^\s|\s$/.test(value)) return JSON.stringify(value);
@@ -83,7 +80,7 @@ const lines = [
   "info:",
   "  title: Samotpravil SMTP API",
   "  description: Generated from Postman snapshot (samotpravil-mcp)",
-  "  version: snapshot",
+  "  version: 1.0.0",
   "  contact:",
   "    url: https://documentation.samotpravil.ru/",
   "servers:",
@@ -130,9 +127,5 @@ for (const [pathKey, methods] of Object.entries(paths).sort(([a], [b]) => a.loca
   }
 }
 
-const content = `${lines.join("\n")}\n`;
-for (const output of OUTPUTS) {
-  writeFileSync(output, content, "utf8");
-  console.log(`Wrote ${output}`);
-}
-console.log(`${apiEndpoints.length} operations exported`);
+writeFileSync(OUTPUT, `${lines.join("\n")}\n`, "utf8");
+console.log(`Wrote ${OUTPUT} (${apiEndpoints.length} operations)`);
