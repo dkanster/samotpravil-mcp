@@ -7,5 +7,6 @@ swagger-cache/
 .env.npmjs
 .env.samotpravil
 .env.swaggerhub
+.env.postman
 *.log
 .DS_Store

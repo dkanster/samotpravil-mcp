@@ -74,6 +74,59 @@ npm run prepare-swagger-mcp   # clone + build (один раз)
 
 Спецификация берётся из `data/openapi.yaml` (или SwaggerHub, если настроен `.env.swaggerhub`). См. **[docs/SWAGGERHUB.md](./SWAGGERHUB.md)**.
 
+### Postman MCP Server
+
+[Postman MCP Server](https://www.postman.com/product/mcp-server/) даёт агенту доступ к коллекциям, workspace, environments и Postman API. Полезно вместе с Samotpravil MCP для синхронизации документации и коллекций.
+
+Как это соотносится с `samotpravil-mcp` и OpenAPI: **[ECOSYSTEM.md](./ECOSYSTEM.md)**.
+
+**Локально (через `setup.sh`):**
+
+```json
+{
+  "mcpServers": {
+    "postman": {
+      "command": ".cursor/postman-mcp.sh",
+      "args": []
+    }
+  }
+}
+```
+
+Ключ — в `.env.postman` (шаблон: `.env.postman.example`). Получить: https://go.postman.co/settings/me/api-keys
+
+**Через npx (без clone):**
+
+```json
+{
+  "mcpServers": {
+    "postman": {
+      "command": "npx",
+      "args": ["-y", "@postman/postman-mcp-server", "--code"],
+      "env": {
+        "POSTMAN_API_KEY": "your_postman_api_key_here"
+      }
+    }
+  }
+}
+```
+
+Режимы: без флага — `minimal`, `--code` — поиск API и генерация клиента, `--full` — все инструменты. В `.env.postman` можно задать `POSTMAN_MCP_MODE=code|minimal|full`.
+
+**Remote (OAuth, без API key в конфиге):**
+
+```json
+{
+  "mcpServers": {
+    "postman": {
+      "url": "https://mcp.postman.com/code"
+    }
+  }
+}
+```
+
+Для EU с API key: `https://mcp.eu.postman.com/code` и заголовок `Authorization: Bearer <POSTMAN_API_KEY>`.
+
 ### Claude Desktop
 
 `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):

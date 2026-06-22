@@ -10,11 +10,14 @@ ROOT="$(cd "${1:-.}" && pwd)"
 
 TEMPLATE="$PACKAGE_ROOT/samotpravil-mcp.sh"
 SWAGGER_TEMPLATE="$PACKAGE_ROOT/swagger-mcp.sh"
+POSTMAN_TEMPLATE="$PACKAGE_ROOT/postman-mcp.sh"
 LAUNCHER="$ROOT/.cursor/samotpravil-mcp.sh"
 SWAGGER_LAUNCHER="$ROOT/.cursor/swagger-mcp.sh"
+POSTMAN_LAUNCHER="$ROOT/.cursor/postman-mcp.sh"
 MCP_JSON="$ROOT/.cursor/mcp.json"
 MCP_EXAMPLE="$PACKAGE_ROOT/mcp.json.example"
 ENV_EXAMPLE="$PACKAGE_ROOT/.env.samotpravil.example"
+POSTMAN_ENV_EXAMPLE="$PACKAGE_ROOT/.env.postman.example"
 
 if [[ -d "$ROOT/ai" ]]; then
   ENV_FILE="$ROOT/ai/.env.samotpravil"
@@ -42,6 +45,11 @@ sed "s|__SAMOTPRAVIL_MCP_HOME__|$PACKAGE_ROOT|g" "$SWAGGER_TEMPLATE" > "$SWAGGER
 chmod +x "$SWAGGER_LAUNCHER"
 ok "Launcher: .cursor/swagger-mcp.sh"
 
+[[ -f "$POSTMAN_TEMPLATE" ]] || fail "Не найден: $POSTMAN_TEMPLATE"
+cp "$POSTMAN_TEMPLATE" "$POSTMAN_LAUNCHER"
+chmod +x "$POSTMAN_LAUNCHER"
+ok "Launcher: .cursor/postman-mcp.sh"
+
 python3 - "$MCP_JSON" "$MCP_EXAMPLE" <<'PY'
 import json, sys
 from pathlib import Path
@@ -49,6 +57,7 @@ mcp_path, example_path = Path(sys.argv[1]), Path(sys.argv[2])
 servers = {
     "samotpravil": {"command": ".cursor/samotpravil-mcp.sh", "args": []},
     "swagger-mcp": {"command": ".cursor/swagger-mcp.sh", "args": []},
+    "postman": {"command": ".cursor/postman-mcp.sh", "args": []},
 }
 if mcp_path.exists():
     data = json.loads(mcp_path.read_text(encoding="utf-8"))
@@ -70,6 +79,14 @@ else
   ok "Env уже есть: ${ENV_FILE#$ROOT/}"
 fi
 
+POSTMAN_ENV_FILE="$ROOT/.env.postman"
+if [[ ! -f "$POSTMAN_ENV_FILE" ]]; then
+  cp "$POSTMAN_ENV_EXAMPLE" "$POSTMAN_ENV_FILE"
+  ok "Env: .env.postman"
+else
+  ok "Env уже есть: .env.postman"
+fi
+
 info "Сборка samotpravil-mcp…"
 npm install --prefix "$PACKAGE_ROOT" >/dev/null
 npm run build --prefix "$PACKAGE_ROOT"
@@ -83,4 +100,5 @@ echo ""
 echo "Готово (local dev launcher). Для production см. docs/EXAMPLES.md (npx)."
 echo "  1. Settings → MCP → Reload"
 echo "  2. Для api_request добавьте SAMOTPRAVIL_API_KEY в ${ENV_FILE#$ROOT/}"
-echo "  3. Проверка: «Покажи обзор API СамОтправил» или «Найди метод smtp_send»"
+echo "  3. Для Postman MCP добавьте POSTMAN_API_KEY в .env.postman"
+echo "  4. Проверка: «Покажи обзор API СамОтправил» или «Найди метод smtp_send»"

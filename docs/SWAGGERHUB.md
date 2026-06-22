@@ -2,6 +2,8 @@
 
 Спека API генерируется из Postman snapshot (`data/collection.snapshot.json`) и публикуется на [SwaggerHub](https://app.swaggerhub.com).
 
+Место OpenAPI в общей схеме (Postman, samotpravil-mcp, swagger-mcp): **[ECOSYSTEM.md](./ECOSYSTEM.md)**.
+
 ## Публичная документация
 
 | | URL |

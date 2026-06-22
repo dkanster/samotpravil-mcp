@@ -14,6 +14,8 @@ npm run dev
 
 Требования: **Node.js ≥ 18**.
 
+Архитектура и связь Postman ↔ snapshot ↔ MCP-серверы: **[docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md)**.
+
 ## Структура проекта
 
 ```

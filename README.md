@@ -10,6 +10,8 @@ MCP-сервер вокруг [документации API СамОтправи
 
 Документация опубликована как Postman Documenter; сервер подтягивает коллекцию с `documentation.samotpravil.ru` и даёт агенту инструменты для поиска методов, параметров и примеров. Опционально — прокси к `api.samotpravil.ru`, если задан API-ключ.
 
+Как связаны Postman, `samotpravil-mcp`, OpenAPI и опциональные MCP (postman, swagger-mcp): **[docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md)**.
+
 ## Roadmap
 
 План v1.1 (milestones, issues, фазы): **[docs/ROADMAP.md](./docs/ROADMAP.md)**  
@@ -106,6 +108,10 @@ npm run swagger-mcp           # запуск (stdio)
 ```
 
 Инструменты: `listEndpoints`, `listEndpointModels`, `generateModelCode`, `generateEndpointToolCode`.
+
+### Postman MCP Server
+
+[Postman MCP Server](https://www.postman.com/product/mcp-server/) — доступ к коллекциям, workspace и Postman API из агента. Устанавливается через `setup.sh` (launcher `.cursor/postman-mcp.sh`) или `npx @postman/postman-mcp-server`. Нужен `POSTMAN_API_KEY` в `.env.postman`. Подробнее: **[docs/EXAMPLES.md](./docs/EXAMPLES.md#postman-mcp-server)**.
 
 ### Безопасность
 
