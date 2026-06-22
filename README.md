@@ -10,7 +10,7 @@ MCP-сервер вокруг [документации API СамОтправи
 
 Документация опубликована как Postman Documenter; сервер подтягивает коллекцию с `documentation.samotpravil.ru` и даёт агенту инструменты для поиска методов, параметров и примеров. Опционально — прокси к `api.samotpravil.ru`, если задан API-ключ.
 
-Как связаны Postman, `samotpravil-mcp`, OpenAPI и опциональные MCP (postman, swagger-mcp): **[docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md)**.
+Как связаны Postman, `samotpravil-mcp`, OpenAPI, swagger-mcp и **static preview на Docusaurus**: **[docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md)** · **[docs/DOCS_SITE.md](./docs/DOCS_SITE.md)** · live: **https://dkanster.github.io/samotpravil-mcp/**
 
 ## Roadmap
 
@@ -37,6 +37,17 @@ MCP-сервер вокруг [документации API СамОтправи
 | `list_endpoints` | Список всех методов API |
 | `search_docs` | Поиск по документации |
 | `get_endpoint` | Подробности по методу |
+
+### Postman / документация (нужен `POSTMAN_API_KEY`)
+
+| Tool | Описание |
+|------|----------|
+| `postman_get_collection` | Коллекция из Postman API (summary или full) |
+| `postman_sync_snapshot` | Postman API → `data/collection.snapshot.json` |
+| `postman_diff_snapshot` | Diff Postman vs локальный snapshot |
+| `postman_search_requests` | Поиск запросов в Postman-коллекции |
+
+Ключ — в `.env.samotpravil` (или legacy `.env.postman`). Отдельный Postman MCP больше не нужен.
 
 ### Typed API (нужен `SAMOTPRAVIL_API_KEY`)
 
@@ -79,6 +90,17 @@ npm run check-swaggerhub      # проверка API key и owner
 
 **Опубликовано:** [mailganer/samotpravil-smtp-api@1.0.0](https://app.swaggerhub.com/apis/mailganer/samotpravil-smtp-api/1.0.0) · Подробнее: **[docs/SWAGGERHUB.md](./docs/SWAGGERHUB.md)**
 
+### Static preview (Docusaurus)
+
+Альтернатива Postman Documenter для preview и GitHub Pages — из того же snapshot:
+
+```bash
+npm run docusaurus:install   # один раз
+npm run docusaurus:start     # http://localhost:3000
+```
+
+Live: **https://dkanster.github.io/samotpravil-mcp/** · Подробнее: **[docs/DOCS_SITE.md](./docs/DOCS_SITE.md)**
+
 ### Swagger-MCP ([Vizioz/Swagger-MCP](https://github.com/Vizioz/Swagger-MCP))
 
 MCP-сервер для работы с OpenAPI: список эндпоинтов, модели, генерация MCP tool definitions.
@@ -109,9 +131,9 @@ npm run swagger-mcp           # запуск (stdio)
 
 Инструменты: `listEndpoints`, `listEndpointModels`, `generateModelCode`, `generateEndpointToolCode`.
 
-### Postman MCP Server
+### Postman (встроено в samotpravil-mcp)
 
-[Postman MCP Server](https://www.postman.com/product/mcp-server/) — доступ к коллекциям, workspace и Postman API из агента. Устанавливается через `setup.sh` (launcher `.cursor/postman-mcp.sh`) или `npx @postman/postman-mcp-server`. Нужен `POSTMAN_API_KEY` в `.env.postman`. Подробнее: **[docs/EXAMPLES.md](./docs/EXAMPLES.md#postman-mcp-server)**.
+Tools `postman_*` работают в том же MCP-сервере при наличии `POSTMAN_API_KEY` в `.env.samotpravil`. Нужны maintainer'ам для синхронизации коллекции документации с snapshot. Подробнее: **[docs/EXAMPLES.md](./docs/EXAMPLES.md#postman-tools)** и **[docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md)**.
 
 ### Безопасность
 
@@ -210,6 +232,7 @@ Contributing: **[CONTRIBUTING.md](./CONTRIBUTING.md)** · Сценарии: **[d
 - **Offline:** bundled snapshot в `data/collection.snapshot.json` (fallback)
 - Обновить snapshot: `npm run sync-docs`
 - OpenAPI: `npm run export-openapi` → `data/openapi.yaml`; публикация — [docs/SWAGGERHUB.md](./docs/SWAGGERHUB.md)
+- **Static preview:** `npm run docusaurus:start` → [docs/DOCS_SITE.md](./docs/DOCS_SITE.md) · live: https://dkanster.github.io/samotpravil-mcp/
 - Режим загрузки: `SAMOTPRAVIL_DOCS_MODE=auto` (default) | `live` | `snapshot`
 - API base URL: https://api.samotpravil.ru
 - SMTP: `api.samotpravil.ru:1126` / `:1127` (TLS)

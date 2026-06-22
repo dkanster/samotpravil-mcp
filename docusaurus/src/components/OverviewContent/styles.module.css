@@ -1,0 +1,40 @@
+.prose {
+  max-width: 920px;
+}
+
+.prose :global(h1),
+.prose :global(h2),
+.prose :global(h3) {
+  line-height: 1.25;
+}
+
+.prose :global(pre),
+.prose :global(code) {
+  background: rgba(124, 92, 255, 0.08);
+  border-radius: 6px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(124, 92, 255, 0.15);
+  color: var(--ifm-color-primary);
+  font-size: 0.85rem;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  background: var(--ifm-color-primary);
+  color: white !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.button:hover {
+  color: white !important;
+  opacity: 0.92;
+}

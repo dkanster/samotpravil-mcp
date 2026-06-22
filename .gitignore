@@ -8,5 +8,11 @@ swagger-cache/
 .env.samotpravil
 .env.swaggerhub
 .env.postman
-*.log
+site/
+docusaurus/node_modules/
+docusaurus/build/
+docusaurus/.docusaurus/
+docusaurus/src/generated/
+docusaurus/static/openapi.yaml
+docusaurus/docs/overview.mdx
 .DS_Store

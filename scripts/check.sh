@@ -23,5 +23,15 @@ echo "OK: MCP resources"
 node "$ROOT/scripts/check-v12.mjs"
 echo "OK: v1.2 auto tools and prompts"
 
+node "$ROOT/scripts/check-postman.mjs"
+echo "OK: postman helpers"
+
 node "$ROOT/scripts/export-openapi.mjs"
 echo "OK: OpenAPI export"
+
+if [ -d "$ROOT/docusaurus/node_modules" ]; then
+  node "$ROOT/scripts/check-docusaurus.mjs"
+  echo "OK: Docusaurus build"
+else
+  echo "SKIP: Docusaurus (run npm run docusaurus:install locally or npm ci --prefix docusaurus in CI)"
+fi
