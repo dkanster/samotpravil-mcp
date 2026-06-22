@@ -41,6 +41,7 @@ const { yaml, operationCount, tagCount, overview } = buildOpenApiFromSnapshot(SN
 });
 
 mkdirSync(GENERATED, { recursive: true });
+mkdirSync(join(DOCUSAURUS, "docs"), { recursive: true });
 mkdirSync(join(DOCUSAURUS, "static"), { recursive: true });
 writeFileSync(join(DOCUSAURUS, "static", "openapi.yaml"), yaml, "utf8");
 
