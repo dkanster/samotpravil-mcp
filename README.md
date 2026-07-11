@@ -1,31 +1,67 @@
 # Samotpravil MCP
 
 [![CI](https://github.com/dkanster/samotpravil-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/dkanster/samotpravil-mcp/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/samotpravil-mcp.svg)](https://www.npmjs.com/package/samotpravil-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-MCP-сервер вокруг [документации API СамОтправил](https://documentation.samotpravil.ru/).
+MCP-сервер вокруг [документации API СамОтправил](https://documentation.samotpravil.ru/) и HTTP API `api.samotpravil.ru`.
+
+**Версия:** 1.3.2 · **npm:** [`samotpravil-mcp`](https://www.npmjs.com/package/samotpravil-mcp) · **MCP Registry:** `io.github.dkanster/samotpravil-mcp` · **Smithery:** [`smithery.yaml`](./smithery.yaml)
 
 > **Хостинг:** репозиторий временно в [dkanster/samotpravil-mcp](https://github.com/dkanster/samotpravil-mcp).  
-> **Планируется:** переезд в org **Samotpravil** на GitHub и npm `@samotpravil/mcp` — см. [docs/ORG_MIGRATION.md](./docs/ORG_MIGRATION.md).
+> **Планируется:** переезд в org **Samotpravil** → `@samotpravil/mcp` — [docs/ORG_MIGRATION.md](./docs/ORG_MIGRATION.md).
 
-Документация опубликована как Postman Documenter; сервер подтягивает коллекцию с `documentation.samotpravil.ru` и даёт агенту инструменты для поиска методов, параметров и примеров. Опционально — прокси к `api.samotpravil.ru`, если задан API-ключ.
+Сервер подтягивает Postman-коллекцию с documenter (live + offline snapshot) и даёт агенту tools для поиска методов, вызова API и безопасных пресетов (`READ_ONLY`, `dry_run`). Имена typed tools совпадают с [Python SDK `samotpravil`](https://pypi.org/project/samotpravil/).
 
-Как связаны Postman, `samotpravil-mcp`, OpenAPI, swagger-mcp и **static preview на Docusaurus**: **[docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md)** · **[docs/DOCS_SITE.md](./docs/DOCS_SITE.md)** · live: **https://dkanster.github.io/samotpravil-mcp/**
+**Экосистема:** Postman → snapshot → MCP / OpenAPI / Docusaurus — [docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md) · live preview: **https://dkanster.github.io/samotpravil-mcp/**
 
-## Roadmap
+---
 
-План v1.1 (milestones, issues, фазы): **[docs/ROADMAP.md](./docs/ROADMAP.md)**  
-**v1.2:** **[docs/ROADMAP_v1.2.md](./docs/ROADMAP_v1.2.md)** — auto typed tools, prompts, OpenAPI, `--http`, встроенные `postman_*` tools
+## Быстрый старт
 
-| Milestone | Фокус |
-|-----------|--------|
-| [Phase 0](https://github.com/dkanster/samotpravil-mcp/milestone/1) | Подготовка, interim hosting |
-| [Phase 1–6](https://github.com/dkanster/samotpravil-mcp/milestones) | npm, snapshot, typed tools, resources, docs, promo |
-| [v1.1.0](https://github.com/dkanster/samotpravil-mcp/milestone/8) | Релиз |
-| [Future](https://github.com/dkanster/samotpravil-mcp/milestone/9) | Org migration |
-| **v1.2** | Auto tools, prompts, OpenAPI, HTTP transport |
+```bash
+npx -y samotpravil-mcp@latest
+```
 
-**GitHub Project:** создайте board «Samotpravil MCP v1.1» — см. [docs/ROADMAP.md#github-project](./docs/ROADMAP.md#github-project).
+**Cursor** — `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "samotpravil": {
+      "command": "npx",
+      "args": ["-y", "samotpravil-mcp@latest"],
+      "env": {
+        "SAMOTPRAVIL_API_KEY": "your_api_key_here",
+        "SAMOTPRAVIL_READ_ONLY": "1",
+        "SAMOTPRAVIL_ALLOW_SEND": "0"
+      }
+    }
+  }
+}
+```
+
+`SAMOTPRAVIL_API_KEY` опционален для docs-only tools. После правок: **Settings → MCP → Reload**.
+
+Сценарии и конфиги для Claude / VS Code: **[docs/EXAMPLES.md](./docs/EXAMPLES.md)**
+
+---
+
+## Что внутри
+
+| Компонент | Кол-во | Нужен ключ |
+|-----------|--------|------------|
+| Docs tools | 4 | нет |
+| Core typed API | 9 + `api_request` | `SAMOTPRAVIL_API_KEY` |
+| Python SDK parity | 29 | `SAMOTPRAVIL_API_KEY` |
+| Auto tools (`api_*`) | ~16 | `SAMOTPRAVIL_API_KEY` |
+| Postman maintainer | 4 | `POSTMAN_API_KEY` |
+| MCP Resources | 5 | нет |
+| MCP Prompts | 5 | нет |
+
+**Итого:** ~59 tools ( +4 postman при `POSTMAN_API_KEY`).
+
+---
 
 ## Инструменты
 
@@ -38,32 +74,40 @@ MCP-сервер вокруг [документации API СамОтправи
 | `search_docs` | Поиск по документации |
 | `get_endpoint` | Подробности по методу |
 
-### Postman / документация (нужен `POSTMAN_API_KEY`)
-
-| Tool | Описание |
-|------|----------|
-| `postman_get_collection` | Коллекция из Postman API (summary или full) |
-| `postman_sync_snapshot` | Postman API → `data/collection.snapshot.json` |
-| `postman_diff_snapshot` | Diff Postman vs локальный snapshot |
-| `postman_search_requests` | Поиск запросов в Postman-коллекции |
-
-Ключ — в `.env.samotpravil` (или legacy `.env.postman`). Отдельный Postman MCP больше не нужен.
-
 ### Typed API (нужен `SAMOTPRAVIL_API_KEY`)
 
 | Tool | Описание |
 |------|----------|
 | `send_email` | POST `/api/v1/smtp_send` |
 | `send_mail_v2` | POST `/api/v2/mail/send` |
-| `get_delivery_status` | GET `/api/v2/issue/status` |
+| `get_delivery_status` | GET `/api/v2/issue/status` (`message_id` или `x_track_id`) |
 | `get_package_status` | GET `/api/v2/package/status` |
 | `search_stop_list` | Поиск email в стоп-листах |
-| `add_stop_list_email` / `remove_stop_list_email` | Управление стоп-листом |
-| `validate_email` | Валидация адреса |
-| `list_allowed_domains` | Разрешённые домены |
+| `add_stop_list_email` / `remove_stop_list_email` | Стоп-лист (`mail_from` или `domain`) |
+| `validate_email` | POST `/api/v2/emails/validate/` |
+| `list_allowed_domains` | GET `/api/v2/blist/domains` |
 | `api_request` | Generic escape hatch |
-| `api_{method}_{path}` | Auto tools для оставшихся HTTP-методов |
-| **Python SDK parity (v1.3)** | `send_package`, `get_statistics`, `stop_list_export_create`, `domain_add`, … — [29 tools](./docs/EXAMPLES.md#python-sdk-parity) |
+
+### Python SDK parity (v1.3+)
+
+Typed tools с именами как в PyPI-пакете `samotpravil`: `send_package`, `get_statistics`, `get_ext_status`, `stop_list_export_create`, `domain_add`, `get_blist`, `create_authkey` и др.
+
+Полный список и маппинг: **[docs/EXAMPLES.md#python-sdk-parity](./docs/EXAMPLES.md#python-sdk-parity)** · prompt `python_sdk_parity`
+
+### Postman maintainer (нужен `POSTMAN_API_KEY`)
+
+| Tool | Описание |
+|------|----------|
+| `postman_get_collection` | Коллекция из Postman API |
+| `postman_sync_snapshot` | Postman API → `data/collection.snapshot.json` |
+| `postman_diff_snapshot` | Diff Postman vs локальный snapshot |
+| `postman_search_requests` | Поиск запросов в коллекции |
+
+Подробнее: **[docs/EXAMPLES.md#postman-tools](./docs/EXAMPLES.md#postman-tools)**
+
+### Auto tools
+
+`api_{method}_{path}` — для HTTP-методов, не покрытых typed tools (legacy v1, tickets, email check/clean и т.д.).
 
 ### MCP Prompts
 
@@ -73,171 +117,118 @@ MCP-сервер вокруг [документации API СамОтправи
 | `send_transactional` | Чеклист отправки письма |
 | `stop_list_workflow` | Работа со стоп-листами |
 | `check_delivery` | Статус по X-Track-ID / выпуску |
-| `python_sdk_parity` | Python SDK `samotpravil` → MCP tools |
+| `python_sdk_parity` | Python SDK → MCP tools |
 
-### HTTP transport (v1.2)
+### MCP Resources
+
+| URI | Содержимое |
+|-----|------------|
+| `samotpravil://overview` | Обзор API |
+| `samotpravil://endpoints` | Индекс методов |
+| `samotpravil://endpoint/{slug}` | Один метод |
+| `samotpravil://errors` | Популярные ошибки |
+| `samotpravil://integration` | SMTP, X-Track-ID, трекинг |
+
+---
+
+## Безопасность
+
+| Env | Эффект |
+|-----|--------|
+| `SAMOTPRAVIL_READ_ONLY=1` | Только GET/HEAD |
+| `SAMOTPRAVIL_ALLOW_SEND=0` | Блок send/package |
+| `SAMOTPRAVIL_ALLOW_MUTATIONS=0` | Блок stop-list, доменов, authkey |
+| `SAMOTPRAVIL_ALLOW_GENERIC_API=0` | Отключить `api_request` |
+| `SAMOTPRAVIL_DOCS_MODE` | `auto` \| `live` \| `snapshot` |
+| `dry_run: true` | Preview запроса без отправки |
+
+Секреты (`api_key`, `key=` в query) маскируются в ответах MCP.
+
+---
+
+## Транспорты и интеграции
+
+### HTTP transport
 
 ```bash
 npx samotpravil-mcp --http --port 3000
 # POST http://127.0.0.1:3000/mcp
 ```
 
-### OpenAPI
+Env: `SAMOTPRAVIL_HTTP_HOST`, `SAMOTPRAVIL_HTTP_PORT`.
+
+### OpenAPI + Swagger-MCP
 
 ```bash
 npm run export-openapi        # → data/openapi.yaml
-npm run upload-swaggerhub     # публикация на SwaggerHub (нужен .env.swaggerhub)
-npm run check-swaggerhub      # проверка API key и owner
+npm run upload-swaggerhub     # SwaggerHub (нужен .env.swaggerhub)
+npm run prepare-swagger-mcp   # Vizioz/Swagger-MCP
 ```
 
-**Опубликовано:** [mailganer/samotpravil-smtp-api@1.0.0](https://app.swaggerhub.com/apis/mailganer/samotpravil-smtp-api/1.0.0) · Подробнее: **[docs/SWAGGERHUB.md](./docs/SWAGGERHUB.md)**
+Спека: [mailganer/samotpravil-smtp-api@1.0.0](https://app.swaggerhub.com/apis/mailganer/samotpravil-smtp-api/1.0.0) · [docs/SWAGGERHUB.md](./docs/SWAGGERHUB.md)
 
-### Static preview (Docusaurus)
-
-Альтернатива Postman Documenter для preview и GitHub Pages — из того же snapshot:
+### Docusaurus preview
 
 ```bash
-npm run docusaurus:install   # один раз
-npm run docusaurus:start     # http://localhost:3000
+npm run docusaurus:install && npm run docusaurus:start
 ```
 
-Live: **https://dkanster.github.io/samotpravil-mcp/** · Подробнее: **[docs/DOCS_SITE.md](./docs/DOCS_SITE.md)**
+Live: **https://dkanster.github.io/samotpravil-mcp/** · [docs/DOCS_SITE.md](./docs/DOCS_SITE.md)
 
-### Swagger-MCP ([Vizioz/Swagger-MCP](https://github.com/Vizioz/Swagger-MCP))
+### Discovery
 
-MCP-сервер для работы с OpenAPI: список эндпоинтов, модели, генерация MCP tool definitions.
+| Площадка | Ссылка |
+|----------|--------|
+| npm | https://www.npmjs.com/package/samotpravil-mcp |
+| MCP Registry | https://registry.modelcontextprotocol.io |
+| Smithery | `smithery.yaml` в корне — [docs/PUBLISH.md](./docs/PUBLISH.md) |
+| Официальный promo | [docs/official/](./docs/official/) |
 
-```bash
-npm run prepare-swagger-mcp   # один раз: clone + build в vendor/swagger-mcp
-npm run swagger-mcp           # запуск (stdio)
-```
-
-Источник спецификации (по приоритету):
-
-1. `SAMOTPRAVIL_SWAGGER_URL` — явный URL
-2. Публичный SwaggerHub (`SWAGGERHUB_OWNER` + `SWAGGERHUB_API_NAME`)
-3. Локальный `data/openapi.yaml` (временный HTTP на 127.0.0.1)
-
-**Cursor** — добавьте в `.cursor/mcp.json` (или через `setup.sh`):
-
-```json
-{
-  "mcpServers": {
-    "swagger-mcp": {
-      "command": ".cursor/swagger-mcp.sh",
-      "args": []
-    }
-  }
-}
-```
-
-Инструменты: `listEndpoints`, `listEndpointModels`, `generateModelCode`, `generateEndpointToolCode`.
-
-### Postman (встроено в samotpravil-mcp)
-
-Tools `postman_*` работают в том же MCP-сервере при наличии `POSTMAN_API_KEY` в `.env.samotpravil`. Нужны maintainer'ам для синхронизации коллекции документации с snapshot. Подробнее: **[docs/EXAMPLES.md](./docs/EXAMPLES.md#postman-tools)** и **[docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md)**.
-
-### Безопасность
-
-| Env | Эффект |
-|-----|--------|
-| `SAMOTPRAVIL_READ_ONLY=1` | Только безопасные GET/HEAD (без отправки и остановки пакетов) |
-| `SAMOTPRAVIL_ALLOW_SEND=0` | Блок send/package endpoints |
-| `SAMOTPRAVIL_ALLOW_MUTATIONS=0` | Блок stop-list, доменов, authkey и прочих изменений |
-| `SAMOTPRAVIL_ALLOW_GENERIC_API=0` | Отключить инструмент `api_request` |
-| `SAMOTPRAVIL_HTTP_HOST=127.0.0.1` | Адрес bind для `--http` (по умолчанию localhost) |
-| `dry_run: true` | Preview запроса без отправки |
-
-Ответы API с полями `api_key` и query-параметр `key=` автоматически маскируются в выводе MCP.
-
-### MCP Resources (без tool calls)
-
-| URI | Содержимое |
-|-----|------------|
-| `samotpravil://overview` | Обзор API |
-| `samotpravil://endpoints` | Индекс методов |
-| `samotpravil://endpoint/{slug}` | Один метод (напр. `smtp_send`) |
-| `samotpravil://errors` | Популярные ошибки |
-| `samotpravil://integration` | SMTP, X-Track-ID, трекинг |
-
-## Быстрый старт (рекомендуется)
-
-Добавьте в `.cursor/mcp.json` (или аналог в вашем MCP-клиенте):
-
-```json
-{
-  "mcpServers": {
-    "samotpravil": {
-      "command": "npx",
-      "args": ["-y", "samotpravil-mcp@latest"],
-      "env": {
-        "SAMOTPRAVIL_API_KEY": "your_api_key_here",
-        "SAMOTPRAVIL_READ_ONLY": "1",
-        "SAMOTPRAVIL_ALLOW_SEND": "0",
-        "SAMOTPRAVIL_ALLOW_MUTATIONS": "0",
-        "SAMOTPRAVIL_ALLOW_GENERIC_API": "0"
-      }
-    }
-  }
-}
-```
-
-`SAMOTPRAVIL_API_KEY` можно опустить для docs-only. Флаги `READ_ONLY` / `ALLOW_SEND` — опционально (безопасный preset выше).
-
-В Cursor: **Settings → MCP → Reload**.
-
-Подробнее: **[docs/EXAMPLES.md](./docs/EXAMPLES.md)** · Официальная публикация: **[docs/official/](./docs/official/)**
-
-### npm
-
-```bash
-npx -y samotpravil-mcp@latest
-```
-
-Пакет: https://www.npmjs.com/package/samotpravil-mcp (после первого publish — см. [docs/PUBLISH.md](./docs/PUBLISH.md)).
-
-### Из git clone (разработка / fork)
-
-```bash
-git clone https://github.com/dkanster/samotpravil-mcp.git
-cd your-workspace
-/path/to/samotpravil-mcp/setup.sh .
-```
+---
 
 ## Конфигурация
 
-`.env.samotpravil` в корне проекта (или `ai/.env.samotpravil`):
+Шаблон: [`.env.samotpravil.example`](./.env.samotpravil.example)
 
 ```env
 SAMOTPRAVIL_API_KEY=your_key_here
+# POSTMAN_API_KEY=...          # maintainer tools
+# SAMOTPRAVIL_READ_ONLY=1
 ```
 
-Ключ нужен для typed tools и `api_request`. Docs tools и resources работают без ключа. Получить доступ: https://samotpravil.ru/get-access
+Ключ API: https://samotpravil.ru/get-access
 
-**SwaggerHub** (опционально, для `upload-swaggerhub` и Swagger-MCP): скопируйте [`.env.swaggerhub.example`](./.env.swaggerhub.example) → `.env.swaggerhub`. См. [docs/SWAGGERHUB.md](./docs/SWAGGERHUB.md).
+Полный список env: **[docs/EXAMPLES.md](./docs/EXAMPLES.md#переменные-окружения)**
 
-## Локальная разработка
+---
+
+## Разработка
 
 ```bash
-npm install
-npm run build
-npm run dev
-npm test
+git clone https://github.com/dkanster/samotpravil-mcp.git
+cd samotpravil-mcp
+npm install && npm test && npm run dev
 ```
 
-Contributing: **[CONTRIBUTING.md](./CONTRIBUTING.md)** · Сценарии: **[docs/EXAMPLES.md](./docs/EXAMPLES.md)**
+- Contributing: **[CONTRIBUTING.md](./CONTRIBUTING.md)**
+- Changelog: **[CHANGELOG.md](./CHANGELOG.md)**
+- Publish: **[docs/PUBLISH.md](./docs/PUBLISH.md)**
+- Roadmap: **[docs/ROADMAP_v1.2.md](./docs/ROADMAP_v1.2.md)** (v1.2–v1.3 закрыты; далее — org migration, promo на documenter)
 
-## Источник документации
+### Источник документации
 
-- Сайт: https://documentation.samotpravil.ru/
-- Live JSON: публичный Postman collection endpoint
-- **Offline:** bundled snapshot в `data/collection.snapshot.json` (fallback)
-- Обновить snapshot: `npm run sync-docs`
-- OpenAPI: `npm run export-openapi` → `data/openapi.yaml`; публикация — [docs/SWAGGERHUB.md](./docs/SWAGGERHUB.md)
-- **Static preview:** `npm run docusaurus:start` → [docs/DOCS_SITE.md](./docs/DOCS_SITE.md) · live: https://dkanster.github.io/samotpravil-mcp/
-- Режим загрузки: `SAMOTPRAVIL_DOCS_MODE=auto` (default) | `live` | `snapshot`
-- API base URL: https://api.samotpravil.ru
-- SMTP: `api.samotpravil.ru:1126` / `:1127` (TLS)
+- Live: https://documentation.samotpravil.ru/
+- Offline: `data/collection.snapshot.json`
+- Обновить: `npm run sync-docs` или `postman_sync_snapshot`
+- API: https://api.samotpravil.ru · SMTP: `api.samotpravil.ru:1126` / `:1127`
+
+### Из git clone в свой проект
+
+```bash
+/path/to/samotpravil-mcp/setup.sh .
+```
+
+---
 
 ## Лицензия
 
