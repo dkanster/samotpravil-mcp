@@ -2,7 +2,7 @@ import { z } from "zod";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { DOCS_BASE_URL } from "./docs.js";
 
-export const PROMPT_COUNT = 4;
+export const PROMPT_COUNT = 5;
 
 export function registerPrompts(server: McpServer): void {
   server.registerPrompt(
@@ -135,6 +135,55 @@ export function registerPrompts(server: McpServer): void {
             ]
               .filter(Boolean)
               .join("\n"),
+          },
+        },
+      ],
+    }),
+  );
+
+  server.registerPrompt(
+    "python_sdk_parity",
+    {
+      description: "Маппинг Python SDK samotpravil → MCP tools",
+    },
+    async () => ({
+      messages: [
+        {
+          role: "user",
+          content: {
+            type: "text",
+            text: [
+              "Пользователь использует Python-библиотеку samotpravil (PyPI). Помоги найти эквивалентные MCP tools.",
+              "",
+              "Основные соответствия:",
+              "- send_email → send_email",
+              "- send_package → send_package",
+              "- send_package_xml → send_package_xml",
+              "- stop_package → stop_package",
+              "- get_status → get_delivery_status (message_id или x_track_id)",
+              "- get_ext_status → get_ext_status",
+              "- get_package_status → get_package_status",
+              "- get_statistics → get_statistics",
+              "- get_non_delivery_by_date → get_non_delivery_by_date",
+              "- get_non_delivery_by_issue → get_non_delivery_by_issue",
+              "- get_fbl_report_by_date → get_fbl_report_by_date",
+              "- get_fbl_report_by_issue → get_fbl_report_by_issue",
+              "- get_unsubscribe_by_date → get_unsubscribe_by_date",
+              "- get_unsubscribe_by_issue → get_unsubscribe_by_issue",
+              "- get_issue_stat → get_issue_stat",
+              "- stop_list_search → search_stop_list",
+              "- stop_list_add/remove → add_stop_list_email / remove_stop_list_email (domain или mail_from)",
+              "- stop_list_unsubscribe/fbl/failed → одноимённые tools",
+              "- stop_list_export_* → stop_list_export_create/tasks/download/delete",
+              "- get_domains → list_allowed_domains",
+              "- domain_add/remove/check_verification → domain_* tools",
+              "- get_blist/create_blist/update_blist → get_blist/create_blist/update_blist",
+              "- get_ip_info → get_ip_info",
+              "- get_authkey/create_authkey → get_authkey/create_authkey",
+              "",
+              "Дополнительно в MCP (нет в Python SDK): send_mail_v2, validate_email, api_* auto tools.",
+              "Документация: get_overview, search_docs, samotpravil://endpoints",
+            ].join("\n"),
           },
         },
       ],

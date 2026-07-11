@@ -2,7 +2,7 @@
 
 Материалы для публикации на [documentation.samotpravil.ru](https://documentation.samotpravil.ru/) и samotpravil.ru.
 
-**Статус:** подготовлено в репозитории; публикация на сайте — задача команды документации / маркетинга Samotpravil.
+**Статус:** материалы готовы в репозитории (v1.2.1 опубликован в npm и MCP Registry). Публикация HTML на documenter — задача команды Samotpravil.
 
 Общая схема: Postman → documenter → snapshot → MCP/OpenAPI — **[../ECOSYSTEM.md](../ECOSYSTEM.md)**.
 
@@ -38,8 +38,11 @@
 
 ## Чеклист публикации
 
-- [ ] HTML-блок в Postman collection description
+- [x] HTML-блок подготовлен (`MCP_INSTALL_BLOCK.html`, v1.2.1+)
+- [x] npm `samotpravil-mcp@1.2.1` опубликован
+- [x] MCP Registry: `io.github.dkanster/samotpravil-mcp`
+- [ ] HTML-блок вставлен в Postman collection description
 - [ ] Republish documenter
 - [ ] Упоминание на samotpravil.ru/get-access (или blog)
-- [ ] `npm run sync-docs` + tag в samotpravil-mcp после публикации
+- [ ] `npm run sync-docs` + tag в samotpravil-mcp после публикации на documenter
 - [ ] Обновить ссылки при переезде в org Samotpravil

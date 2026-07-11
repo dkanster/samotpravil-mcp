@@ -167,6 +167,22 @@ npm run prepare-swagger-mcp   # clone + build (один раз)
 2. `postman_sync_snapshot` с `write: true` — обновить snapshot (или `npm run sync-docs` с documenter)
 3. `npm test` → commit `data/collection.snapshot.json`
 
+### Python SDK parity
+
+Typed tools с **теми же именами**, что в [Python SDK `samotpravil`](https://pypi.org/project/samotpravil/):
+
+| Python SDK | MCP tool |
+|------------|----------|
+| `send_email` | `send_email` |
+| `send_package` | `send_package` |
+| `get_status` | `get_delivery_status` |
+| `get_statistics` | `get_statistics` |
+| `stop_list_add` | `add_stop_list_email` (параметр `domain` или `mail_from`) |
+| `get_domains` | `list_allowed_domains` |
+| … | см. prompt `python_sdk_parity` |
+
+Полный список: `send_package`, `send_package_xml`, `stop_package`, `get_ext_status`, `get_non_delivery_by_date`, `get_fbl_report_by_issue`, `stop_list_export_*`, `domain_*`, `get_blist`, `create_authkey` и др.
+
 ### Claude Desktop
 
 `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
