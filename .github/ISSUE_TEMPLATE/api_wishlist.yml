@@ -1,0 +1,53 @@
+---
+name: API wishlist item
+about: Предложение нового или доработки существующего HTTP API СамОтправил
+title: "api: "
+labels: ["api-wishlist", "enhancement"]
+assignees: []
+---
+
+## Категория
+
+<!-- Ссылка на docs/API_WISHLIST.md -->
+
+- [ ] P1 — v2 consolidation
+- [ ] P2 — stabilize existing (tickets, email intelligence, webhooks)
+- [ ] P3 — new SaaS features (templates, bulk, quota)
+- [ ] P4 — DX / observability
+
+Секция wishlist: <!-- e.g. §1.2 Пакетная отправка v2 -->
+
+## Предлагаемый эндпоинт
+
+- **Method:**
+- **Path:** `/api/v2/...`
+- **Заменяет (если v1):** `/api/v1/...`
+
+## Use case
+
+<!-- Кто вызывает, зачем, пример из SaaS-интеграции -->
+
+## Ожидаемый контракт (кратко)
+
+**Request:**
+
+```json
+
+```
+
+**Response:**
+
+```json
+
+```
+
+## Влияние на клиентов
+
+- [ ] Python SDK `samotpravil`
+- [ ] MCP `samotpravil-mcp` (auto tool достаточно)
+- [ ] MCP typed tool с именем SDK
+- [ ] Breaking change / deprecation v1
+
+## Дополнительно
+
+См. [docs/API_WISHLIST.md](../docs/API_WISHLIST.md)

@@ -206,4 +206,5 @@ swagger-mcp остаётся отдельным upstream ([Vizioz/Swagger-MCP](h
 - [EXAMPLES.md](./EXAMPLES.md) — конфигурация MCP, сценарии
 - [SWAGGERHUB.md](./SWAGGERHUB.md) — OpenAPI и SwaggerHub
 - [official/README.md](./official/README.md) — публикация MCP-блока в documenter
+- [API_WISHLIST.md](./API_WISHLIST.md) — предложения по развитию HTTP API (для команды Samotpravil)
 - [CONTRIBUTING.md](../CONTRIBUTING.md) — структура кода
