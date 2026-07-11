@@ -15,7 +15,7 @@
 | 2 | MCP Prompts (сценарии интеграции) | ✅ Phase 1 |
 | 3 | OpenAPI export из Postman snapshot | ✅ Phase 1 |
 | 4 | HTTP transport (`--http`) | ✅ Phase 2 |
-| 5 | MCP Registry / Smithery metadata | 🚧 Phase 2 (`server.json` готов) |
+| 5 | MCP Registry / Smithery metadata | ✅ Phase 2 (`server.json`, `smithery.yaml`) |
 | 6 | Уникальные slug для endpoint resources | ✅ Phase 1 |
 
 Не входит в v1.2 (Future milestone): GitHub/npm org migration (#2–#4).
@@ -69,7 +69,8 @@ Env: `SAMOTPRAVIL_HTTP_PORT` (default 3000).
 ### 2.2 MCP Registry
 
 - `server.json` в корне репозитория
-- Smithery / registry metadata (после стабилизации Phase 1)
+- Smithery: `smithery.yaml` (stdio via npx, install wizard)
+- Registry workflow запускается **после** успешного `Publish npm` (`workflow_run`)
 
 ---
 

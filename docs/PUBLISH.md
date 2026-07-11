@@ -43,13 +43,17 @@ npx -y samotpravil-mcp@latest --help 2>&1 | head -1
 
 ### CI (рекомендуется)
 
-При push tag `v*` workflow [.github/workflows/mcp-registry.yml](../.github/workflows/mcp-registry.yml) публикует в [registry.modelcontextprotocol.io](https://registry.modelcontextprotocol.io) через GitHub OIDC.
+При push tag `v*` workflow [.github/workflows/publish.yml](../.github/workflows/publish.yml) публикует в npm; после успешного завершения [.github/workflows/mcp-registry.yml](../.github/workflows/mcp-registry.yml) публикует в [registry.modelcontextprotocol.io](https://registry.modelcontextprotocol.io) (через `workflow_run`, с ожиданием появления пакета на npm).
 
-Ручной запуск:
+Ручной запуск registry:
 
 ```bash
 gh workflow run "Publish MCP Registry" --repo dkanster/samotpravil-mcp
 ```
+
+### Smithery
+
+Файл [`smithery.yaml`](../smithery.yaml) в корне — конфигурация install wizard на [smithery.ai](https://smithery.ai). После merge в main подключите репозиторий в Smithery Dashboard (Build from GitHub).
 
 ### Локально
 
