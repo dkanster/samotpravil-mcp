@@ -214,6 +214,7 @@ npm install && npm test && npm run dev
 - Changelog: **[CHANGELOG.md](./CHANGELOG.md)**
 - Publish: **[docs/PUBLISH.md](./docs/PUBLISH.md)**
 - Roadmap: **[docs/ROADMAP_v1.2.md](./docs/ROADMAP_v1.2.md)** (v1.2–v1.3 закрыты; далее — org migration, promo на documenter)
+- **API wishlist** (предложения для HTTP API продукта): **[docs/API_WISHLIST.md](./docs/API_WISHLIST.md)**
 
 ### Источник документации
 

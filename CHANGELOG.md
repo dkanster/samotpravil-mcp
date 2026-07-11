@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+
+- [docs/API_WISHLIST.md](./docs/API_WISHLIST.md) — предложения по развитию HTTP API СамОтправил
+- Issue template `.github/ISSUE_TEMPLATE/api_wishlist.yml`
+
 ## [1.3.2] - 2026-07-11
 
 ### Fixed
