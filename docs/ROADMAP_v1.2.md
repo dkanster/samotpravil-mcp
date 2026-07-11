@@ -88,7 +88,7 @@ Env: `SAMOTPRAVIL_HTTP_PORT` (default 3000).
 - [x] `data/openapi.yaml` генерируется в CI
 - [x] `--http` работает локально
 - [x] `server.json` для registry
-- [ ] CI green, npm `samotpravil-mcp@1.2.0`
+- [x] CI green, npm `samotpravil-mcp@1.2.1`
 
 ---
 

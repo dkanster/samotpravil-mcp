@@ -74,9 +74,13 @@ npm run prepare-swagger-mcp   # clone + build (один раз)
 
 Спецификация берётся из `data/openapi.yaml` (или SwaggerHub, если настроен `.env.swaggerhub`). См. **[docs/SWAGGERHUB.md](./SWAGGERHUB.md)**.
 
-### Postman MCP Server
+### Postman MCP Server (опционально)
 
-[Postman MCP Server](https://www.postman.com/product/mcp-server/) даёт агенту доступ к коллекциям, workspace, environments и Postman API. Полезно вместе с Samotpravil MCP для синхронизации документации и коллекций.
+Встроенные tools `postman_*` в **samotpravil-mcp** покрывают maintainer-сценарии (sync/diff коллекции документации). Отдельный Postman MCP нужен только для generic Postman API (workspaces, environments, 100+ tools).
+
+См. **[Postman tools (встроенные)](#postman-tools)** ниже.
+
+[Postman MCP Server](https://www.postman.com/product/mcp-server/) даёт агенту доступ к коллекциям, workspace, environments и Postman API.
 
 Как это соотносится с `samotpravil-mcp` и OpenAPI: **[ECOSYSTEM.md](./ECOSYSTEM.md)**.
 
@@ -126,6 +130,42 @@ npm run prepare-swagger-mcp   # clone + build (один раз)
 ```
 
 Для EU с API key: `https://mcp.eu.postman.com/code` и заголовок `Authorization: Bearer <POSTMAN_API_KEY>`.
+
+### Postman tools (встроенные)
+
+При `POSTMAN_API_KEY` в env **samotpravil-mcp** регистрирует 4 maintainer tool'а (отдельный Postman MCP не нужен для документации СамОтправил):
+
+| Tool | Описание |
+|------|----------|
+| `postman_get_collection` | Коллекция из Postman API (`detail`: `summary` \| `full`) |
+| `postman_sync_snapshot` | Postman API → `data/collection.snapshot.json` (`write: true` для записи) |
+| `postman_diff_snapshot` | Diff Postman API vs локальный snapshot |
+| `postman_search_requests` | Поиск запросов (`source`: `local` \| `remote`) |
+
+**Cursor / Claude** — добавьте ключ в env сервера `samotpravil`:
+
+```json
+{
+  "mcpServers": {
+    "samotpravil": {
+      "command": "npx",
+      "args": ["-y", "samotpravil-mcp@latest"],
+      "env": {
+        "POSTMAN_API_KEY": "your_postman_api_key_here",
+        "POSTMAN_COLLECTION_UID": "2s93RZM9in"
+      }
+    }
+  }
+}
+```
+
+Локально: `.env.samotpravil` (шаблон `.env.samotpravil.example`) или legacy `.env.postman`.
+
+**Типичный workflow maintainer'а:**
+
+1. `postman_diff_snapshot` — что изменилось в Postman vs snapshot в репо
+2. `postman_sync_snapshot` с `write: true` — обновить snapshot (или `npm run sync-docs` с documenter)
+3. `npm test` → commit `data/collection.snapshot.json`
 
 ### Claude Desktop
 
@@ -273,6 +313,9 @@ npm run prepare-swagger-mcp   # clone + build (один раз)
 | `SAMOTPRAVIL_READ_ONLY` | off | Только GET/HEAD |
 | `SAMOTPRAVIL_ALLOW_SEND` | on | Блок send/package |
 | `SAMOTPRAVIL_DOCS_MODE` | `auto` | `live` \| `snapshot` \| `auto` |
+| `POSTMAN_API_KEY` | — | Включает tools `postman_*` (maintainer) |
+| `POSTMAN_COLLECTION_UID` | `2s93RZM9in` | UID коллекции документации |
+| `POSTMAN_API_BASE_URL` | `https://api.getpostman.com` | EU: `https://api.eu.getpostman.com` |
 
 ---
 

@@ -27,10 +27,16 @@ src/
   redact.ts             # маскировка api_key и секретов в ответах
   resources.ts          # MCP Resources content
   registerResources.ts  # Resource registration
+  registerAutoTools.ts  # Auto tools from snapshot
+  registerPostmanTools.ts # Postman maintainer tools (POSTMAN_API_KEY)
+  registerPrompts.ts    # MCP prompts
+  http.ts               # Streamable HTTP transport (--http)
+  postman/              # Postman API client, diff, snapshot
   tools/
     docs.ts             # Documentation tools
     api.ts              # api_request
     typed.ts            # Typed API tools
+    postman.ts          # postman_* tool handlers
 data/
   collection.snapshot.json
   snapshot.meta.json

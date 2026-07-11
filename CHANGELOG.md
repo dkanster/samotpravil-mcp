@@ -4,6 +4,19 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.2.1] - 2026-07-11
+
+### Added
+
+- Встроенные Postman tools: `postman_get_collection`, `postman_sync_snapshot`, `postman_diff_snapshot`, `postman_search_requests`
+- `src/postman/` — Postman API client, diff, snapshot write
+- `scripts/check-postman.mjs` — CI-проверка postman helpers
+
+### Fixed
+
+- `npm test` больше не падает на отсутствующем `check-postman.mjs`
+- Документация синхронизирована с кодом (README, ECOSYSTEM, EXAMPLES `#postman-tools`)
+
 ## [1.2.0] - 2026-06-22
 
 ### Added

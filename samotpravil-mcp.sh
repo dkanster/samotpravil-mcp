@@ -34,15 +34,16 @@ read_env_value() {
 
 load_env() {
   local file
-  for file in "$ROOT/.env.samotpravil" "$ROOT/ai/.env.samotpravil"; do
-    if [[ -f "$file" ]]; then
-      if [[ -z "${SAMOTPRAVIL_API_KEY:-}" ]]; then
-        local key
-        key="$(read_env_value SAMOTPRAVIL_API_KEY "$file" || true)"
-        [[ -n "$key" ]] && export SAMOTPRAVIL_API_KEY="$key"
+  for file in "$ROOT/.env.samotpravil" "$ROOT/ai/.env.samotpravil" "$ROOT/.env.postman" "$ROOT/ai/.env.postman"; do
+    [[ -f "$file" ]] || continue
+    local key val
+    for key in SAMOTPRAVIL_API_KEY POSTMAN_API_KEY POSTMAN_COLLECTION_UID POSTMAN_API_BASE_URL; do
+      if [[ -z "${!key:-}" ]]; then
+        val="$(read_env_value "$key" "$file" || true)"
+        [[ -n "$val" ]] && export "$key=$val"
       fi
-      return 0
-    fi
+    done
+    [[ -n "${SAMOTPRAVIL_API_KEY:-}" || -n "${POSTMAN_API_KEY:-}" ]] && return 0
   done
   return 1
 }

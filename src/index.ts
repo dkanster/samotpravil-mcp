@@ -7,6 +7,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { isHttpMode, resolveHttpPort, startHttpServer } from "./http.js";
 import { registerAutoTools } from "./registerAutoTools.js";
+import { POSTMAN_TOOL_COUNT, registerPostmanTools } from "./registerPostmanTools.js";
 import { PROMPT_COUNT, registerPrompts } from "./registerPrompts.js";
 import { registerResources, RESOURCE_COUNT } from "./registerResources.js";
 import {
@@ -128,7 +129,11 @@ function registerManualTools(server: McpServer): void {
   );
 }
 
-export async function createMcpServer(): Promise<{ server: McpServer; autoToolCount: number }> {
+export async function createMcpServer(): Promise<{
+  server: McpServer;
+  autoToolCount: number;
+  postmanToolCount: number;
+}> {
   const server = new McpServer({
     name: "samotpravil-mcp",
     version: PACKAGE_VERSION,
@@ -137,9 +142,10 @@ export async function createMcpServer(): Promise<{ server: McpServer; autoToolCo
   registerManualTools(server);
   registerResources(server);
   registerPrompts(server);
+  const postmanToolCount = registerPostmanTools(server);
   const autoToolCount = await registerAutoTools(server);
 
-  return { server, autoToolCount };
+  return { server, autoToolCount, postmanToolCount };
 }
 
 async function main() {
@@ -149,13 +155,14 @@ async function main() {
     return;
   }
 
-  const { server, autoToolCount } = await createMcpServer();
+  const { server, autoToolCount, postmanToolCount } = await createMcpServer();
   const transport = new StdioServerTransport();
   await server.connect(transport);
 
-  const totalTools = MANUAL_TOOL_COUNT + autoToolCount;
+  const totalTools = MANUAL_TOOL_COUNT + autoToolCount + postmanToolCount;
+  const postmanSuffix = postmanToolCount > 0 ? ` (+${postmanToolCount} postman)` : "";
   console.error(
-    `[samotpravil-mcp] v${PACKAGE_VERSION} (stdio). ${totalTools} tools, ${PROMPT_COUNT} prompts, ${RESOURCE_COUNT} resources. Docs: https://documentation.samotpravil.ru/`,
+    `[samotpravil-mcp] v${PACKAGE_VERSION} (stdio). ${totalTools} tools${postmanSuffix}, ${PROMPT_COUNT} prompts, ${RESOURCE_COUNT} resources. Docs: https://documentation.samotpravil.ru/`,
   );
 }
 
@@ -168,4 +175,4 @@ if (isDirectRun) {
   });
 }
 
-export { RESOURCE_COUNT, PROMPT_COUNT };
+export { RESOURCE_COUNT, PROMPT_COUNT, POSTMAN_TOOL_COUNT };

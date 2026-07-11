@@ -96,9 +96,9 @@ CONTRIBUTING, CHANGELOG, EXAMPLES, issue templates.
 
 ## Критерии готовности v1.1
 
-- [ ] `npx` install в 3 строки
-- [ ] Документация работает offline
-- [ ] 8 typed tools + safety flags
-- [ ] 5 MCP resources
-- [ ] CI green, CHANGELOG, CONTRIBUTING
+- [x] `npx` install в 3 строки
+- [x] Документация работает offline
+- [x] 8 typed tools + safety flags
+- [x] 5 MCP resources
+- [x] CI green, CHANGELOG, CONTRIBUTING
 - [ ] Ссылка в official docs (или согласованная дата)

@@ -15,7 +15,7 @@ MCP-сервер вокруг [документации API СамОтправи
 ## Roadmap
 
 План v1.1 (milestones, issues, фазы): **[docs/ROADMAP.md](./docs/ROADMAP.md)**  
-**v1.2 (в работе):** **[docs/ROADMAP_v1.2.md](./docs/ROADMAP_v1.2.md)** — auto typed tools, prompts, OpenAPI, `--http`
+**v1.2:** **[docs/ROADMAP_v1.2.md](./docs/ROADMAP_v1.2.md)** — auto typed tools, prompts, OpenAPI, `--http`, встроенные `postman_*` tools
 
 | Milestone | Фокус |
 |-----------|--------|

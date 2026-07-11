@@ -190,7 +190,7 @@ Postman и swagger-mcp не обязательны.
 
 ## Почему не отдельный Postman MCP
 
-Раньше Postman подключался отдельным MCP-сервером (`@postman/postman-mcp-server`). С v1.3 **Postman tools встроены в samotpravil-mcp**:
+Раньше Postman подключался отдельным MCP-сервером (`@postman/postman-mcp-server`). С **v1.2.1** **Postman tools встроены в samotpravil-mcp**:
 
 - один MCP-сервер для документации и синхронизации коллекции;
 - npm-пользователям не нужен Postman-аккаунт (без `POSTMAN_API_KEY` tools просто не регистрируются);
