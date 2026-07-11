@@ -1,9 +1,10 @@
 name: Publish MCP Registry
 
+# Runs after npm publish succeeds to avoid registry 404 (npm package not found yet).
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_run:
+    workflows: ["Publish npm"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -12,14 +13,35 @@ permissions:
 
 jobs:
   publish:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - name: Validate server.json
         run: |
           curl -sL "https://github.com/modelcontextprotocol/registry/releases/download/v1.7.9/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
           ./mcp-publisher validate server.json
+
+      - name: Wait for npm package
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          PKG="samotpravil-mcp@${VERSION}"
+          echo "Waiting for npm package ${PKG}..."
+          for attempt in $(seq 1 36); do
+            if npm view "${PKG}" version >/dev/null 2>&1; then
+              echo "Found ${PKG} on npm (attempt ${attempt})"
+              exit 0
+            fi
+            echo "Not visible yet (${attempt}/36), sleeping 10s..."
+            sleep 10
+          done
+          echo "::error::Timed out waiting for ${PKG} on npm registry"
+          exit 1
 
       - name: Publish to MCP Registry
         run: |

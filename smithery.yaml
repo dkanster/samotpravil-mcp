@@ -1,0 +1,50 @@
+# Smithery.ai — https://smithery.ai/docs/build/project-config
+# Enables one-click install wizard for samotpravil-mcp (stdio via npx).
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      samotpravilApiKey:
+        type: string
+        title: Samotpravil API Key
+        description: API key for api.samotpravil.ru (optional — docs tools work without it)
+      readOnly:
+        type: string
+        title: Read-only mode
+        description: "1 blocks mutating HTTP methods (recommended for AI agents)"
+        default: "1"
+      allowSend:
+        type: string
+        title: Allow send endpoints
+        description: "0 blocks send/package tools"
+        default: "0"
+      allowMutations:
+        type: string
+        title: Allow mutations
+        description: "0 blocks stop-list, domains, authkey changes"
+        default: "0"
+      docsMode:
+        type: string
+        title: Documentation source
+        description: auto | live | snapshot
+        default: auto
+    required: []
+  commandFunction: |-
+    (config) => ({
+      command: 'npx',
+      args: ['-y', 'samotpravil-mcp@latest'],
+      env: {
+        ...(config.samotpravilApiKey ? { SAMOTPRAVIL_API_KEY: config.samotpravilApiKey } : {}),
+        ...(config.readOnly ? { SAMOTPRAVIL_READ_ONLY: config.readOnly } : {}),
+        ...(config.allowSend ? { SAMOTPRAVIL_ALLOW_SEND: config.allowSend } : {}),
+        ...(config.allowMutations ? { SAMOTPRAVIL_ALLOW_MUTATIONS: config.allowMutations } : {}),
+        ...(config.docsMode ? { SAMOTPRAVIL_DOCS_MODE: config.docsMode } : {}),
+      },
+    })
+  exampleConfig:
+    readOnly: "1"
+    allowSend: "0"
+    allowMutations: "0"
+    docsMode: auto

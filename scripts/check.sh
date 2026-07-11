@@ -26,6 +26,9 @@ echo "OK: v1.2 auto tools and prompts"
 node "$ROOT/scripts/check-postman.mjs"
 echo "OK: postman helpers"
 
+node "$ROOT/scripts/check-smithery.mjs"
+echo "OK: Smithery metadata"
+
 node "$ROOT/scripts/export-openapi.mjs"
 echo "OK: OpenAPI export"
 

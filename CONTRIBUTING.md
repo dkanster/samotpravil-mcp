@@ -37,6 +37,8 @@ src/
     api.ts              # api_request
     typed.ts            # Typed API tools
     postman.ts          # postman_* tool handlers
+    sdkTyped.ts         # Python SDK parity tools
+smithery.yaml           # Smithery.ai install wizard
 data/
   collection.snapshot.json
   snapshot.meta.json
