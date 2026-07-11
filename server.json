@@ -8,13 +8,13 @@
     "url": "https://github.com/dkanster/samotpravil-mcp",
     "source": "github"
   },
-  "version": "1.2.0",
+  "version": "1.2.1",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "samotpravil-mcp",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "transport": {
         "type": "stdio"
       },
@@ -53,6 +53,19 @@
         {
           "name": "SAMOTPRAVIL_HTTP_HOST",
           "description": "Bind address for --http transport (default 127.0.0.1)",
+          "isRequired": false,
+          "format": "string"
+        },
+        {
+          "name": "POSTMAN_API_KEY",
+          "description": "Postman API key for maintainer tools (postman_get_collection, postman_sync_snapshot, …)",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "POSTMAN_COLLECTION_UID",
+          "description": "Postman collection UID for documentation (default 2s93RZM9in)",
           "isRequired": false,
           "format": "string"
         }

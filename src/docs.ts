@@ -25,6 +25,11 @@ type DocsMode = "auto" | "live" | "snapshot";
 let cachedEndpoints: EndpointDoc[] | null = null;
 let cachedOverview: DocsOverview | null = null;
 
+export function clearDocsCache(): void {
+  cachedEndpoints = null;
+  cachedOverview = null;
+}
+
 interface SnapshotMeta {
   syncedAt?: string;
   publishDate?: string;
