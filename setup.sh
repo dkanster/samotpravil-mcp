@@ -11,7 +11,9 @@ ROOT="$(cd "${1:-.}" && pwd)"
 TEMPLATE="$PACKAGE_ROOT/samotpravil-mcp.sh"
 SWAGGER_TEMPLATE="$PACKAGE_ROOT/swagger-mcp.sh"
 POSTMAN_TEMPLATE="$PACKAGE_ROOT/postman-mcp.sh"
+PYTHON_TEMPLATE="$PACKAGE_ROOT/samotpravil-mcp-python.sh"
 LAUNCHER="$ROOT/.cursor/samotpravil-mcp.sh"
+PYTHON_LAUNCHER="$ROOT/.cursor/samotpravil-mcp-python.sh"
 SWAGGER_LAUNCHER="$ROOT/.cursor/swagger-mcp.sh"
 POSTMAN_LAUNCHER="$ROOT/.cursor/postman-mcp.sh"
 MCP_JSON="$ROOT/.cursor/mcp.json"
@@ -34,6 +36,12 @@ command -v node >/dev/null 2>&1 || fail "Node.js не найден: https://node
 command -v npm >/dev/null 2>&1 || fail "npm не найден."
 ok "Node $(node -v)"
 
+if command -v python3 >/dev/null 2>&1; then
+  ok "Python $(python3 --version 2>&1)"
+else
+  info "Python 3 не найден — Python MCP будет недоступен до установки Python 3.10+"
+fi
+
 [[ -f "$TEMPLATE" ]] || fail "Не найден: $TEMPLATE"
 mkdir -p "$ROOT/.cursor"
 sed "s|__SAMOTPRAVIL_MCP_HOME__|$PACKAGE_ROOT|g" "$TEMPLATE" > "$LAUNCHER"
@@ -44,6 +52,11 @@ ok "Launcher: .cursor/samotpravil-mcp.sh"
 sed "s|__SAMOTPRAVIL_MCP_HOME__|$PACKAGE_ROOT|g" "$SWAGGER_TEMPLATE" > "$SWAGGER_LAUNCHER"
 chmod +x "$SWAGGER_LAUNCHER"
 ok "Launcher: .cursor/swagger-mcp.sh"
+
+[[ -f "$PYTHON_TEMPLATE" ]] || fail "Не найден: $PYTHON_TEMPLATE"
+sed "s|__SAMOTPRAVIL_MCP_HOME__|$PACKAGE_ROOT|g" "$PYTHON_TEMPLATE" > "$PYTHON_LAUNCHER"
+chmod +x "$PYTHON_LAUNCHER"
+ok "Launcher: .cursor/samotpravil-mcp-python.sh"
 
 [[ -f "$POSTMAN_TEMPLATE" ]] || fail "Не найден: $POSTMAN_TEMPLATE"
 cp "$POSTMAN_TEMPLATE" "$POSTMAN_LAUNCHER"
@@ -66,6 +79,16 @@ servers = {
         },
     },
     "swagger-mcp": {"command": ".cursor/swagger-mcp.sh", "args": []},
+    "samotpravil-python": {
+        "command": ".cursor/samotpravil-mcp-python.sh",
+        "args": [],
+        "env": {
+            "SAMOTPRAVIL_READ_ONLY": "1",
+            "SAMOTPRAVIL_ALLOW_SEND": "0",
+            "SAMOTPRAVIL_ALLOW_MUTATIONS": "0",
+            "SAMOTPRAVIL_ALLOW_WHITELABEL": "1",
+        },
+    },
     "postman": {"command": ".cursor/postman-mcp.sh", "args": []},
 }
 if mcp_path.exists():
@@ -100,6 +123,13 @@ info "Сборка samotpravil-mcp…"
 npm install --prefix "$PACKAGE_ROOT" >/dev/null
 npm run build --prefix "$PACKAGE_ROOT"
 ok "Build OK"
+
+if command -v python3 >/dev/null 2>&1; then
+  info "Установка Python SDK (samotpravil==1.0.0rc1)…"
+  python3 -m pip install -e "$PACKAGE_ROOT/python[async]" -q
+  PYTHONPATH="$PACKAGE_ROOT/python/src" python3 "$PACKAGE_ROOT/python/scripts/generate_schemas.py"
+  ok "Python SDK OK"
+fi
 
 info "Swagger-MCP (Vizioz)…"
 npm run prepare-swagger-mcp --prefix "$PACKAGE_ROOT"

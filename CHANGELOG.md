@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+
+- **Python SDK integration** (`samotpravil==1.0.0rc1`): отдельный MCP `samotpravil-mcp-python` (35 tools `py_*`), subprocess bridge, примеры, CI job, docs [PYTHON_SDK.md](./docs/PYTHON_SDK.md)
+- Опциональные `py_*` tools в Node MCP при `SAMOTPRAVIL_ENABLE_PYTHON_SDK=1`
+- `data/python-sdk-methods.json`, `data/python-sdk-schemas.json` — метаданные и схемы SDK-методов
+
 ## [1.2.0] - 2026-06-22
 
 ### Added

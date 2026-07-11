@@ -8,7 +8,12 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { isHttpMode, resolveHttpPort, startHttpServer } from "./http.js";
 import { registerAutoTools } from "./registerAutoTools.js";
 import { PROMPT_COUNT, registerPrompts } from "./registerPrompts.js";
+import {
+  PYTHON_SDK_TOOL_COUNT,
+  registerPythonSdkTools,
+} from "./registerPythonSdkTools.js";
 import { registerResources, RESOURCE_COUNT } from "./registerResources.js";
+import { isPythonSdkBridgeEnabled } from "./pythonBridge.js";
 import {
   apiRequestSchema,
   getDeliveryStatusSchema,
@@ -128,7 +133,11 @@ function registerManualTools(server: McpServer): void {
   );
 }
 
-export async function createMcpServer(): Promise<{ server: McpServer; autoToolCount: number }> {
+export async function createMcpServer(): Promise<{
+  server: McpServer;
+  autoToolCount: number;
+  pythonSdkToolCount: number;
+}> {
   const server = new McpServer({
     name: "samotpravil-mcp",
     version: PACKAGE_VERSION,
@@ -139,7 +148,13 @@ export async function createMcpServer(): Promise<{ server: McpServer; autoToolCo
   registerPrompts(server);
   const autoToolCount = await registerAutoTools(server);
 
-  return { server, autoToolCount };
+  let pythonSdkToolCount = 0;
+  if (isPythonSdkBridgeEnabled()) {
+    registerPythonSdkTools(server);
+    pythonSdkToolCount = PYTHON_SDK_TOOL_COUNT;
+  }
+
+  return { server, autoToolCount, pythonSdkToolCount };
 }
 
 async function main() {
@@ -149,13 +164,15 @@ async function main() {
     return;
   }
 
-  const { server, autoToolCount } = await createMcpServer();
+  const { server, autoToolCount, pythonSdkToolCount } = await createMcpServer();
   const transport = new StdioServerTransport();
   await server.connect(transport);
 
-  const totalTools = MANUAL_TOOL_COUNT + autoToolCount;
+  const totalTools = MANUAL_TOOL_COUNT + autoToolCount + pythonSdkToolCount;
+  const pythonNote =
+    pythonSdkToolCount > 0 ? ` (+${pythonSdkToolCount} py_* via Python SDK bridge)` : "";
   console.error(
-    `[samotpravil-mcp] v${PACKAGE_VERSION} (stdio). ${totalTools} tools, ${PROMPT_COUNT} prompts, ${RESOURCE_COUNT} resources. Docs: https://documentation.samotpravil.ru/`,
+    `[samotpravil-mcp] v${PACKAGE_VERSION} (stdio). ${totalTools} tools${pythonNote}, ${PROMPT_COUNT} prompts, ${RESOURCE_COUNT} resources. Docs: https://documentation.samotpravil.ru/`,
   );
 }
 

@@ -71,14 +71,17 @@ flowchart TB
 
 ---
 
-## Два MCP-сервера в проекте
+## MCP-серверы в проекте
 
-В локальной разработке (после `./setup.sh`) в `.cursor/mcp.json` обычно два сервера. Это **не дубликаты**, а разные роли.
+В локальной разработке (после `./setup.sh`) в `.cursor/mcp.json` обычно несколько серверов. Это **не дубликаты**, а разные роли.
 
 | MCP | Назначение | Ключ | Когда нужен |
 |-----|------------|------|-------------|
 | **samotpravil** | Документация API + безопасные вызовы `api.samotpravil.ru` + **Postman tools** (`postman_*`) | `SAMOTPRAVIL_API_KEY` (API), `POSTMAN_API_KEY` (Postman) | **Всегда** — основной сервер |
+| **samotpravil-python** | Все методы официального Python SDK (`py_*`, `samotpravil==1.0.0rc1`) | `SAMOTPRAVIL_API_KEY` | Python-интеграции, полное покрытие SDK |
 | **swagger-mcp** | OpenAPI: список эндпоинтов, модели, генерация MCP tool definitions | — (спека из YAML / SwaggerHub) | Когда работаете со **спекой** и codegen из OpenAPI |
+
+Подробнее про Python SDK: **[PYTHON_SDK.md](./PYTHON_SDK.md)**.
 
 ### Postman tools внутри samotpravil-mcp
 

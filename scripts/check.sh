@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 bash -n "$ROOT/samotpravil-mcp.sh"
+bash -n "$ROOT/samotpravil-mcp-python.sh"
 bash -n "$ROOT/swagger-mcp.sh"
 bash -n "$ROOT/setup.sh"
 echo "OK: shell scripts syntax"
@@ -22,6 +23,9 @@ echo "OK: MCP resources"
 
 node "$ROOT/scripts/check-v12.mjs"
 echo "OK: v1.2 auto tools and prompts"
+
+node "$ROOT/scripts/check-python.mjs"
+echo "OK: Python SDK integration"
 
 node "$ROOT/scripts/check-postman.mjs"
 echo "OK: postman helpers"

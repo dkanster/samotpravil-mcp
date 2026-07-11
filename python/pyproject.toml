@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "samotpravil-mcp-python"
+version = "1.2.0"
+description = "Python MCP server for Samotpravil API via official samotpravil SDK"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "samotpravil==1.0.0rc1",
+  "mcp>=1.6.0",
+]
+
+[project.optional-dependencies]
+async = ["samotpravil[async]==1.0.0rc1"]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.24"]
+
+[project.scripts]
+samotpravil-mcp-python = "samotpravil_mcp.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/samotpravil_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

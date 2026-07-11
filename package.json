@@ -38,6 +38,7 @@
     "prepare-swagger-mcp": "node scripts/ensure-swagger-mcp.mjs",
     "swagger-mcp": "npm run prepare-swagger-mcp && node scripts/swagger-mcp-launcher.mjs",
     "test:swagger": "node scripts/test-swagger-connection.mjs",
+    "generate-python-schemas": "PYTHONPATH=python/src python3 python/scripts/generate_schemas.py",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

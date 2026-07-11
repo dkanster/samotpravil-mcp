@@ -10,7 +10,7 @@ MCP-сервер вокруг [документации API СамОтправи
 
 Документация опубликована как Postman Documenter; сервер подтягивает коллекцию с `documentation.samotpravil.ru` и даёт агенту инструменты для поиска методов, параметров и примеров. Опционально — прокси к `api.samotpravil.ru`, если задан API-ключ.
 
-Как связаны Postman, `samotpravil-mcp`, OpenAPI, swagger-mcp и **static preview на Docusaurus**: **[docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md)** · **[docs/DOCS_SITE.md](./docs/DOCS_SITE.md)** · live: **https://dkanster.github.io/samotpravil-mcp/**
+Как связаны Postman, `samotpravil-mcp`, OpenAPI, swagger-mcp, **Python SDK** и **static preview на Docusaurus**: **[docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md)** · **[docs/PYTHON_SDK.md](./docs/PYTHON_SDK.md)** · **[docs/DOCS_SITE.md](./docs/DOCS_SITE.md)** · live: **https://dkanster.github.io/samotpravil-mcp/**
 
 ## Roadmap
 
@@ -63,6 +63,17 @@ MCP-сервер вокруг [документации API СамОтправи
 | `list_allowed_domains` | Разрешённые домены |
 | `api_request` | Generic escape hatch |
 | `api_{method}_{path}` | Auto tools для остальных HTTP-методов (~42), напр. `api_get_v2_issue_ext_status` |
+
+### Python SDK (`samotpravil==1.0.0rc1`)
+
+Официальный Python-клиент интегрирован в репозиторий — см. **[docs/PYTHON_SDK.md](./docs/PYTHON_SDK.md)**.
+
+| Способ | Tools | Требования |
+|--------|-------|------------|
+| **samotpravil-python** MCP | 35 × `py_*` (все методы SDK) | Python 3.10+, `pip install -e python[async]` |
+| **Bridge в Node MCP** | +35 × `py_*` | `SAMOTPRAVIL_ENABLE_PYTHON_SDK=1` |
+
+Примеры: `python/examples/`. Safety flags те же, что у Node MCP.
 
 ### MCP Prompts
 

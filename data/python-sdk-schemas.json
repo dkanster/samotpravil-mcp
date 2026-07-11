@@ -1,0 +1,898 @@
+{
+  "send_email": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "email_from": {
+        "type": "string",
+        "description": "email from"
+      },
+      "email_to": {
+        "type": "string",
+        "description": "email to"
+      },
+      "subject": {
+        "type": "string",
+        "description": "subject"
+      },
+      "message_text": {
+        "type": "string",
+        "description": "message text"
+      },
+      "template_id": {
+        "type": "string",
+        "description": "template id"
+      },
+      "mg_api_key": {
+        "type": "string",
+        "description": "mg api key"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "email_from",
+      "email_to",
+      "subject"
+    ],
+    "additionalProperties": false
+  },
+  "get_status": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "get_ext_status": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "get_statistics": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "date_from": {
+        "type": "string",
+        "description": "date from"
+      },
+      "date_to": {
+        "type": "string",
+        "description": "date to"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "date_from",
+      "date_to"
+    ],
+    "additionalProperties": false
+  },
+  "get_non_delivery_by_date": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "date_from": {
+        "type": "string",
+        "description": "date from"
+      },
+      "date_to": {
+        "type": "string",
+        "description": "date to"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "date_from",
+      "date_to"
+    ],
+    "additionalProperties": false
+  },
+  "get_non_delivery_by_issue": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "issuen": {
+        "type": "string",
+        "description": "issuen"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "issuen"
+    ],
+    "additionalProperties": false
+  },
+  "get_fbl_report_by_date": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "date_from": {
+        "type": "string",
+        "description": "date from"
+      },
+      "date_to": {
+        "type": "string",
+        "description": "date to"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "date_from",
+      "date_to"
+    ],
+    "additionalProperties": false
+  },
+  "get_fbl_report_by_issue": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "issuen": {
+        "type": "string",
+        "description": "issuen"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "issuen"
+    ],
+    "additionalProperties": false
+  },
+  "stop_list_search": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "email": {
+        "type": "string",
+        "description": "email"
+      }
+    },
+    "required": [
+      "email"
+    ],
+    "additionalProperties": false
+  },
+  "stop_list_add": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "email": {
+        "type": "string",
+        "description": "email"
+      },
+      "domain": {
+        "type": "string",
+        "description": "domain"
+      }
+    },
+    "required": [
+      "email",
+      "domain"
+    ],
+    "additionalProperties": false
+  },
+  "stop_list_remove": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "email": {
+        "type": "string",
+        "description": "email"
+      },
+      "domain": {
+        "type": "string",
+        "description": "domain"
+      }
+    },
+    "required": [
+      "email",
+      "domain"
+    ],
+    "additionalProperties": false
+  },
+  "get_domains": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "domain_add": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "domain": {
+        "type": "string",
+        "description": "domain"
+      }
+    },
+    "required": [
+      "domain"
+    ],
+    "additionalProperties": false
+  },
+  "domain_remove": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "domain": {
+        "type": "string",
+        "description": "domain"
+      }
+    },
+    "required": [
+      "domain"
+    ],
+    "additionalProperties": false
+  },
+  "domain_check_verification": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "domain": {
+        "type": "string",
+        "description": "domain"
+      }
+    },
+    "required": [
+      "domain"
+    ],
+    "additionalProperties": false
+  },
+  "send_package": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "email_from": {
+        "type": "string",
+        "description": "email from"
+      },
+      "name_from": {
+        "type": "string",
+        "description": "name from"
+      },
+      "subject": {
+        "type": "string",
+        "description": "subject"
+      },
+      "message_text": {
+        "type": "string",
+        "description": "message text"
+      },
+      "users": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "description": "users"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "email_from",
+      "name_from",
+      "subject",
+      "message_text",
+      "users"
+    ],
+    "additionalProperties": false
+  },
+  "send_package_xml": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "url": {
+        "type": "string",
+        "description": "url"
+      }
+    },
+    "required": [
+      "url"
+    ],
+    "additionalProperties": false
+  },
+  "stop_package": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "package_id": {
+        "type": "string",
+        "description": "package id"
+      }
+    },
+    "required": [
+      "package_id"
+    ],
+    "additionalProperties": false
+  },
+  "get_package_status": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "package_id": {
+        "type": "string",
+        "description": "package id"
+      }
+    },
+    "required": [
+      "package_id"
+    ],
+    "additionalProperties": false
+  },
+  "get_unsubscribe_by_date": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "date_from": {
+        "type": "string",
+        "description": "date from"
+      },
+      "date_to": {
+        "type": "string",
+        "description": "date to"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "date_from",
+      "date_to"
+    ],
+    "additionalProperties": false
+  },
+  "get_unsubscribe_by_issue": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "issuen": {
+        "type": "string",
+        "description": "issuen"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "issuen"
+    ],
+    "additionalProperties": false
+  },
+  "get_issue_stat": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "ids"
+      }
+    },
+    "required": [
+      "ids"
+    ],
+    "additionalProperties": false
+  },
+  "stop_list_unsubscribe": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "stop_list_fbl": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "stop_list_failed": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "stop_list_export_create": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "stop_list_export_tasks": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "status": {
+        "type": "string",
+        "description": "status"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "stop_list_export_download": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "token": {
+        "type": "string",
+        "description": "token"
+      }
+    },
+    "required": [
+      "token"
+    ],
+    "additionalProperties": false
+  },
+  "stop_list_export_delete": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "token": {
+        "type": "string",
+        "description": "token"
+      }
+    },
+    "required": [
+      "token"
+    ],
+    "additionalProperties": false
+  },
+  "get_blist": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "blist_id": {
+        "type": "string",
+        "description": "blist id"
+      }
+    },
+    "required": [
+      "blist_id"
+    ],
+    "additionalProperties": false
+  },
+  "create_blist": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "name": {
+        "type": "string",
+        "description": "name"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "additionalProperties": false
+  },
+  "update_blist": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "blist_id": {
+        "type": "string",
+        "description": "blist id"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "blist_id"
+    ],
+    "additionalProperties": false
+  },
+  "get_ip_info": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "get_authkey": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "create_authkey": {
+    "type": "object",
+    "properties": {
+      "dry_run": {
+        "type": "boolean",
+        "description": "Если true — не вызывать API, вернуть preview",
+        "default": false
+      },
+      "async_mode": {
+        "type": "boolean",
+        "description": "Если true — использовать AsyncSamotpravilClient",
+        "default": false
+      },
+      "blist_id": {
+        "type": "integer",
+        "description": "blist id"
+      },
+      "kwargs": {
+        "type": "string",
+        "description": "kwargs"
+      }
+    },
+    "required": [
+      "blist_id"
+    ],
+    "additionalProperties": false
+  }
+}
