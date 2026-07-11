@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.3.2] - 2026-07-11
+
+### Fixed
+
+- `server.json` description length ≤100 chars (MCP Registry validation 422)
+
 ## [1.3.1] - 2026-07-11
 
 ### Fixed

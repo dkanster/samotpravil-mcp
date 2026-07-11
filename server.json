@@ -2,19 +2,19 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.dkanster/samotpravil-mcp",
   "title": "Samotpravil MCP",
-  "description": "MCP server for Samotpravil SMTP API — documentation, typed tools (Python SDK parity), Postman maintainer tools, safety flags.",
+  "description": "MCP server for Samotpravil API — docs, typed tools, Python SDK parity, safety flags.",
   "websiteUrl": "https://github.com/dkanster/samotpravil-mcp",
   "repository": {
     "url": "https://github.com/dkanster/samotpravil-mcp",
     "source": "github"
   },
-  "version": "1.3.1",
+  "version": "1.3.2",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "samotpravil-mcp",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "transport": {
         "type": "stdio"
       },
