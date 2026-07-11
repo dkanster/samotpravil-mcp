@@ -1,4 +1,5 @@
 import type { EndpointDoc } from "./types.js";
+import { SDK_TYPED_API_PATHS } from "./tools/sdkTyped.js";
 
 /** Paths covered by hand-written typed tools in src/tools/typed.ts */
 export const MANUAL_API_PATHS = new Set([
@@ -11,6 +12,7 @@ export const MANUAL_API_PATHS = new Set([
   "/api/v2/stop-list/remove",
   "/api/v2/emails/validate/",
   "/api/v2/blist/domains",
+  ...SDK_TYPED_API_PATHS,
 ]);
 
 export function endpointApiPath(url: string): string {

@@ -10,6 +10,7 @@ import { registerAutoTools } from "./registerAutoTools.js";
 import { POSTMAN_TOOL_COUNT, registerPostmanTools } from "./registerPostmanTools.js";
 import { PROMPT_COUNT, registerPrompts } from "./registerPrompts.js";
 import { registerResources, RESOURCE_COUNT } from "./registerResources.js";
+import { SDK_TYPED_TOOL_COUNT, registerSdkTypedTools } from "./registerSdkTypedTools.js";
 import {
   apiRequestSchema,
   getDeliveryStatusSchema,
@@ -45,7 +46,8 @@ const PACKAGE_VERSION = JSON.parse(
 ).version as string;
 
 /** Docs (4) + api_request + 9 hand-written typed API tools */
-export const MANUAL_TOOL_COUNT = 14;
+export const CORE_MANUAL_TOOL_COUNT = 14;
+export const MANUAL_TOOL_COUNT = CORE_MANUAL_TOOL_COUNT + SDK_TYPED_TOOL_COUNT;
 
 function registerManualTools(server: McpServer): void {
   server.tool("get_overview", "Обзор API СамОтправил.", getOverviewSchema.shape, async () => ({
@@ -142,6 +144,7 @@ export async function createMcpServer(): Promise<{
   registerManualTools(server);
   registerResources(server);
   registerPrompts(server);
+  registerSdkTypedTools(server);
   const postmanToolCount = registerPostmanTools(server);
   const autoToolCount = await registerAutoTools(server);
 
@@ -175,4 +178,4 @@ if (isDirectRun) {
   });
 }
 
-export { RESOURCE_COUNT, PROMPT_COUNT, POSTMAN_TOOL_COUNT };
+export { RESOURCE_COUNT, PROMPT_COUNT, POSTMAN_TOOL_COUNT, SDK_TYPED_TOOL_COUNT };

@@ -4,6 +4,20 @@ All notable changes to this project are documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.3.0] - 2026-07-11
+
+### Added
+
+- **29 typed tools** с именами как в Python SDK `samotpravil` (`send_package`, `get_statistics`, `stop_list_export_create`, …)
+- MCP Prompt `python_sdk_parity` — маппинг Python SDK → MCP tools
+- Алиас `domain` → `mail_from` в `add_stop_list_email` / `remove_stop_list_email`
+- `get_delivery_status` принимает `message_id` или `x_track_id`
+
+### Changed
+
+- Auto tools сокращены: пути SDK parity исключены из `api_*` генерации
+- Обновлены promo-материалы `docs/official/` (MCP Registry, Python SDK)
+
 ## [1.2.1] - 2026-07-11
 
 ### Added

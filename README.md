@@ -62,7 +62,8 @@ MCP-сервер вокруг [документации API СамОтправи
 | `validate_email` | Валидация адреса |
 | `list_allowed_domains` | Разрешённые домены |
 | `api_request` | Generic escape hatch |
-| `api_{method}_{path}` | Auto tools для остальных HTTP-методов (~42), напр. `api_get_v2_issue_ext_status` |
+| `api_{method}_{path}` | Auto tools для оставшихся HTTP-методов |
+| **Python SDK parity (v1.3)** | `send_package`, `get_statistics`, `stop_list_export_create`, `domain_add`, … — [29 tools](./docs/EXAMPLES.md#python-sdk-parity) |
 
 ### MCP Prompts
 
@@ -72,6 +73,7 @@ MCP-сервер вокруг [документации API СамОтправи
 | `send_transactional` | Чеклист отправки письма |
 | `stop_list_workflow` | Работа со стоп-листами |
 | `check_delivery` | Статус по X-Track-ID / выпуску |
+| `python_sdk_parity` | Python SDK `samotpravil` → MCP tools |
 
 ### HTTP transport (v1.2)
 

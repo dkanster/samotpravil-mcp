@@ -50,16 +50,23 @@ export async function handleSendMailV2(params: z.infer<typeof sendMailV2Schema>)
 }
 
 export const getDeliveryStatusSchema = dryRunSchema.extend({
-  x_track_id: z.string().min(1).describe("X-Track-ID отправки"),
+  x_track_id: z.string().optional().describe("X-Track-ID отправки"),
+  message_id: z.string().optional().describe("Message-ID системы"),
 });
 
 export async function handleGetDeliveryStatus(
   params: z.infer<typeof getDeliveryStatusSchema>,
 ): Promise<string> {
+  if (!params.x_track_id && !params.message_id) {
+    throw new Error("Укажите x_track_id или message_id");
+  }
+  const query: Record<string, string> = {};
+  if (params.x_track_id) query.x_track_id = params.x_track_id;
+  if (params.message_id) query.message_id = params.message_id;
   return samotpravilRequest({
     method: "GET",
     path: "/api/v2/issue/status",
-    query: { x_track_id: params.x_track_id },
+    query,
     dryRun: params.dry_run,
   });
 }
@@ -95,17 +102,25 @@ export async function handleSearchStopList(
 }
 
 export const stopListEmailSchema = dryRunSchema.extend({
-  mail_from: z.string().describe("Email отправителя (mail_from)"),
+  mail_from: z.string().optional().describe("Email отправителя (mail_from)"),
+  domain: z.string().optional().describe("Домен отправителя (как в Python SDK: info@domain)"),
   email: z.string().email().describe("Email в стоп-листе"),
 });
+
+function resolveMailFrom(params: { mail_from?: string; domain?: string }): string {
+  if (params.mail_from?.trim()) return params.mail_from.trim();
+  if (params.domain?.trim()) return `info@${params.domain.trim()}`;
+  throw new Error("Укажите mail_from или domain");
+}
 
 export async function handleAddStopListEmail(
   params: z.infer<typeof stopListEmailSchema>,
 ): Promise<string> {
+  const mail_from = resolveMailFrom(params);
   return samotpravilRequest({
     method: "POST",
     path: "/api/v2/stop-list/add",
-    query: { mail_from: params.mail_from, email: params.email },
+    query: { mail_from, email: params.email },
     dryRun: params.dry_run,
   });
 }
@@ -113,10 +128,11 @@ export async function handleAddStopListEmail(
 export async function handleRemoveStopListEmail(
   params: z.infer<typeof stopListEmailSchema>,
 ): Promise<string> {
+  const mail_from = resolveMailFrom(params);
   return samotpravilRequest({
     method: "POST",
     path: "/api/v2/stop-list/remove",
-    query: { mail_from: params.mail_from, email: params.email },
+    query: { mail_from, email: params.email },
     dryRun: params.dry_run,
   });
 }
