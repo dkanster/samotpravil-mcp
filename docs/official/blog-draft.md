@@ -12,11 +12,12 @@
 
 ## Что умеет
 
-- Искать методы и параметры API (55 эндпоинтов)
+- Искать методы и параметры API (55+ HTTP-эндпоинтов в snapshot)
+- **58 MCP tools** + **9 resources** + **5 prompts**
 - Работать offline — snapshot документации в пакете
-- Typed tools: отправка письма, стоп-листы, статус доставки, валидация email
-- Safety: read-only режим и `dry_run` перед реальной отправкой
-- MCP Resources: обзор, ошибки, гайд по интеграции
+- Typed tools: отправка, пакеты, стоп-листы, статус, WhiteLabel, Python SDK parity
+- Safety: read-only режим, HTTP auth, `dry_run` перед реальной отправкой
+- MCP Resources: обзор, лимиты, API wishlist, миграция v1→v2
 
 ## Быстрый старт
 

@@ -33,6 +33,7 @@
     "check-org-migration": "node scripts/check-org-migration.mjs",
     "plan-org-migration": "node scripts/plan-org-migration.mjs",
     "pre-publish-check": "node scripts/pre-publish-check.mjs",
+    "verify-publish": "node scripts/verify-publish.mjs",
     "sync-docs": "node scripts/sync-docs.mjs",
     "export-openapi": "npm run build && node scripts/export-openapi.mjs",
     "docs:build": "npm run build && node scripts/build-docs-site.mjs",

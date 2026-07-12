@@ -2,6 +2,8 @@
 
 Чеклист публикации interim-пакета `samotpravil-mcp@1.7.0`.
 
+**Merge strategy:** один squash-merge PR — см. [RELEASE_MERGE.md](./RELEASE_MERGE.md).
+
 ## Pre-flight
 
 ```bash
@@ -28,14 +30,19 @@ git push origin v1.7.0
 
 1. `.github/workflows/publish.yml` → npm
 2. `.github/workflows/mcp-registry.yml` → MCP Registry (после npm)
+3. `.github/workflows/post-release.yml` → verify npm + MCP Registry (on `release: published`)
 
 ## Post-publish verification
 
 ```bash
+npm run verify-publish -- 1.7.0
+# или вручную:
 npm view samotpravil-mcp@1.7.0 version
 npx -y samotpravil-mcp@1.7.0
 curl -s "https://registry.modelcontextprotocol.io/v0.1/servers?search=samotpravil-mcp" | head -c 400
 ```
+
+Ручной запуск workflow: **Actions → Post-release verify → Run workflow** (version: `1.7.0`).
 
 ## После publish
 
@@ -45,11 +52,6 @@ curl -s "https://registry.modelcontextprotocol.io/v0.1/servers?search=samotpravi
 
 ## Цепочка PR перед release
 
-Рекомендуемый merge order:
+Используйте **единый release PR** (squash merge). PR #23–#25, #37 — superseded.
 
-1. #23 — v1.4.0 infra
-2. #24 — v1.5.0 probe/manifest
-3. #25 — v1.6.0 org prep
-4. #26 — v1.7.0 codegen (этот release)
-
-Или squash-merge одного объединённого PR, затем tag `v1.7.0`.
+См. [RELEASE_MERGE.md](./RELEASE_MERGE.md).
