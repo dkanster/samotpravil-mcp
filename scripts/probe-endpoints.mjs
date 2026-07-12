@@ -21,6 +21,9 @@ const TIMEOUT_MS = 25_000;
 const jsonOut = process.argv.includes("--json");
 
 function loadApiKey() {
+  const fromEnv = process.env.SAMOTPRAVIL_API_KEY?.trim();
+  if (fromEnv) return fromEnv;
+
   for (const file of [join(ROOT, ".env.samotpravil"), join(ROOT, "ai", ".env.samotpravil")]) {
     if (!existsSync(file)) continue;
     for (const line of readFileSync(file, "utf8").split("\n")) {
@@ -34,7 +37,7 @@ function loadApiKey() {
       if (value) return value;
     }
   }
-  throw new Error("SAMOTPRAVIL_API_KEY not found in .env.samotpravil");
+  throw new Error("SAMOTPRAVIL_API_KEY not found (set env or .env.samotpravil)");
 }
 
 const MUTATING_PREFIXES = [

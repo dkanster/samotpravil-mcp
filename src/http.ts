@@ -1,6 +1,7 @@
 import { createServer } from "node:http";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { createRequestId, logHttpEvent } from "./httpLog.js";
 
 function readJsonBody(req: import("node:http").IncomingMessage): Promise<unknown> {
   return new Promise((resolve, reject) => {
@@ -68,22 +69,29 @@ export async function startHttpServer(
 ): Promise<void> {
   const httpServer = createServer(async (req, res) => {
     const url = req.url ?? "/";
+    const requestId = createRequestId();
+    const startedAt = Date.now();
 
     if (url !== "/mcp" && url !== "/mcp/") {
+      logHttpEvent("not_found", { requestId, path: url });
       res.writeHead(404, { "Content-Type": "text/plain" });
       res.end("Not found. MCP endpoint: POST /mcp");
       return;
     }
 
     if (req.method !== "POST") {
+      logHttpEvent("method_not_allowed", { requestId, method: req.method ?? "UNKNOWN" });
       methodNotAllowed(res);
       return;
     }
 
     if (!isHttpAuthorized(req)) {
+      logHttpEvent("unauthorized", { requestId });
       unauthorized(res);
       return;
     }
+
+    logHttpEvent("request_start", { requestId });
 
     const server = await createServerFn();
 
@@ -96,10 +104,20 @@ export async function startHttpServer(
       await transport.handleRequest(req, res, body);
 
       res.on("close", () => {
+        logHttpEvent("request_complete", {
+          requestId,
+          durationMs: Date.now() - startedAt,
+          statusCode: res.statusCode,
+        });
         transport.close().catch(() => undefined);
         server.close().catch(() => undefined);
       });
     } catch (error) {
+      logHttpEvent("request_error", {
+        requestId,
+        durationMs: Date.now() - startedAt,
+        error: error instanceof Error ? error.message : String(error),
+      });
       console.error("[samotpravil-mcp] HTTP error:", error);
       if (!res.headersSent) {
         res.writeHead(500, { "Content-Type": "application/json" });

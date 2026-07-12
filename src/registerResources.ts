@@ -10,10 +10,11 @@ import {
   readOverviewResource,
   readSdkMappingResource,
   readChangelogResource,
+  readRateLimitsResource,
   resourceTextResult,
 } from "./resources.js";
 
-export const RESOURCE_COUNT = 7;
+export const RESOURCE_COUNT = 8;
 
 export function registerResources(server: McpServer): void {
   server.resource(
@@ -74,6 +75,16 @@ export function registerResources(server: McpServer): void {
       mimeType: "text/markdown",
     },
     async (uri) => resourceTextResult(uri.href, readChangelogResource()),
+  );
+
+  server.resource(
+    "rate-limits",
+    RESOURCE_URIS.rateLimits,
+    {
+      description: "Лимиты API, отправки и пакетов",
+      mimeType: "text/markdown",
+    },
+    async (uri) => resourceTextResult(uri.href, readRateLimitsResource()),
   );
 
   server.resource(

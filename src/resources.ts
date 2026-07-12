@@ -18,6 +18,7 @@ export const RESOURCE_URIS = {
   integration: "samotpravil://integration",
   sdkMapping: "samotpravil://sdk-mapping",
   changelog: "samotpravil://changelog",
+  rateLimits: "samotpravil://rate-limits",
   endpointTemplate: "samotpravil://endpoint/{slug}",
 } as const;
 
@@ -155,6 +156,27 @@ export async function listEndpointResources(): Promise<
     name: endpoint.name,
     description: `${endpoint.method} ${endpoint.url}`,
   }));
+}
+
+export function readRateLimitsResource(): string {
+  return [
+    "# Лимиты СамОтправил (по умолчанию)",
+    "",
+    "| Ресурс | Лимит |",
+    "|--------|-------|",
+    "| HTTP API | 10 000 запросов / мин |",
+    "| Отправка писем | 100 писем / 5 мин |",
+    "| Пакеты | 40 пакетов / 5 мин |",
+    "| Размер письма | до 50 MB |",
+    "",
+    "## Рекомендации",
+    "",
+    "- При `HTTP 429` / `E429` — exponential backoff",
+    "- Для массовых рассылок — пакетная отправка, не serial `smtp_send`",
+    "- Увеличение лимитов — через поддержку Samotpravil",
+    "",
+    "Подробнее: samotpravil://integration",
+  ].join("\n");
 }
 
 export function readSdkMappingResource(): string {

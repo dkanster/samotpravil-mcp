@@ -6,6 +6,22 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-07-12
+
+### Added
+
+- Nightly workflow `.github/workflows/probe-endpoints.yml` (read-only API probe with `SAMOTPRAVIL_API_KEY` secret)
+- `data/tools.manifest.json` codegen (`npm run generate-tools-manifest`) + CI drift check
+- MCP integration test (`scripts/check-mcp-integration.mjs`) — stdio client, list tools/prompts/resources
+- Structured HTTP logging (`src/httpLog.ts`, env `SAMOTPRAVIL_HTTP_JSON_LOG=1`)
+- MCP Resource `samotpravil://rate-limits`
+- Release Please workflow (`.github/workflows/release-please.yml`)
+
+### Changed
+
+- `probe-endpoints.mjs` reads `SAMOTPRAVIL_API_KEY` from env (CI-friendly)
+- `RESOURCE_COUNT`: 7 → 8
+
 ## [1.4.0] - 2026-07-12
 
 ### Added

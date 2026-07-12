@@ -34,22 +34,22 @@
 | 1 | Ссылка MCP в [documentation.samotpravil.ru](https://documentation.samotpravil.ru/) | ⏳ blocked (docs team) |
 | 2 | GitHub org **Samotpravil** + `@samotpravil/mcp` | ⏳ blocked (org) |
 | 3 | Branch protection на `main` | ⏳ after org |
-| 4 | Nightly `probe-endpoints` (optional, with API key secret) | 🔲 |
+| 4 | Nightly `probe-endpoints` (optional, with API key secret) | ✅ |
 
 Материалы для docs team: [docs/official/](./official/)  
 Чеклист org: [ORG_MIGRATION.md](./ORG_MIGRATION.md)
 
 ---
 
-## Phase 3 — DX & codegen (v1.5+)
+## Phase 3 — DX & codegen (v1.5)
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | `data/tools.manifest.json` — codegen typed tools из snapshot | 🔲 |
-| 2 | MCP integration test (in-process list_tools) | 🔲 |
-| 3 | Release Please / automated changelog | 🔲 |
-| 4 | Structured logging для HTTP transport | 🔲 |
-| 5 | Resource `samotpravil://rate-limits` | 🔲 |
+| 1 | `data/tools.manifest.json` — codegen typed tools из snapshot | ✅ |
+| 2 | MCP integration test (in-process list_tools) | ✅ |
+| 3 | Release Please / automated changelog | ✅ |
+| 4 | Structured logging для HTTP transport | ✅ |
+| 5 | Resource `samotpravil://rate-limits` | ✅ |
 
 ---
 

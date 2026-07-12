@@ -7,6 +7,7 @@ import {
   readIntegrationResource,
   readSdkMappingResource,
   readChangelogResource,
+  readRateLimitsResource,
 } from "../dist/resources.js";
 import { loadDocumentation } from "../dist/docs.js";
 
@@ -30,6 +31,11 @@ if (!sdkMapping.includes("Python SDK")) {
 const changelog = readChangelogResource();
 if (!changelog.includes("Changelog")) {
   throw new Error("changelog resource missing content");
+}
+
+const rateLimits = readRateLimitsResource();
+if (!rateLimits.includes("10 000")) {
+  throw new Error("rate-limits resource missing content");
 }
 
 const index = await readEndpointsIndexResource();

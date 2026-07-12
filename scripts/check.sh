@@ -35,6 +35,12 @@ echo "OK: OpenAPI drift"
 node "$ROOT/scripts/check-snapshot-age.mjs"
 echo "OK: snapshot age"
 
+node "$ROOT/scripts/check-mcp-integration.mjs"
+echo "OK: MCP integration"
+
+node "$ROOT/scripts/check-tools-manifest.mjs"
+echo "OK: tools manifest"
+
 node --test "$ROOT/test/"*.test.mjs
 echo "OK: unit tests"
 

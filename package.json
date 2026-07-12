@@ -1,6 +1,6 @@
 {
   "name": "samotpravil-mcp",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "MCP server for Samotpravil SMTP API — documentation search and API proxy. Interim npm: samotpravil-mcp; future: @samotpravil/mcp after org migration.",
   "type": "module",
   "main": "dist/index.js",
@@ -25,6 +25,8 @@
     "test:unit": "npm run build && node --test test/*.test.mjs",
     "setup-hooks": "bash scripts/setup-hooks.sh",
     "sync-versions": "node scripts/sync-versions.mjs",
+    "generate-tools-manifest": "npm run build && node scripts/generate-tools-manifest.mjs",
+    "probe-endpoints": "npm run build && node scripts/probe-endpoints.mjs",
     "sync-docs": "node scripts/sync-docs.mjs",
     "export-openapi": "npm run build && node scripts/export-openapi.mjs",
     "docs:build": "npm run build && node scripts/build-docs-site.mjs",

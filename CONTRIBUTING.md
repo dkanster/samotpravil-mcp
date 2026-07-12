@@ -88,6 +88,13 @@ npm test
 
 Опционально: `npm run setup-hooks` — pre-commit с `lint` + `test`.
 
+Дополнительно:
+
+```bash
+npm run generate-tools-manifest   # data/tools.manifest.json из live MCP
+npm run probe-endpoints           # probe read-only API (нужен SAMOTPRAVIL_API_KEY)
+```
+
 ## Стиль кода
 
 - TypeScript strict, ESM (`"type": "module"`)
