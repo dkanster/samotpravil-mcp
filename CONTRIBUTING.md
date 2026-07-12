@@ -57,7 +57,7 @@ scripts/
 | Safety / env | `src/safety.ts` |
 | Примеры для пользователей | `docs/EXAMPLES.md` |
 
-Перед PR откройте issue или укажите фазу из [docs/ROADMAP.md](./docs/ROADMAP.md).
+Перед PR откройте issue или укажите фазу из [docs/ROADMAP_v1.4.md](./docs/ROADMAP_v1.4.md).
 
 ## Добавить typed tool
 
@@ -84,9 +84,18 @@ git add data/collection.snapshot.json data/snapshot.meta.json
 npm test
 ```
 
-Включает: shell syntax, TypeScript build, docs helpers, safety, MCP resources (offline на snapshot).
+Включает: shell syntax, TypeScript build, ESLint, docs helpers, safety, MCP resources (offline на snapshot), unit tests.
 
-Добавляйте проверки в `scripts/check-*.mjs`, не усложняйте без нужды.
+Опционально: `npm run setup-hooks` — pre-commit с `lint` + `test`.
+
+Дополнительно:
+
+```bash
+npm run generate-tools-manifest   # data/tools.manifest.json из live MCP
+npm run probe-endpoints           # probe read-only API (нужен SAMOTPRAVIL_API_KEY)
+npm run plan-org-migration        # dry-run замен для org migration
+npm run pre-publish-check         # перед npm tag
+```
 
 ## Стиль кода
 

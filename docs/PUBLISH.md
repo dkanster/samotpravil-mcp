@@ -9,8 +9,16 @@ Interim-пакет: **`samotpravil-mcp`** (аккаунт maintainer).
 2. В GitHub repo: **Settings → Secrets → Actions → New repository secret**
    - Name: `NPM_TOKEN`
    - Value: npm token
-3. Убедитесь, что версия в `package.json` обновлена.
-4. Создайте и запушьте tag:
+3. Убедитесь, что версия в `package.json` обновлена и `CHANGELOG.md` содержит секцию версии.
+4. Проверка перед tag:
+
+```bash
+npm run sync-versions
+npm run pre-publish-check
+npm test
+```
+
+5. Создайте и запушьте tag:
 
 ```bash
 git tag v1.0.1

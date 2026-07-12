@@ -1,5 +1,8 @@
 import type { EndpointDoc } from "./types.js";
 import { endpointApiPath } from "./endpointMeta.js";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   DOCS_BASE_URL,
   findEndpoint,
@@ -13,6 +16,10 @@ export const RESOURCE_URIS = {
   endpoints: "samotpravil://endpoints",
   errors: "samotpravil://errors",
   integration: "samotpravil://integration",
+  sdkMapping: "samotpravil://sdk-mapping",
+  changelog: "samotpravil://changelog",
+  rateLimits: "samotpravil://rate-limits",
+  apiWishlist: "samotpravil://api-wishlist",
   endpointTemplate: "samotpravil://endpoint/{slug}",
 } as const;
 
@@ -150,6 +157,80 @@ export async function listEndpointResources(): Promise<
     name: endpoint.name,
     description: `${endpoint.method} ${endpoint.url}`,
   }));
+}
+
+export function readApiWishlistResource(): string {
+  const wishlistPath = join(dirname(fileURLToPath(import.meta.url)), "..", "docs", "API_WISHLIST.md");
+  const raw = readFileSync(wishlistPath, "utf8");
+  const intro = raw.split("## Приоритет 1")[0]?.trim() ?? raw.slice(0, 2500);
+  return [
+    "# API Wishlist (фрагмент)",
+    "",
+    intro,
+    "",
+    "Полный документ: docs/API_WISHLIST.md",
+    "Миграция v1→v2 для интеграторов: docs/MIGRATION_V1_TO_V2.md",
+  ].join("\n");
+}
+
+export function readRateLimitsResource(): string {
+  return [
+    "# Лимиты СамОтправил (по умолчанию)",
+    "",
+    "| Ресурс | Лимит |",
+    "|--------|-------|",
+    "| HTTP API | 10 000 запросов / мин |",
+    "| Отправка писем | 100 писем / 5 мин |",
+    "| Пакеты | 40 пакетов / 5 мин |",
+    "| Размер письма | до 50 MB |",
+    "",
+    "## Рекомендации",
+    "",
+    "- При `HTTP 429` / `E429` — exponential backoff",
+    "- Для массовых рассылок — пакетная отправка, не serial `smtp_send`",
+    "- Увеличение лимитов — через поддержку Samotpravil",
+    "",
+    "Подробнее: samotpravil://integration",
+  ].join("\n");
+}
+
+export function readSdkMappingResource(): string {
+  const sdkTools = [
+    "send_package → POST /api/v1/add_json_package",
+    "send_package_xml → GET /api/v1/add_package",
+    "stop_package → GET /api/v1/package_stop",
+    "get_ext_status → GET /api/v2/issue/ext_status",
+    "get_statistics → GET /api/v2/issue/statistics",
+    "get_delivery_status → GET /api/v2/issue/status",
+    "get_package_status → GET /api/v2/package/status",
+    "search_stop_list → GET /api/v2/stop-list/search",
+    "add_stop_list_email → POST /api/v2/stop-list/add",
+    "remove_stop_list_email → POST /api/v2/stop-list/remove",
+    "domain_add / domain_remove / domain_check_verification → blist domains",
+    "create_blist / update_blist / get_blist → WhiteLabel",
+    "create_authkey / get_authkey → authkey",
+  ];
+
+  return [
+    "# Python SDK → MCP tools",
+    "",
+    "Имена typed tools в MCP совпадают с методами PyPI-пакета `samotpravil`.",
+    "Полный список: prompt `python_sdk_parity` или docs/EXAMPLES.md#python-sdk-parity.",
+    "",
+    "## Основные соответствия",
+    "",
+    ...sdkTools.map((line) => `- ${line}`),
+    "",
+    "Python SDK: https://pypi.org/project/samotpravil/",
+  ].join("\n");
+}
+
+export function readChangelogResource(): string {
+  const changelogPath = join(dirname(fileURLToPath(import.meta.url)), "..", "CHANGELOG.md");
+  const raw = readFileSync(changelogPath, "utf8");
+  const match = raw.match(/## \[Unreleased\][\s\S]*?(?=\n## \[)/);
+  const section = match?.[0]?.trim() ?? raw.slice(0, 1500);
+  return ["# Changelog (фрагмент)", "", section, "", "Полный файл: CHANGELOG.md в репозитории."].join("\n");
 }
 
 export function resourceTextResult(uri: string, text: string) {

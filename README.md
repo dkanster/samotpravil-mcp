@@ -6,7 +6,7 @@
 
 MCP-сервер вокруг [документации API СамОтправил](https://documentation.samotpravil.ru/) и HTTP API `api.samotpravil.ru`.
 
-**Версия:** 1.3.2 · **npm:** [`samotpravil-mcp`](https://www.npmjs.com/package/samotpravil-mcp) · **MCP Registry:** `io.github.dkanster/samotpravil-mcp` · **Smithery:** [`smithery.yaml`](./smithery.yaml)
+**Версия:** 1.6.0 · **npm:** [`samotpravil-mcp`](https://www.npmjs.com/package/samotpravil-mcp) · **MCP Registry:** `io.github.dkanster/samotpravil-mcp` · **Smithery:** [`smithery.yaml`](./smithery.yaml)
 
 > **Хостинг:** репозиторий временно в [dkanster/samotpravil-mcp](https://github.com/dkanster/samotpravil-mcp).  
 > **Планируется:** переезд в org **Samotpravil** → `@samotpravil/mcp` — [docs/ORG_MIGRATION.md](./docs/ORG_MIGRATION.md).
@@ -56,7 +56,7 @@ npx -y samotpravil-mcp@latest
 | Python SDK parity | 29 | `SAMOTPRAVIL_API_KEY` |
 | Auto tools (`api_*`) | ~16 | `SAMOTPRAVIL_API_KEY` |
 | Postman maintainer | 4 | `POSTMAN_API_KEY` |
-| MCP Resources | 5 | нет |
+| MCP Resources | 9 | нет |
 | MCP Prompts | 5 | нет |
 
 **Итого:** ~59 tools ( +4 postman при `POSTMAN_API_KEY`).
@@ -128,6 +128,10 @@ Typed tools с именами как в PyPI-пакете `samotpravil`: `send_p
 | `samotpravil://endpoint/{slug}` | Один метод |
 | `samotpravil://errors` | Популярные ошибки |
 | `samotpravil://integration` | SMTP, X-Track-ID, трекинг |
+| `samotpravil://sdk-mapping` | Python SDK → MCP tools |
+| `samotpravil://changelog` | Фрагмент CHANGELOG пакета |
+| `samotpravil://rate-limits` | Лимиты API и отправки |
+| `samotpravil://api-wishlist` | Предложения по HTTP API (фрагмент) |
 
 ---
 
@@ -155,7 +159,12 @@ npx samotpravil-mcp --http --port 3000
 # POST http://127.0.0.1:3000/mcp
 ```
 
-Env: `SAMOTPRAVIL_HTTP_HOST`, `SAMOTPRAVIL_HTTP_PORT`.
+Env: `SAMOTPRAVIL_HTTP_HOST`, `SAMOTPRAVIL_HTTP_PORT`, `SAMOTPRAVIL_HTTP_AUTH_TOKEN`, `SAMOTPRAVIL_HTTP_JSON_LOG=1` (structured logs).
+
+```bash
+docker build -t samotpravil-mcp .
+docker run --rm -p 3000:3000 -e SAMOTPRAVIL_API_KEY=... -e SAMOTPRAVIL_HTTP_AUTH_TOKEN=... samotpravil-mcp
+```
 
 ### OpenAPI + Swagger-MCP
 
@@ -208,12 +217,19 @@ SAMOTPRAVIL_API_KEY=your_key_here
 git clone https://github.com/dkanster/samotpravil-mcp.git
 cd samotpravil-mcp
 npm install && npm test && npm run dev
+npm run setup-hooks   # optional: pre-commit (lint + test)
+npm run lint          # ESLint
+npm run pre-publish-check   # перед npm tag
+npm run plan-org-migration  # dry-run org migration
 ```
 
+- Security: **[SECURITY.md](./SECURITY.md)**
 - Contributing: **[CONTRIBUTING.md](./CONTRIBUTING.md)**
 - Changelog: **[CHANGELOG.md](./CHANGELOG.md)**
 - Publish: **[docs/PUBLISH.md](./docs/PUBLISH.md)**
-- Roadmap: **[docs/ROADMAP_v1.2.md](./docs/ROADMAP_v1.2.md)** (v1.2–v1.3 закрыты; далее — org migration, promo на documenter)
+- Roadmap: **[docs/ROADMAP_v1.6.md](./docs/ROADMAP_v1.6.md)** (Phase 4a prep; org execution — blocked)
+- Org migration: **[docs/ORG_MIGRATION_RUNBOOK.md](./docs/ORG_MIGRATION_RUNBOOK.md)** · `npm run plan-org-migration`
+- API v1→v2: **[docs/MIGRATION_V1_TO_V2.md](./docs/MIGRATION_V1_TO_V2.md)**
 - **API wishlist** (предложения для HTTP API продукта): **[docs/API_WISHLIST.md](./docs/API_WISHLIST.md)**
 
 ### Источник документации

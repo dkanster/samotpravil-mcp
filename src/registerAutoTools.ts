@@ -12,6 +12,7 @@ import {
   uniqueEndpointToolName,
 } from "./endpointMeta.js";
 import type { EndpointDoc } from "./types.js";
+import { annotationsForEndpoint } from "./toolAnnotations.js";
 
 const dryRunField = z.boolean().optional().describe("Показать запрос без отправки на API");
 
@@ -90,17 +91,25 @@ export async function registerAutoTools(server: McpServer): Promise<number> {
     const toolName = uniqueEndpointToolName(endpoint, usedNames);
     const description = `${endpoint.method} ${apiPath} — ${endpoint.name}`;
 
-    server.tool(toolName, description, schema.shape, async (params) => {
-      const { query, body, dryRun } = splitToolParams(endpoint, params as Record<string, unknown>);
-      const text = await samotpravilRequest({
-        method: endpoint.method,
-        path: apiPath,
-        query,
-        body,
-        dryRun,
-      });
-      return { content: [{ type: "text", text }] };
-    });
+    server.registerTool(
+      toolName,
+      {
+        description,
+        inputSchema: schema,
+        annotations: annotationsForEndpoint(endpoint.method, apiPath),
+      },
+      async (params) => {
+        const { query, body, dryRun } = splitToolParams(endpoint, params as Record<string, unknown>);
+        const text = await samotpravilRequest({
+          method: endpoint.method,
+          path: apiPath,
+          query,
+          body,
+          dryRun,
+        });
+        return { content: [{ type: "text", text }] };
+      },
+    );
 
     count += 1;
   }
