@@ -1,0 +1,17 @@
+# Default owners for all files
+* @dkanster
+
+# Safety-critical paths
+/src/safety.ts @dkanster
+/src/redact.ts @dkanster
+/src/client.ts @dkanster
+/src/http.ts @dkanster
+
+# Documentation snapshot and generated artifacts
+/data/ @dkanster
+/scripts/sync-docs.mjs @dkanster
+
+# Release metadata
+/server.json @dkanster
+/smithery.yaml @dkanster
+/package.json @dkanster

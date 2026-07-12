@@ -2,7 +2,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import type { PostmanCollection } from "../types.js";
 import { SNAPSHOT_META_PATH, SNAPSHOT_PATH, clearDocsCache, COLLECTION_URL } from "../docs.js";
-import { collectionSummary, countCollectionRequests } from "./collectionUtils.js";
+import { countCollectionRequests } from "./collectionUtils.js";
 
 export interface SnapshotWriteResult {
   snapshotPath: string;

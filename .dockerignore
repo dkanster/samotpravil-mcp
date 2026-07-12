@@ -1,0 +1,13 @@
+.dockerignore
+node_modules
+dist
+docusaurus
+site
+.git
+.env*
+*.md
+!README.md
+.github
+test
+scripts/check-*.mjs
+scripts/probe-endpoints.mjs
