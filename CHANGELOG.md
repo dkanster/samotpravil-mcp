@@ -6,10 +6,79 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-07-12
+
 ### Added
 
-- [docs/API_WISHLIST.md](./docs/API_WISHLIST.md) — предложения по развитию HTTP API СамОтправил
-- Issue template `.github/ISSUE_TEMPLATE/api_wishlist.yml`
+- `data/tool-catalog.json` — enriched catalog (group, method, path) from manifest + snapshot
+- `npm run generate-tool-catalog`, `check-tool-catalog`, `check-sdk-parity`, `check-upstream-wishlist`
+- `scripts/scaffold-typed-tool.mjs` — codegen scaffold для новых typed tools
+- `data/upstream-wishlist.json` — tracking proposed v2 endpoints
+- `npm run release-prepare` — pre-flight перед npm tag
+- [docs/RELEASE_v1.7.0.md](./docs/RELEASE_v1.7.0.md)
+
+### Changed
+
+- `tools.manifest.json` теперь включает `group`, `method`, `path`, `groups`
+- `SDK_TYPED_TOOL_COUNT`: 29 → 28 (исправление под фактическое число SDK tools)
+
+### Fixed
+
+- Несоответствие `SDK_TYPED_TOOL_COUNT` и реального числа зарегистрированных SDK tools
+
+## [1.6.0] - 2026-07-12
+
+### Added
+
+- Org migration prep: `data/org-migration.targets.json`, `check-org-migration`, `plan-org-migration`
+- [docs/ORG_MIGRATION_RUNBOOK.md](./docs/ORG_MIGRATION_RUNBOOK.md) — пошаговый runbook
+- `npm run pre-publish-check` + gate в `publish.yml`
+- [docs/official/PROMO_CHECKLIST.md](./docs/official/PROMO_CHECKLIST.md) + issue template `docs_promo`
+- [docs/MIGRATION_V1_TO_V2.md](./docs/MIGRATION_V1_TO_V2.md) — гид для интеграторов
+- [docs/ROADMAP_v1.6.md](./docs/ROADMAP_v1.6.md)
+- MCP Resource `samotpravil://api-wishlist`
+- `mcp.json.example.org` — конфиг после org migration
+- `.github/branch-protection.example.json`
+
+### Changed
+
+- `RESOURCE_COUNT`: 8 → 9
+
+## [1.5.0] - 2026-07-12
+
+### Added
+
+- Nightly workflow `.github/workflows/probe-endpoints.yml` (read-only API probe with `SAMOTPRAVIL_API_KEY` secret)
+- `data/tools.manifest.json` codegen (`npm run generate-tools-manifest`) + CI drift check
+- MCP integration test (`scripts/check-mcp-integration.mjs`) — stdio client, list tools/prompts/resources
+- Structured HTTP logging (`src/httpLog.ts`, env `SAMOTPRAVIL_HTTP_JSON_LOG=1`)
+- MCP Resource `samotpravil://rate-limits`
+- Release Please workflow (`.github/workflows/release-please.yml`)
+
+### Changed
+
+- `probe-endpoints.mjs` reads `SAMOTPRAVIL_API_KEY` from env (CI-friendly)
+- `RESOURCE_COUNT`: 7 → 8
+
+## [1.4.0] - 2026-07-12
+
+### Added
+
+- Dependabot, `SECURITY.md`, `CODEOWNERS`
+- ESLint (`npm run lint`) и unit-тесты `node:test` (safety, redact, endpointMeta)
+- CI: openapi drift check, snapshot age warning, npm audit
+- Scheduled workflow `.github/workflows/sync-docs.yml` (weekly snapshot PR)
+- MCP Tool Annotations (`readOnlyHint`, `destructiveHint`) на всех tools
+- HTTP auth: `SAMOTPRAVIL_HTTP_AUTH_TOKEN` (Bearer) для `--http` deploy
+- Docker image (`Dockerfile`) для HTTP transport
+- `scripts/sync-versions.mjs` — синхронизация `package.json` → `server.json`
+- MCP Resources: `samotpravil://sdk-mapping`, `samotpravil://changelog`
+- Pre-commit hook: `npm run setup-hooks`
+- Roadmap: [docs/ROADMAP_v1.4.md](./docs/ROADMAP_v1.4.md)
+
+### Changed
+
+- `RESOURCE_COUNT`: 5 → 7
 
 ## [1.3.2] - 2026-07-11
 

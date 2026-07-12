@@ -48,6 +48,15 @@
 - В README явно указано: «скоро переезд в org Samotpravil»
 - Milestone [Future](https://github.com/dkanster/samotpravil-mcp/milestone/9) — задачи миграции
 
+**Инструменты подготовки (v1.6+):**
+
+```bash
+npm run check-org-migration   # interim state OK
+npm run plan-org-migration    # dry-run замен
+```
+
+Runbook: **[ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)** · будущий MCP config: [`mcp.json.example.org`](../mcp.json.example.org)
+
 ---
 
 ## Связанные issues

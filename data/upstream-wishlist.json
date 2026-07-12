@@ -1,0 +1,40 @@
+{
+  "description": "Proposed upstream v2 endpoints from API_WISHLIST.md — tracking only",
+  "items": [
+    {
+      "id": "v2_mail_package",
+      "method": "POST",
+      "path": "/api/v2/mail/package",
+      "status": "proposed",
+      "replaces": "/api/v1/add_json_package"
+    },
+    {
+      "id": "v2_mail_package_xml",
+      "method": "POST",
+      "path": "/api/v2/mail/package/xml",
+      "status": "proposed",
+      "replaces": "/api/v1/add_package"
+    },
+    {
+      "id": "v2_mail_package_stop",
+      "method": "POST",
+      "path": "/api/v2/mail/package/{id}/stop",
+      "status": "proposed",
+      "replaces": "/api/v1/package_stop"
+    },
+    {
+      "id": "v2_mail_send_stable",
+      "method": "POST",
+      "path": "/api/v2/mail/send",
+      "status": "stabilize",
+      "note": "Exists but marked deprecated in Postman"
+    },
+    {
+      "id": "webhook_events",
+      "method": "POST",
+      "path": "/api/v2/webhooks/events",
+      "status": "proposed",
+      "note": "From API wishlist — not in snapshot yet"
+    }
+  ]
+}
