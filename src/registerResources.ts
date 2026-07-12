@@ -8,10 +8,12 @@ import {
   readErrorsResource,
   readIntegrationResource,
   readOverviewResource,
+  readSdkMappingResource,
+  readChangelogResource,
   resourceTextResult,
 } from "./resources.js";
 
-export const RESOURCE_COUNT = 5;
+export const RESOURCE_COUNT = 7;
 
 export function registerResources(server: McpServer): void {
   server.resource(
@@ -52,6 +54,26 @@ export function registerResources(server: McpServer): void {
       mimeType: "text/markdown",
     },
     async (uri) => resourceTextResult(uri.href, readIntegrationResource()),
+  );
+
+  server.resource(
+    "sdk-mapping",
+    RESOURCE_URIS.sdkMapping,
+    {
+      description: "Маппинг Python SDK samotpravil → MCP typed tools",
+      mimeType: "text/markdown",
+    },
+    async (uri) => resourceTextResult(uri.href, readSdkMappingResource()),
+  );
+
+  server.resource(
+    "changelog",
+    RESOURCE_URIS.changelog,
+    {
+      description: "Последние изменения samotpravil-mcp (фрагмент CHANGELOG)",
+      mimeType: "text/markdown",
+    },
+    async (uri) => resourceTextResult(uri.href, readChangelogResource()),
   );
 
   server.resource(

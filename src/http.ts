@@ -33,6 +33,35 @@ function methodNotAllowed(res: import("node:http").ServerResponse): void {
   );
 }
 
+function unauthorized(res: import("node:http").ServerResponse): void {
+  res.writeHead(401, { "Content-Type": "application/json" });
+  res.end(
+    JSON.stringify({
+      jsonrpc: "2.0",
+      error: { code: -32001, message: "Unauthorized." },
+      id: null,
+    }),
+  );
+}
+
+function resolveHttpAuthToken(): string | undefined {
+  const token = process.env.SAMOTPRAVIL_HTTP_AUTH_TOKEN?.trim();
+  return token && token.length > 0 ? token : undefined;
+}
+
+function isHttpAuthorized(req: import("node:http").IncomingMessage): boolean {
+  const expected = resolveHttpAuthToken();
+  if (!expected) return true;
+
+  const header = req.headers.authorization?.trim() ?? "";
+  if (header === `Bearer ${expected}`) return true;
+
+  const tokenHeader = req.headers["x-mcp-auth-token"];
+  if (typeof tokenHeader === "string" && tokenHeader.trim() === expected) return true;
+
+  return false;
+}
+
 export async function startHttpServer(
   createServerFn: () => Promise<McpServer>,
   port: number,
@@ -48,6 +77,11 @@ export async function startHttpServer(
 
     if (req.method !== "POST") {
       methodNotAllowed(res);
+      return;
+    }
+
+    if (!isHttpAuthorized(req)) {
+      unauthorized(res);
       return;
     }
 
