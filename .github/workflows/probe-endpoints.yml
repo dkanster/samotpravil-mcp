@@ -1,0 +1,39 @@
+name: Probe API endpoints
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Probe read-only API endpoints
+        env:
+          SAMOTPRAVIL_API_KEY: ${{ secrets.SAMOTPRAVIL_API_KEY }}
+        run: |
+          if [ -z "$SAMOTPRAVIL_API_KEY" ]; then
+            echo "SKIP: SAMOTPRAVIL_API_KEY secret is not configured"
+            exit 0
+          fi
+          node scripts/probe-endpoints.mjs --json | tee probe-report.json
+        continue-on-error: true
+
+      - name: Upload probe report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: probe-report
+          path: probe-report.json
+          if-no-files-found: ignore

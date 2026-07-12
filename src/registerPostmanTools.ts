@@ -10,6 +10,7 @@ import {
   postmanSearchRequestsSchema,
   postmanSyncSnapshotSchema,
 } from "./tools/postman.js";
+import { POSTMAN_READ_ANNOTATIONS, POSTMAN_WRITE_ANNOTATIONS } from "./toolAnnotations.js";
 
 export const POSTMAN_TOOL_COUNT = 4;
 
@@ -18,37 +19,49 @@ export function registerPostmanTools(server: McpServer): number {
     return 0;
   }
 
-  server.tool(
+  server.registerTool(
     "postman_get_collection",
-    "Коллекция документации из Postman API (summary или full JSON).",
-    postmanGetCollectionSchema.shape,
+    {
+      description: "Коллекция документации из Postman API (summary или full JSON).",
+      inputSchema: postmanGetCollectionSchema,
+      annotations: POSTMAN_READ_ANNOTATIONS,
+    },
     async (params) => ({
       content: [{ type: "text", text: await handlePostmanGetCollection(params) }],
     }),
   );
 
-  server.tool(
+  server.registerTool(
     "postman_sync_snapshot",
-    "Postman API → data/collection.snapshot.json (write=true для записи).",
-    postmanSyncSnapshotSchema.shape,
+    {
+      description: "Postman API → data/collection.snapshot.json (write=true для записи).",
+      inputSchema: postmanSyncSnapshotSchema,
+      annotations: POSTMAN_WRITE_ANNOTATIONS,
+    },
     async (params) => ({
       content: [{ type: "text", text: await handlePostmanSyncSnapshot(params) }],
     }),
   );
 
-  server.tool(
+  server.registerTool(
     "postman_diff_snapshot",
-    "Diff Postman API vs локальный data/collection.snapshot.json.",
-    postmanDiffSnapshotSchema.shape,
+    {
+      description: "Diff Postman API vs локальный data/collection.snapshot.json.",
+      inputSchema: postmanDiffSnapshotSchema,
+      annotations: POSTMAN_READ_ANNOTATIONS,
+    },
     async () => ({
       content: [{ type: "text", text: await handlePostmanDiffSnapshot() }],
     }),
   );
 
-  server.tool(
+  server.registerTool(
     "postman_search_requests",
-    "Поиск запросов в коллекции (local snapshot или remote Postman API).",
-    postmanSearchRequestsSchema.shape,
+    {
+      description: "Поиск запросов в коллекции (local snapshot или remote Postman API).",
+      inputSchema: postmanSearchRequestsSchema,
+      annotations: POSTMAN_READ_ANNOTATIONS,
+    },
     async (params) => ({
       content: [{ type: "text", text: await handlePostmanSearchRequests(params) }],
     }),
