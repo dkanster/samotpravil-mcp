@@ -6,6 +6,26 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-07-12
+
+### Added
+
+- `data/tool-catalog.json` — enriched catalog (group, method, path) from manifest + snapshot
+- `npm run generate-tool-catalog`, `check-tool-catalog`, `check-sdk-parity`, `check-upstream-wishlist`
+- `scripts/scaffold-typed-tool.mjs` — codegen scaffold для новых typed tools
+- `data/upstream-wishlist.json` — tracking proposed v2 endpoints
+- `npm run release-prepare` — pre-flight перед npm tag
+- [docs/RELEASE_v1.7.0.md](./docs/RELEASE_v1.7.0.md)
+
+### Changed
+
+- `tools.manifest.json` теперь включает `group`, `method`, `path`, `groups`
+- `SDK_TYPED_TOOL_COUNT`: 29 → 28 (исправление под фактическое число SDK tools)
+
+### Fixed
+
+- Несоответствие `SDK_TYPED_TOOL_COUNT` и реального числа зарегистрированных SDK tools
+
 ## [1.6.0] - 2026-07-12
 
 ### Added

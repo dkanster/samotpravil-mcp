@@ -94,7 +94,9 @@ npm test
 npm run generate-tools-manifest   # data/tools.manifest.json из live MCP
 npm run probe-endpoints           # probe read-only API (нужен SAMOTPRAVIL_API_KEY)
 npm run plan-org-migration        # dry-run замен для org migration
-npm run pre-publish-check         # перед npm tag
+npm run generate-tool-catalog   # data/tool-catalog.json
+npm run scaffold-typed-tool <name>  # scaffold typed tool handler
+npm run release-prepare           # pre-flight перед npm tag
 ```
 
 ## Стиль кода

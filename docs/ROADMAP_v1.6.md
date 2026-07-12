@@ -42,11 +42,11 @@ Runbook: [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Typed tools codegen из `tools.manifest.json` | 🔲 |
-| 2 | Авто-обновление SDK parity при изменении snapshot | 🔲 |
-| 3 | Tracking upstream v2 endpoints (wishlist → typed tools) | 🔲 |
-| 4 | Webhook/events tools (когда появится в API) | 🔲 |
-| 5 | npm publish `samotpravil-mcp@1.6.0` | 🔲 |
+| 1 | Typed tools codegen из `tools.manifest.json` | ✅ catalog + scaffold |
+| 2 | Авто-обновление SDK parity при изменении snapshot | ✅ `check-sdk-parity` |
+| 3 | Tracking upstream v2 endpoints (wishlist → typed tools) | ✅ `check-upstream-wishlist` |
+| 4 | Webhook/events tools (когда появится в API) | ⏳ upstream |
+| 5 | npm publish `samotpravil-mcp@1.7.0` | ⏳ [RELEASE_v1.7.0.md](./RELEASE_v1.7.0.md) |
 
 Upstream wishlist: [API_WISHLIST.md](./API_WISHLIST.md)
 

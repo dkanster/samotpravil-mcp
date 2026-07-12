@@ -1,6 +1,6 @@
 {
   "name": "samotpravil-mcp",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "MCP server for Samotpravil SMTP API — documentation search and API proxy. Interim npm: samotpravil-mcp; future: @samotpravil/mcp after org migration.",
   "type": "module",
   "main": "dist/index.js",
@@ -26,6 +26,9 @@
     "setup-hooks": "bash scripts/setup-hooks.sh",
     "sync-versions": "node scripts/sync-versions.mjs",
     "generate-tools-manifest": "npm run build && node scripts/generate-tools-manifest.mjs",
+    "generate-tool-catalog": "npm run build && node scripts/generate-tool-catalog.mjs",
+    "scaffold-typed-tool": "node scripts/scaffold-typed-tool.mjs",
+    "release-prepare": "bash scripts/release-prepare.sh",
     "probe-endpoints": "npm run build && node scripts/probe-endpoints.mjs",
     "check-org-migration": "node scripts/check-org-migration.mjs",
     "plan-org-migration": "node scripts/plan-org-migration.mjs",

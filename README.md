@@ -6,7 +6,7 @@
 
 MCP-сервер вокруг [документации API СамОтправил](https://documentation.samotpravil.ru/) и HTTP API `api.samotpravil.ru`.
 
-**Версия:** 1.6.0 · **npm:** [`samotpravil-mcp`](https://www.npmjs.com/package/samotpravil-mcp) · **MCP Registry:** `io.github.dkanster/samotpravil-mcp` · **Smithery:** [`smithery.yaml`](./smithery.yaml)
+**Версия:** 1.7.0 · **npm:** [`samotpravil-mcp`](https://www.npmjs.com/package/samotpravil-mcp) · **MCP Registry:** `io.github.dkanster/samotpravil-mcp` · **Smithery:** [`smithery.yaml`](./smithery.yaml)
 
 > **Хостинг:** репозиторий временно в [dkanster/samotpravil-mcp](https://github.com/dkanster/samotpravil-mcp).  
 > **Планируется:** переезд в org **Samotpravil** → `@samotpravil/mcp` — [docs/ORG_MIGRATION.md](./docs/ORG_MIGRATION.md).
@@ -53,7 +53,7 @@ npx -y samotpravil-mcp@latest
 |-----------|--------|------------|
 | Docs tools | 4 | нет |
 | Core typed API | 9 + `api_request` | `SAMOTPRAVIL_API_KEY` |
-| Python SDK parity | 29 | `SAMOTPRAVIL_API_KEY` |
+| Python SDK parity | 28 | `SAMOTPRAVIL_API_KEY` |
 | Auto tools (`api_*`) | ~16 | `SAMOTPRAVIL_API_KEY` |
 | Postman maintainer | 4 | `POSTMAN_API_KEY` |
 | MCP Resources | 9 | нет |
@@ -220,14 +220,16 @@ npm install && npm test && npm run dev
 npm run setup-hooks   # optional: pre-commit (lint + test)
 npm run lint          # ESLint
 npm run pre-publish-check   # перед npm tag
-npm run plan-org-migration  # dry-run org migration
+npm run release-prepare      # pre-flight перед npm tag
+npm run generate-tool-catalog
+npm run scaffold-typed-tool send_package
 ```
 
 - Security: **[SECURITY.md](./SECURITY.md)**
 - Contributing: **[CONTRIBUTING.md](./CONTRIBUTING.md)**
 - Changelog: **[CHANGELOG.md](./CHANGELOG.md)**
 - Publish: **[docs/PUBLISH.md](./docs/PUBLISH.md)**
-- Roadmap: **[docs/ROADMAP_v1.6.md](./docs/ROADMAP_v1.6.md)** (Phase 4a prep; org execution — blocked)
+- Roadmap: **[docs/ROADMAP_v1.6.md](./docs/ROADMAP_v1.6.md)** · Release: **[docs/RELEASE_v1.7.0.md](./docs/RELEASE_v1.7.0.md)**
 - Org migration: **[docs/ORG_MIGRATION_RUNBOOK.md](./docs/ORG_MIGRATION_RUNBOOK.md)** · `npm run plan-org-migration`
 - API v1→v2: **[docs/MIGRATION_V1_TO_V2.md](./docs/MIGRATION_V1_TO_V2.md)**
 - **API wishlist** (предложения для HTTP API продукта): **[docs/API_WISHLIST.md](./docs/API_WISHLIST.md)**

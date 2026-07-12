@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T23:04:04.653Z",
+  "generatedAt": "2026-07-12T23:04:06.270Z",
   "packageVersion": "1.7.0",
   "toolCount": 58,
   "groups": {
@@ -706,5 +706,9 @@
         "openWorldHint": true
       }
     }
-  ]
+  ],
+  "snapshot": {
+    "apiEndpointCount": 51,
+    "uncoveredAutoCandidates": []
+  }
 }

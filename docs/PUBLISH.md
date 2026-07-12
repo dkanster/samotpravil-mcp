@@ -13,6 +13,12 @@ Interim-пакет: **`samotpravil-mcp`** (аккаунт maintainer).
 4. Проверка перед tag:
 
 ```bash
+npm run release-prepare
+```
+
+Или по шагам:
+
+```bash
 npm run sync-versions
 npm run pre-publish-check
 npm test
