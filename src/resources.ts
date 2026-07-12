@@ -19,6 +19,7 @@ export const RESOURCE_URIS = {
   sdkMapping: "samotpravil://sdk-mapping",
   changelog: "samotpravil://changelog",
   rateLimits: "samotpravil://rate-limits",
+  apiWishlist: "samotpravil://api-wishlist",
   endpointTemplate: "samotpravil://endpoint/{slug}",
 } as const;
 
@@ -156,6 +157,20 @@ export async function listEndpointResources(): Promise<
     name: endpoint.name,
     description: `${endpoint.method} ${endpoint.url}`,
   }));
+}
+
+export function readApiWishlistResource(): string {
+  const wishlistPath = join(dirname(fileURLToPath(import.meta.url)), "..", "docs", "API_WISHLIST.md");
+  const raw = readFileSync(wishlistPath, "utf8");
+  const intro = raw.split("## Приоритет 1")[0]?.trim() ?? raw.slice(0, 2500);
+  return [
+    "# API Wishlist (фрагмент)",
+    "",
+    intro,
+    "",
+    "Полный документ: docs/API_WISHLIST.md",
+    "Миграция v1→v2 для интеграторов: docs/MIGRATION_V1_TO_V2.md",
+  ].join("\n");
 }
 
 export function readRateLimitsResource(): string {

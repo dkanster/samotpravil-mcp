@@ -8,6 +8,7 @@ import {
   readSdkMappingResource,
   readChangelogResource,
   readRateLimitsResource,
+  readApiWishlistResource,
 } from "../dist/resources.js";
 import { loadDocumentation } from "../dist/docs.js";
 
@@ -36,6 +37,11 @@ if (!changelog.includes("Changelog")) {
 const rateLimits = readRateLimitsResource();
 if (!rateLimits.includes("10 000")) {
   throw new Error("rate-limits resource missing content");
+}
+
+const apiWishlist = readApiWishlistResource();
+if (!apiWishlist.includes("API Wishlist")) {
+  throw new Error("api-wishlist resource missing content");
 }
 
 const index = await readEndpointsIndexResource();

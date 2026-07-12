@@ -66,6 +66,7 @@ await withMcpClient(async (client) => {
     "samotpravil://overview",
     "samotpravil://sdk-mapping",
     "samotpravil://rate-limits",
+    "samotpravil://api-wishlist",
   ]) {
     if (!resourceUris.has(uri)) {
       throw new Error(`Missing required resource: ${uri}`);

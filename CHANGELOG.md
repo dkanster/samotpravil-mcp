@@ -6,6 +6,24 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-07-12
+
+### Added
+
+- Org migration prep: `data/org-migration.targets.json`, `check-org-migration`, `plan-org-migration`
+- [docs/ORG_MIGRATION_RUNBOOK.md](./docs/ORG_MIGRATION_RUNBOOK.md) — пошаговый runbook
+- `npm run pre-publish-check` + gate в `publish.yml`
+- [docs/official/PROMO_CHECKLIST.md](./docs/official/PROMO_CHECKLIST.md) + issue template `docs_promo`
+- [docs/MIGRATION_V1_TO_V2.md](./docs/MIGRATION_V1_TO_V2.md) — гид для интеграторов
+- [docs/ROADMAP_v1.6.md](./docs/ROADMAP_v1.6.md)
+- MCP Resource `samotpravil://api-wishlist`
+- `mcp.json.example.org` — конфиг после org migration
+- `.github/branch-protection.example.json`
+
+### Changed
+
+- `RESOURCE_COUNT`: 8 → 9
+
 ## [1.5.0] - 2026-07-12
 
 ### Added

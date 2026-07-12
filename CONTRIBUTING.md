@@ -93,6 +93,8 @@ npm test
 ```bash
 npm run generate-tools-manifest   # data/tools.manifest.json из live MCP
 npm run probe-endpoints           # probe read-only API (нужен SAMOTPRAVIL_API_KEY)
+npm run plan-org-migration        # dry-run замен для org migration
+npm run pre-publish-check         # перед npm tag
 ```
 
 ## Стиль кода

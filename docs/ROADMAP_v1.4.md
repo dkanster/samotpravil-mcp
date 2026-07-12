@@ -31,9 +31,9 @@
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Ссылка MCP в [documentation.samotpravil.ru](https://documentation.samotpravil.ru/) | ⏳ blocked (docs team) |
-| 2 | GitHub org **Samotpravil** + `@samotpravil/mcp` | ⏳ blocked (org) |
-| 3 | Branch protection на `main` | ⏳ after org |
+| 1 | Ссылка MCP в [documentation.samotpravil.ru](https://documentation.samotpravil.ru/) | ⏳ [PROMO_CHECKLIST](./official/PROMO_CHECKLIST.md) |
+| 2 | GitHub org **Samotpravil** + `@samotpravil/mcp` | ⏳ prep ready ([RUNBOOK](./ORG_MIGRATION_RUNBOOK.md)) |
+| 3 | Branch protection на `main` | ⏳ template (`.github/branch-protection.example.json`) |
 | 4 | Nightly `probe-endpoints` (optional, with API key secret) | ✅ |
 
 Материалы для docs team: [docs/official/](./official/)  

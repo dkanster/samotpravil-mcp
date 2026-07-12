@@ -11,10 +11,11 @@ import {
   readSdkMappingResource,
   readChangelogResource,
   readRateLimitsResource,
+  readApiWishlistResource,
   resourceTextResult,
 } from "./resources.js";
 
-export const RESOURCE_COUNT = 8;
+export const RESOURCE_COUNT = 9;
 
 export function registerResources(server: McpServer): void {
   server.resource(
@@ -85,6 +86,16 @@ export function registerResources(server: McpServer): void {
       mimeType: "text/markdown",
     },
     async (uri) => resourceTextResult(uri.href, readRateLimitsResource()),
+  );
+
+  server.resource(
+    "api-wishlist",
+    RESOURCE_URIS.apiWishlist,
+    {
+      description: "Предложения по развитию HTTP API СамОтправил (фрагмент)",
+      mimeType: "text/markdown",
+    },
+    async (uri) => resourceTextResult(uri.href, readApiWishlistResource()),
   );
 
   server.resource(

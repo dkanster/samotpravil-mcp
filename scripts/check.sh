@@ -35,6 +35,9 @@ echo "OK: OpenAPI drift"
 node "$ROOT/scripts/check-snapshot-age.mjs"
 echo "OK: snapshot age"
 
+node "$ROOT/scripts/check-org-migration.mjs"
+echo "OK: org migration interim state"
+
 node "$ROOT/scripts/check-mcp-integration.mjs"
 echo "OK: MCP integration"
 

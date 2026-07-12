@@ -1,0 +1,42 @@
+{
+  "interim": {
+    "githubOwner": "dkanster",
+    "githubRepo": "dkanster/samotpravil-mcp",
+    "githubUrl": "https://github.com/dkanster/samotpravil-mcp",
+    "npmPackage": "samotpravil-mcp",
+    "npmUrl": "https://www.npmjs.com/package/samotpravil-mcp",
+    "mcpRegistryName": "io.github.dkanster/samotpravil-mcp",
+    "npxPackage": "samotpravil-mcp@latest"
+  },
+  "target": {
+    "githubOwner": "samotpravil",
+    "githubRepo": "samotpravil/samotpravil-mcp",
+    "githubUrl": "https://github.com/samotpravil/samotpravil-mcp",
+    "npmPackage": "@samotpravil/mcp",
+    "npmUrl": "https://www.npmjs.com/package/@samotpravil/mcp",
+    "mcpRegistryName": "io.github.samotpravil/samotpravil-mcp",
+    "npxPackage": "@samotpravil/mcp@latest"
+  },
+  "replaceInFiles": [
+    "README.md",
+    "package.json",
+    "server.json",
+    "smithery.yaml",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "docs/PUBLISH.md",
+    "docs/ORG_MIGRATION.md",
+    "docs/ECOSYSTEM.md",
+    "docs/EXAMPLES.md",
+    "docs/official/README.md",
+    "docs/official/MCP_INSTALL_BLOCK.html",
+    "docs/official/get-access-snippet.md",
+    "docs/official/blog-draft.md",
+    ".github/workflows/ci.yml",
+    ".github/workflows/publish.yml",
+    ".github/workflows/mcp-registry.yml",
+    ".github/workflows/docusaurus.yml",
+    "mcp.json.example"
+  ]
+}
