@@ -6,10 +6,41 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-07-12
+
 ### Added
 
-- [docs/API_WISHLIST.md](./docs/API_WISHLIST.md) — предложения по развитию HTTP API СамОтправил
-- Issue template `.github/ISSUE_TEMPLATE/api_wishlist.yml`
+- Nightly workflow `.github/workflows/probe-endpoints.yml` (read-only API probe with `SAMOTPRAVIL_API_KEY` secret)
+- `data/tools.manifest.json` codegen (`npm run generate-tools-manifest`) + CI drift check
+- MCP integration test (`scripts/check-mcp-integration.mjs`) — stdio client, list tools/prompts/resources
+- Structured HTTP logging (`src/httpLog.ts`, env `SAMOTPRAVIL_HTTP_JSON_LOG=1`)
+- MCP Resource `samotpravil://rate-limits`
+- Release Please workflow (`.github/workflows/release-please.yml`)
+
+### Changed
+
+- `probe-endpoints.mjs` reads `SAMOTPRAVIL_API_KEY` from env (CI-friendly)
+- `RESOURCE_COUNT`: 7 → 8
+
+## [1.4.0] - 2026-07-12
+
+### Added
+
+- Dependabot, `SECURITY.md`, `CODEOWNERS`
+- ESLint (`npm run lint`) и unit-тесты `node:test` (safety, redact, endpointMeta)
+- CI: openapi drift check, snapshot age warning, npm audit
+- Scheduled workflow `.github/workflows/sync-docs.yml` (weekly snapshot PR)
+- MCP Tool Annotations (`readOnlyHint`, `destructiveHint`) на всех tools
+- HTTP auth: `SAMOTPRAVIL_HTTP_AUTH_TOKEN` (Bearer) для `--http` deploy
+- Docker image (`Dockerfile`) для HTTP transport
+- `scripts/sync-versions.mjs` — синхронизация `package.json` → `server.json`
+- MCP Resources: `samotpravil://sdk-mapping`, `samotpravil://changelog`
+- Pre-commit hook: `npm run setup-hooks`
+- Roadmap: [docs/ROADMAP_v1.4.md](./docs/ROADMAP_v1.4.md)
+
+### Changed
+
+- `RESOURCE_COUNT`: 5 → 7
 
 ## [1.3.2] - 2026-07-11
 

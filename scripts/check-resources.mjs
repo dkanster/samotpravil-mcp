@@ -5,6 +5,9 @@ import {
   readEndpointResource,
   readErrorsResource,
   readIntegrationResource,
+  readSdkMappingResource,
+  readChangelogResource,
+  readRateLimitsResource,
 } from "../dist/resources.js";
 import { loadDocumentation } from "../dist/docs.js";
 
@@ -18,6 +21,21 @@ if (!errors.includes("550 bounced check filter")) {
 const integration = readIntegrationResource();
 if (!integration.includes("X-Track-ID")) {
   throw new Error("integration resource missing content");
+}
+
+const sdkMapping = readSdkMappingResource();
+if (!sdkMapping.includes("Python SDK")) {
+  throw new Error("sdk-mapping resource missing content");
+}
+
+const changelog = readChangelogResource();
+if (!changelog.includes("Changelog")) {
+  throw new Error("changelog resource missing content");
+}
+
+const rateLimits = readRateLimitsResource();
+if (!rateLimits.includes("10 000")) {
+  throw new Error("rate-limits resource missing content");
 }
 
 const index = await readEndpointsIndexResource();

@@ -1,0 +1,529 @@
+{
+  "generatedAt": "2026-07-12T22:57:28.236Z",
+  "packageVersion": "1.5.0",
+  "toolCount": 58,
+  "tools": [
+    {
+      "name": "add_stop_list_email",
+      "description": "Добавить email в стоп-лист",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_delete_v2_stop_list_export_token",
+      "description": "DELETE /api/v2/stop-list/export/:token — Удалить задачу",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_get_v1_get_fbl_report",
+      "description": "GET /api/v1/get_fbl_report — Отчёт о пожаловавшихся v1",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_get_v1_get_smtp_issue_stat",
+      "description": "GET /api/v1/get_smtp_issue_stat — Сводный отчет за сутки v1",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_get_v1_get_stop_report",
+      "description": "GET /api/v1/get_stop_report — Отчёт о недоставках v1",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_get_v1_package_report",
+      "description": "GET /api/v1/package_report — Недоставки пакетной отправки v1",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_get_v1_package_report_fbl",
+      "description": "GET /api/v1/package_report_fbl — Жалобы пакетной отправки v1",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_get_v1_package_status",
+      "description": "GET /api/v1/package_status — Статус отправки v1",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_get_v2_stop_list_export_token",
+      "description": "GET /api/v2/stop-list/export/:token — Скачать стоп-лист",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_get_v2_tickets",
+      "description": "GET /api/v2/tickets — Список обращений",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_get_v2_tickets_id",
+      "description": "GET /api/v2/tickets/:id/ — Отдельное обращение",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_post_v2_email_check",
+      "description": "POST /api/v2/email/check — Проверить верстку",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_post_v2_emails_activity",
+      "description": "POST /api/v2/emails/activity/ — Активность",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_post_v2_emails_clean",
+      "description": "POST /api/v2/emails/clean/ — Стандартизация",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_post_v2_tickets",
+      "description": "POST /api/v2/tickets — Создать обращение",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_post_v2_tickets_id",
+      "description": "POST /api/v2/tickets/:id/ — Обновить обращение",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_post_v2_tickets_ip",
+      "description": "POST /api/v2/tickets — Создать обращение на выделенный IP",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "api_request",
+      "description": "Generic HTTP к api.samotpravil.ru (safety flags, dry_run). Отключается через SAMOTPRAVIL_ALLOW_GENERIC_API=0.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "create_authkey",
+      "description": "POST /api/v2/authkey/create — WhiteLabel (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "create_blist",
+      "description": "POST /api/v2/blist/create — WhiteLabel (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "domain_add",
+      "description": "POST /api/v2/blist/domains/add (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "domain_check_verification",
+      "description": "POST /api/v2/blist/domains/verify (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "domain_remove",
+      "description": "POST /api/v2/blist/domains/remove (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_authkey",
+      "description": "GET /api/v2/authkey — WhiteLabel (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_blist",
+      "description": "GET /api/v2/blist — WhiteLabel (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_delivery_status",
+      "description": "GET /api/v2/issue/status по x_track_id",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_endpoint",
+      "description": "Документация по методу API.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_ext_status",
+      "description": "GET /api/v2/issue/ext_status — полная история статусов (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_fbl_report_by_date",
+      "description": "GET /api/v2/blist/report/fbl (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_fbl_report_by_issue",
+      "description": "GET /api/v2/issue/report/fbl (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_ip_info",
+      "description": "GET /api/v2/ip — WhiteLabel (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_issue_stat",
+      "description": "GET /api/v1/get_issue_stat (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_non_delivery_by_date",
+      "description": "GET /api/v2/blist/report/non-delivery (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_non_delivery_by_issue",
+      "description": "GET /api/v2/issue/report/non-delivery (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_overview",
+      "description": "Обзор API СамОтправил.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_package_status",
+      "description": "GET /api/v2/package/status",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_statistics",
+      "description": "GET /api/v2/issue/statistics (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_unsubscribe_by_date",
+      "description": "GET /api/v2/blist/report/unsubscribe (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "get_unsubscribe_by_issue",
+      "description": "GET /api/v2/issue/report/unsubscribe (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "list_allowed_domains",
+      "description": "GET /api/v2/blist/domains",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "list_endpoints",
+      "description": "Список методов API.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "remove_stop_list_email",
+      "description": "Удалить email из стоп-листа",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "search_docs",
+      "description": "Поиск по документации API.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "search_stop_list",
+      "description": "Поиск email в стоп-листах",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "send_email",
+      "description": "POST /api/v1/smtp_send",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "send_mail_v2",
+      "description": "POST /api/v2/mail/send",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "send_package",
+      "description": "POST /api/v1/add_json_package — массовая отправка (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "send_package_xml",
+      "description": "GET /api/v1/add_package — XML-пакет по URL (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "stop_list_export_create",
+      "description": "POST /api/v2/stop-list/export — создать задачу экспорта (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "stop_list_export_delete",
+      "description": "DELETE /api/v2/stop-list/export/{token} (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "stop_list_export_download",
+      "description": "GET /api/v2/stop-list/export/{token} (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "stop_list_export_tasks",
+      "description": "GET /api/v2/stop-list/export — список задач экспорта (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "stop_list_failed",
+      "description": "GET /api/v2/stop-list/failed (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "stop_list_fbl",
+      "description": "GET /api/v2/stop-list/fbl (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "stop_list_unsubscribe",
+      "description": "GET /api/v2/stop-list/unsubscribe (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "stop_package",
+      "description": "GET /api/v1/package_stop — остановить пакет (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "update_blist",
+      "description": "POST /api/v2/blist/update — WhiteLabel (Python SDK parity)",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "validate_email",
+      "description": "POST /api/v2/emails/validate/",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    }
+  ]
+}
