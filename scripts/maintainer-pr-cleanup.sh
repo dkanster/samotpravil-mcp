@@ -19,13 +19,23 @@ for pr in 44 48 47 49; do
 done
 
 echo ""
-echo "=== Optional: docs promo issue #51 comment ==="
-echo "gh issue comment 51 --body 'v1.8.0 на npm. HTML-блок 1.8.0+ в docs/official/MCP_INSTALL_BLOCK.html — готов к вставке в documenter.'"
+echo "=== Dependabot deferred ==="
+echo "gh pr close 60 --comment 'Deferred — see docs/DEPENDENCY_DEFERRALS.md (typescript 7, stay on TS 5.x).'"
 
 echo ""
-echo "=== Optional: org migration issue (template) ==="
-echo "gh issue create --title '[Org migration] Pre-flight complete' --template org_migration.yml"
-echo "# Or: GitHub → New issue → Org migration tracking"
+echo "=== Rename draft PR #64 (after naming decision) ==="
+echo "# Variant C (org): close #64 — see PR #67 and issue #65"
+echo "gh pr close 64 --comment 'Superseded by org migration path (variant C) — see PR #67 and issue #65.'"
+echo "# Variant B (rename): merge #64 instead of closing"
+
+echo ""
+echo "=== Docs promo issue #51 ==="
+echo "npm run promo-handoff   # full comment body"
+echo "gh issue comment 51 --body-file /tmp/promo-handoff.md   # after saving output"
+
+echo ""
+echo "=== Tracker ==="
+echo "npm run check-superseded-prs"
 
 echo ""
 echo "Copy-paste gh pr close lines:"
