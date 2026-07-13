@@ -24,3 +24,9 @@ jobs:
       - run: npm audit --audit-level=high
         continue-on-error: true
       - run: npm test
+
+      - name: v1.9 readiness (informational)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npm run check-v19-readiness -- --warn-only
+        continue-on-error: true

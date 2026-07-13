@@ -65,7 +65,50 @@ criteria.push({
   blocking: false,
 });
 
-// 3. Promo materials aligned
+// 3. Promo checklist (maintainer section)
+let promoChecklistMaintainer = false;
+let documenterPending = -1;
+try {
+  const out = execSync("node scripts/check-promo-checklist.mjs --json", {
+    cwd: ROOT,
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+  const data = JSON.parse(out);
+  promoChecklistMaintainer = data.maintainerReady;
+  documenterPending = data.pendingDocumenterItems;
+} catch (error) {
+  try {
+    const data = JSON.parse(error.stdout ?? "{}");
+    promoChecklistMaintainer = data.maintainerReady ?? false;
+    documenterPending = data.pendingDocumenterItems ?? -1;
+  } catch {
+    promoChecklistMaintainer = false;
+  }
+}
+criteria.push({
+  id: "promo_checklist_maintainer",
+  label: "Promo checklist — maintainer items",
+  status: promoChecklistMaintainer ? "done" : "pending",
+  detail: promoChecklistMaintainer
+    ? "npm run check-promo-checklist"
+    : "promo materials or publish verify failed",
+  blocking: false,
+});
+criteria.push({
+  id: "promo_checklist_documenter",
+  label: "Promo checklist — documenter live",
+  status: documenterPending === 0 ? "done" : "pending",
+  detail:
+    documenterPending === 0
+      ? "all documenter steps complete"
+      : documenterPending > 0
+        ? `${documenterPending} steps pending — issue #51`
+        : "npm run check-promo-checklist",
+  blocking: false,
+});
+
+// 4. Promo materials aligned
 const promoOk = run("node scripts/check-promo-versions.mjs").ok;
 criteria.push({
   id: "promo_materials",
@@ -75,7 +118,7 @@ criteria.push({
   blocking: false,
 });
 
-// 4. Superseded PRs
+// 5. Superseded PRs
 let supersededOpen = -1;
 try {
   execSync("node scripts/check-superseded-prs.mjs", {
@@ -102,7 +145,7 @@ criteria.push({
   blocking: true,
 });
 
-// 5. Typed v2 tools
+// 6. Typed v2 tools
 const scaffoldShip = run("node scripts/check-scaffold-ship.mjs", { allowFail: true });
 criteria.push({
   id: "typed_v2",
@@ -114,7 +157,7 @@ criteria.push({
   blocking: false,
 });
 
-// 6. Org interim state
+// 7. Org interim state
 const orgOk = run("node scripts/check-org-migration.mjs").ok;
 criteria.push({
   id: "org_interim",

@@ -41,6 +41,7 @@ gh pr create \
 ## После merge release PR
 
 ```bash
+npm run check-v19-readiness    # gate перед tag v1.9+
 npm run release-prepare
 git pull --tags
 npm run verify-publish -- <version>

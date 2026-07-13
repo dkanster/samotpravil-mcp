@@ -77,6 +77,13 @@ try {
 console.log("\n## Promo handoff");
 console.log("- Issue #51: npm run promo-handoff -- --write");
 
+console.log("\n## Promo checklist");
+try {
+  execSync("node scripts/check-promo-checklist.mjs", { cwd: ROOT, stdio: "inherit" });
+} catch {
+  console.log("- Run: npm run check-promo-checklist");
+}
+
 console.log("\n## v1.9 readiness");
 try {
   execSync("node scripts/check-v19-readiness.mjs --warn-only", { cwd: ROOT, stdio: "inherit" });

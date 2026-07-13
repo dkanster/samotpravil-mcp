@@ -16,6 +16,7 @@
 | 3 | Blog post (опционально) | ⏳ |
 | 4 | `check-promo-versions` в CI | ✅ |
 | 5 | `promo-handoff` tooling | ✅ [#68](https://github.com/dkanster/samotpravil-mcp/pull/68) |
+| 6 | `check-promo-checklist` | ✅ |
 
 ---
 
