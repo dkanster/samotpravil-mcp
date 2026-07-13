@@ -57,6 +57,18 @@ try {
   console.log("- Missing wishlist scaffolds");
 }
 
+console.log("\n## Naming (PR #64 vs org)");
+try {
+  const renamePlan = execSync("node scripts/plan-rename.mjs", { cwd: ROOT, encoding: "utf8" });
+  const renameMatch = renamePlan.match(/Total: (\d+) replacements/);
+  if (renameMatch) {
+    console.log(`- Rename dry-run (B): ${renameMatch[1]} replacements if PR #64 merged`);
+  }
+} catch {
+  console.log("- Rename plan unavailable (npm run plan-rename)");
+}
+console.log("- Decision doc: docs/REPO_NAMING.md");
+
 console.log("\n## Manual");
 console.log("- Close superseded PR: bash scripts/maintainer-pr-cleanup.sh | grep '^gh pr' | bash");
 console.log("- Org transfer: docs/ORG_MIGRATION_RUNBOOK.md");
