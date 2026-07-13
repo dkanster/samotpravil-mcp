@@ -1,0 +1,92 @@
+name: Upstream wishlist watch
+
+on:
+  schedule:
+    # Monday 07:00 UTC — after weekly sync-docs (06:00)
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - data/collection.snapshot.json
+      - data/upstream-wishlist.json
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Detect shipped wishlist endpoints
+        id: shipped
+        run: |
+          set +e
+          node scripts/check-upstream-wishlist.mjs --fail-on-shipped
+          code=$?
+          set -e
+          if [ "$code" -eq 2 ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          elif [ "$code" -eq 0 ]; then
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          else
+            exit "$code"
+          fi
+
+      - name: Open tracking issue
+        if: steps.shipped.outputs.found == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { execSync } = require("node:child_process");
+            const report = JSON.parse(
+              execSync("node scripts/check-upstream-wishlist.mjs --json", { encoding: "utf8" }),
+            );
+            const shipped = report.items.filter((row) => row.trackingStatus === "shipped");
+            const title = "[Upstream] v2 endpoints shipped in snapshot — scaffold typed tools";
+            const { data: existing } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              per_page: 20,
+            });
+            if (existing.some((issue) => issue.title === title)) {
+              core.info("Open upstream-wishlist issue already exists — skipping");
+              return;
+            }
+            const lines = shipped.map(
+              (row) => `- \`${row.method} ${row.path}\` (\`${row.id}\`) — \`npm run scaffold-typed-tool ${row.id}\``,
+            );
+            const body = [
+              "## Shipped endpoints detected",
+              "",
+              "Proposed upstream endpoints now appear in `data/collection.snapshot.json`.",
+              "",
+              ...lines,
+              "",
+              "### Maintainer checklist",
+              "",
+              "- [ ] Run `npm run scaffold-typed-tool <id>` for each endpoint",
+              "- [ ] Update `data/upstream-wishlist.json` status",
+              "- [ ] `npm test` + release patch",
+              "",
+              "Tracking: `npm run check-upstream-wishlist` · [API_WISHLIST.md](docs/API_WISHLIST.md)",
+            ].join("\n");
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ["upstream-wishlist"],
+            });
