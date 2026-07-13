@@ -1,0 +1,20 @@
+// Scaffold for v2_mail_package_stop (upstream)
+// Replaces: /api/v1/package_stop
+// Snapshot: not found — fields are placeholders
+export const V2MailPackageStopSchema = dryRunSchema.extend({
+  id: z.string().min(1).describe("Path: /api/v2/mail/package/{id}/stop"),
+});
+
+export async function handleV2MailPackageStop(params: z.infer<typeof V2MailPackageStopSchema>): Promise<string> {
+  const { dry_run, id, ...rest } = params;
+  const body = rest;
+  return samotpravilRequest({
+    method: "POST",
+    path: `/api/v2/mail/package/${params.id}/stop`,
+    body,
+    dryRun: dry_run,
+  });
+}
+
+// Register in src/registerSdkTypedTools.ts
+// Add "/api/v2/mail/package/{id}/stop" to SDK_TYPED_API_PATHS / safety.ts if needed

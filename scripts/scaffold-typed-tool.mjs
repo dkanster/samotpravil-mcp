@@ -6,22 +6,26 @@
  *   node scripts/scaffold-typed-tool.mjs send_package
  *   node scripts/scaffold-typed-tool.mjs v2_mail_package
  *   node scripts/scaffold-typed-tool.mjs --path POST /api/v2/mail/package
+ *   node scripts/scaffold-typed-tool.mjs --write stop_package
  */
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { pathParamsFromTemplate, toPascal, zodTypeForValue } from "./lib/scaffold-fields.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
+const writeMode = args.includes("--write");
+const filteredArgs = args.filter((arg) => arg !== "--write");
+const arg0 = filteredArgs[0];
 
 let toolName;
 let methodOverride;
 let pathOverride;
 
-if (args[0] === "--path") {
-  methodOverride = args[1]?.toUpperCase();
-  pathOverride = args[2];
+if (arg0 === "--path") {
+  methodOverride = filteredArgs[1]?.toUpperCase();
+  pathOverride = filteredArgs[2];
   toolName = pathOverride
     ?.replace(/^\/api\//, "")
     .replace(/\{[^}]+\}/g, "id")
@@ -29,12 +33,12 @@ if (args[0] === "--path") {
     .replace(/^_|_$/g, "")
     .toLowerCase();
 } else {
-  toolName = args[0];
+  toolName = arg0;
 }
 
 if (!toolName) {
-  console.error("Usage: node scripts/scaffold-typed-tool.mjs <tool_name|wishlist_id>");
-  console.error("       node scripts/scaffold-typed-tool.mjs --path POST /api/v2/mail/package");
+  console.error("Usage: node scripts/scaffold-typed-tool.mjs <tool_name|wishlist_id> [--write]");
+  console.error("       node scripts/scaffold-typed-tool.mjs --path POST /api/v2/mail/package [--write]");
   process.exit(1);
 }
 
@@ -65,7 +69,7 @@ if (!tool && methodOverride && pathOverride) {
 }
 
 if (!tool) {
-  console.error(`Tool not found in catalog or wishlist: ${args[0] ?? toolName}`);
+  console.error(`Tool not found in catalog or wishlist: ${arg0 ?? toolName}`);
   process.exit(1);
 }
 
@@ -141,45 +145,57 @@ const resolvedPath =
 const usesQuery = Object.keys(queryExamples).length > 0 || tool.method === "GET";
 const usesBody = bodyFields.length > 0 || (["POST", "PUT", "PATCH"].includes(tool.method) && !usesQuery);
 
-console.log(`// Scaffold for ${tool.name} (${tool.group})`);
-if (tool.replaces) console.log(`// Replaces: ${tool.replaces}`);
-if (endpoint) console.log(`// Snapshot: ${endpoint.name}`);
-if (!endpoint) console.log("// Snapshot: not found — fields are placeholders");
-
-console.log(`export const ${schemaName} = dryRunSchema.extend({`);
-for (const line of schemaLines) console.log(line);
-console.log(`});`);
-console.log("");
-console.log(`export async function ${handlerName}(params: z.infer<typeof ${schemaName}>): Promise<string> {`);
-console.log(`  const { dry_run${pathParams.length ? `, ${pathParams.join(", ")}` : ""}, ...rest } = params;`);
+const lines = [];
+lines.push(`// Scaffold for ${tool.name} (${tool.group})`);
+if (tool.replaces) lines.push(`// Replaces: ${tool.replaces}`);
+if (endpoint) lines.push(`// Snapshot: ${endpoint.name}`);
+if (!endpoint) lines.push("// Snapshot: not found — fields are placeholders");
+lines.push(`export const ${schemaName} = dryRunSchema.extend({`);
+lines.push(...schemaLines);
+lines.push(`});`);
+lines.push("");
+lines.push(`export async function ${handlerName}(params: z.infer<typeof ${schemaName}>): Promise<string> {`);
+lines.push(`  const { dry_run${pathParams.length ? `, ${pathParams.join(", ")}` : ""}, ...rest } = params;`);
 
 if (usesQuery && usesBody) {
-  console.log(`  const queryKeys = new Set(${JSON.stringify(Object.keys(queryExamples))});`);
-  console.log(`  const query: Record<string, string> = {};`);
-  console.log(`  const body: Record<string, unknown> = {};`);
-  console.log(`  for (const [key, value] of Object.entries(rest)) {`);
-  console.log(`    if (value === undefined || value === null || value === "") continue;`);
-  console.log(`    if (queryKeys.has(key)) query[key] = String(value);`);
-  console.log(`    else body[key] = value;`);
-  console.log(`  }`);
+  lines.push(`  const queryKeys = new Set(${JSON.stringify(Object.keys(queryExamples))});`);
+  lines.push(`  const query: Record<string, string> = {};`);
+  lines.push(`  const body: Record<string, unknown> = {};`);
+  lines.push(`  for (const [key, value] of Object.entries(rest)) {`);
+  lines.push(`    if (value === undefined || value === null || value === "") continue;`);
+  lines.push(`    if (queryKeys.has(key)) query[key] = String(value);`);
+  lines.push(`    else body[key] = value;`);
+  lines.push(`  }`);
 } else if (usesQuery) {
-  console.log(`  const query = Object.fromEntries(`);
-  console.log(`    Object.entries(rest).filter(([, v]) => v !== undefined && v !== ""),`);
-  console.log(`  ) as Record<string, string>;`);
+  lines.push(`  const query = Object.fromEntries(`);
+  lines.push(`    Object.entries(rest).filter(([, v]) => v !== undefined && v !== ""),`);
+  lines.push(`  ) as Record<string, string>;`);
 } else if (usesBody) {
-  console.log(`  const body = rest;`);
+  lines.push(`  const body = rest;`);
 }
 
 const pathExpr = pathParams.length > 0 ? `\`${resolvedPath}\`` : `"${tool.path}"`;
 
-console.log(`  return samotpravilRequest({`);
-console.log(`    method: "${tool.method}",`);
-console.log(`    path: ${pathExpr},`);
-if (usesQuery) console.log(`    query,`);
-if (usesBody) console.log(`    body,`);
-console.log(`    dryRun: dry_run,`);
-console.log(`  });`);
-console.log(`}`);
-console.log("");
-console.log(`// Register in src/registerSdkTypedTools.ts`);
-console.log(`// Add "${tool.path}" to SDK_TYPED_API_PATHS / safety.ts if needed`);
+lines.push(`  return samotpravilRequest({`);
+lines.push(`    method: "${tool.method}",`);
+lines.push(`    path: ${pathExpr},`);
+if (usesQuery) lines.push(`    query,`);
+if (usesBody) lines.push(`    body,`);
+lines.push(`    dryRun: dry_run,`);
+lines.push(`  });`);
+lines.push(`}`);
+lines.push("");
+lines.push(`// Register in src/registerSdkTypedTools.ts`);
+lines.push(`// Add "${tool.path}" to SDK_TYPED_API_PATHS / safety.ts if needed`);
+
+const output = `${lines.join("\n")}\n`;
+
+if (writeMode) {
+  const outDir = join(ROOT, "scaffolds");
+  mkdirSync(outDir, { recursive: true });
+  const outPath = join(outDir, `${tool.name}.ts.stub`);
+  writeFileSync(outPath, output, "utf8");
+  console.log(`Wrote ${outPath}`);
+} else {
+  process.stdout.write(output);
+}

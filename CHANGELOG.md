@@ -6,6 +6,28 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-07-13
+
+### Added
+
+- Upstream wishlist watch workflow — auto-issue when proposed endpoints appear in snapshot
+- Phase 7 maintainer tooling: `apply-org-migration`, `maintainer-pr-cleanup.sh`, branch protection & release-please docs
+- `post-release.yml` + `verify-publish` для проверки npm/MCP Registry после publish
+- Snapshot-aware `scaffold-typed-tool` с `--write` → `scaffolds/*.ts.stub`
+- Wishlist scaffold templates для proposed v2 endpoints
+- [docs/RELEASE_v1.8.0.md](./docs/RELEASE_v1.8.0.md)
+
+### Changed
+
+- **zod 4.4.3** — `z.record(key, value)` two-arg form; MCP SDK ^1.29
+- **ESLint 10** + typescript-eslint 8.63
+- GitHub Actions: checkout v7, setup-node v6, pages deploy v5
+- Docusaurus 3.10.2
+
+### Dependencies
+
+- Safe bumps consolidated (#52); deferred majors documented in [DEPENDENCY_DEFERRALS.md](./docs/DEPENDENCY_DEFERRALS.md)
+
 ## [1.7.0] - 2026-07-12
 
 ### Added
