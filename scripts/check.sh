@@ -50,6 +50,9 @@ echo "OK: upstream wishlist tracking"
 node "$ROOT/scripts/check-scaffolds.mjs"
 echo "OK: upstream scaffolds"
 
+node "$ROOT/scripts/check-scaffold-ship.mjs"
+echo "OK: scaffold ship readiness"
+
 node "$ROOT/scripts/check-tool-catalog.mjs"
 echo "OK: tool catalog"
 
