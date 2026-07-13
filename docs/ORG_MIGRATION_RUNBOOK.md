@@ -46,8 +46,11 @@ npm run check-org-migration
 **Критичные файлы:** `package.json`, `server.json`, `smithery.yaml`, `README.md`, `docs/official/*`.
 
 ```bash
-# После ручной правки:
+# После ручной правки (или автоматически):
+node scripts/apply-org-migration.mjs          # dry-run
+node scripts/apply-org-migration.mjs --write  # применить замены
 npm run sync-versions
+npm run check-org-migration -- --target
 npm test
 npm run pre-publish-check
 ```

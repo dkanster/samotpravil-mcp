@@ -32,6 +32,7 @@
     "probe-endpoints": "npm run build && node scripts/probe-endpoints.mjs",
     "check-org-migration": "node scripts/check-org-migration.mjs",
     "plan-org-migration": "node scripts/plan-org-migration.mjs",
+    "apply-org-migration": "node scripts/apply-org-migration.mjs",
     "check-upstream-wishlist": "npm run build && node scripts/check-upstream-wishlist.mjs",
     "pre-publish-check": "node scripts/pre-publish-check.mjs",
     "verify-publish": "node scripts/verify-publish.mjs",
