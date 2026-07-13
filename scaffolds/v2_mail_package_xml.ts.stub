@@ -1,0 +1,20 @@
+// Scaffold for v2_mail_package_xml (upstream)
+// Replaces: /api/v1/add_package
+// Snapshot: not found — fields are placeholders
+export const V2MailPackageXmlSchema = dryRunSchema.extend({
+  // TODO: add Zod fields from Postman body/query example
+});
+
+export async function handleV2MailPackageXml(params: z.infer<typeof V2MailPackageXmlSchema>): Promise<string> {
+  const { dry_run, ...rest } = params;
+  const body = rest;
+  return samotpravilRequest({
+    method: "POST",
+    path: "/api/v2/mail/package/xml",
+    body,
+    dryRun: dry_run,
+  });
+}
+
+// Register in src/registerSdkTypedTools.ts
+// Add "/api/v2/mail/package/xml" to SDK_TYPED_API_PATHS / safety.ts if needed

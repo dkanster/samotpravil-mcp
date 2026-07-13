@@ -2,8 +2,8 @@
 
 После release **v1.7.0** — execution и product alignment.
 
-**Базовая версия:** 1.7.0  
-**Целевой релиз:** v1.8.0
+**Базовая версия:** 1.8.0  
+**Целевой релиз:** v1.8.0 ✅ (release PR)
 
 ---
 
@@ -49,5 +49,6 @@ Wishlist: [API_WISHLIST.md](./API_WISHLIST.md) · Tracking: `npm run check-upstr
 
 - [x] `samotpravil-mcp@1.7.0` на npm (или 1.8.0 patch)
 - [x] MCP Registry verified
+- [ ] `samotpravil-mcp@1.8.0` publish
 - [ ] Documenter HTML block live
 - [ ] Org migration started OR promo complete без org

@@ -1,0 +1,19 @@
+// Scaffold for webhook_events (upstream)
+// Snapshot: not found — fields are placeholders
+export const WebhookEventsSchema = dryRunSchema.extend({
+  // TODO: add Zod fields from Postman body/query example
+});
+
+export async function handleWebhookEvents(params: z.infer<typeof WebhookEventsSchema>): Promise<string> {
+  const { dry_run, ...rest } = params;
+  const body = rest;
+  return samotpravilRequest({
+    method: "POST",
+    path: "/api/v2/webhooks/events",
+    body,
+    dryRun: dry_run,
+  });
+}
+
+// Register in src/registerSdkTypedTools.ts
+// Add "/api/v2/webhooks/events" to SDK_TYPED_API_PATHS / safety.ts if needed
