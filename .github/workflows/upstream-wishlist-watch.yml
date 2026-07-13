@@ -88,5 +88,4 @@ jobs:
               repo: context.repo.repo,
               title,
               body,
-              labels: ["upstream-wishlist"],
             });
