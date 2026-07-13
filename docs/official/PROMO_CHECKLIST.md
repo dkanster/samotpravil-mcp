@@ -14,7 +14,7 @@
 | 2 | `npm test` green на `main` | maintainer | ✅ |
 | 3 | npm publish актуальной версии | maintainer | ✅ 1.7.0 |
 | 4 | MCP Registry entry visible | maintainer | ✅ |
-| 5 | Issue/запрос в docs team ([REQUEST_FOR_DOCS_TEAM.md](./REQUEST_FOR_DOCS_TEAM.md)) | maintainer | ⏳ |
+| 5 | Issue/запрос в docs team ([REQUEST_FOR_DOCS_TEAM.md](./REQUEST_FOR_DOCS_TEAM.md)) | maintainer | ✅ [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
 
 ---
 

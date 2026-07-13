@@ -14,7 +14,7 @@
 | 1 | Merge unified PR #38 (squash) | ✅ |
 | 2 | Tag `v1.7.0` + npm publish | ✅ |
 | 3 | `verify-publish` workflow | ✅ |
-| 4 | Promo HTML v1.7.0 в documenter | ⏳ docs team |
+| 4 | Promo HTML v1.7.0 в documenter | ⏳ [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
 | 5 | Закрыть superseded PR #23–#25, #37 | ⏳ maintainer (вручную) |
 
 ---
