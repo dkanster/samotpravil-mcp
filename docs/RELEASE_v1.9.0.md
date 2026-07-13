@@ -11,7 +11,7 @@
 
 | # | Критерий | Проверка |
 |---|----------|----------|
-| 1 | Documenter MCP block live **или** org migration started | [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) / [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
+| 1 | Documenter MCP block live **или** org migration started | [#51](https://github.com/dkanster/samotpravil-api-mcp/issues/51) / [#65](https://github.com/dkanster/samotpravil-api-mcp/issues/65) |
 | 2 | Typed tool для ≥1 shipped v2 endpoint | `npm run check-scaffold-ship` |
 | 3 | Promo checklist «Публикация на documenter» | `npm run check-promo-checklist` |
 | 4 | Superseded PR закрыты | `npm run check-superseded-prs` → OK |

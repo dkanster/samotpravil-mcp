@@ -22,11 +22,11 @@ const body = `## Handoff v${version} — MCP block для documenter
 
 | Ресурс | Ссылка |
 |--------|--------|
-| HTML-блок | [MCP_INSTALL_BLOCK.html](https://github.com/dkanster/samotpravil-mcp/blob/main/docs/official/MCP_INSTALL_BLOCK.html) (${blockLines} строк) |
-| Чеклист | [PROMO_CHECKLIST.md](https://github.com/dkanster/samotpravil-mcp/blob/main/docs/official/PROMO_CHECKLIST.md) |
-| get-access snippet | [get-access-snippet.md](https://github.com/dkanster/samotpravil-mcp/blob/main/docs/official/get-access-snippet.md) |
+| HTML-блок | [MCP_INSTALL_BLOCK.html](https://github.com/dkanster/samotpravil-api-mcp/blob/main/docs/official/MCP_INSTALL_BLOCK.html) (${blockLines} строк) |
+| Чеклист | [PROMO_CHECKLIST.md](https://github.com/dkanster/samotpravil-api-mcp/blob/main/docs/official/PROMO_CHECKLIST.md) |
+| get-access snippet | [get-access-snippet.md](https://github.com/dkanster/samotpravil-api-mcp/blob/main/docs/official/get-access-snippet.md) |
 | npm | \`samotpravil-mcp@${version}\` |
-| MCP Registry | \`io.github.dkanster/samotpravil-mcp\` |
+| MCP Registry | \`io.github.dkanster/samotpravil-api-mcp\` |
 
 ### Шаги docs team
 

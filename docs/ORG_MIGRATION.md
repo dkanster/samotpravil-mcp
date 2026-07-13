@@ -56,7 +56,7 @@ npm run plan-org-migration    # dry-run замен (вариант C — org)
 npm run plan-rename           # dry-run rename (вариант B — PR #64)
 ```
 
-- `npm run org-handoff` — handoff comment для [#65](https://github.com/dkanster/samotpravil-mcp/issues/65)
+- `npm run org-handoff` — handoff comment для [#65](https://github.com/dkanster/samotpravil-api-mcp/issues/65)
 
 **Именование:** принят **вариант C** (org) — см. **[REPO_NAMING.md](./REPO_NAMING.md)**. PR #64 закрыт.
 

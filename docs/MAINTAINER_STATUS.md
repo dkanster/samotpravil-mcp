@@ -25,8 +25,8 @@ npm run maintainer-status
 | `npm run plan-org-migration` | Dry-run org transfer (вариант C) |
 | `npm run check-scaffold-ship` | Shipped upstream → sdkTyped readiness |
 | `npm run check-superseded-prs` | Открытые superseded PR |
-| `npm run promo-handoff` | Текст handoff для [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
-| `npm run org-handoff` | Текст handoff для [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
+| `npm run promo-handoff` | Текст handoff для [#51](https://github.com/dkanster/samotpravil-api-mcp/issues/51) |
+| `npm run org-handoff` | Текст handoff для [#65](https://github.com/dkanster/samotpravil-api-mcp/issues/65) |
 | `npm run check-promo-checklist` | Promo checklist (maintainer + documenter status) |
 | `npm run check-v19-readiness` | Агрегатор критериев v1.9.0 |
 | `npm run check-release-please` | Release Please branch / missing PR |
@@ -36,7 +36,7 @@ npm run maintainer-status
 
 ## Открытые треки (v1.9)
 
-- [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) — documenter promo (`npm run promo-handoff -- --write`)
-- Org transfer — [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) · `npm run org-handoff -- --write`
+- [#51](https://github.com/dkanster/samotpravil-api-mcp/issues/51) — documenter promo (`npm run promo-handoff -- --write`)
+- Org transfer — [#65](https://github.com/dkanster/samotpravil-api-mcp/issues/65) · `npm run org-handoff -- --write`
 - Именование — ✅ variant C · [REPO_NAMING.md](./REPO_NAMING.md)
 - Superseded PR #23–#37, #60, #64 — `check-superseded-prs` + `maintainer-pr-cleanup.sh`

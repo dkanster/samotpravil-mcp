@@ -36,7 +36,7 @@ npm run org-migration-preflight
 ### Следующие шаги maintainer
 
 1. Создать GitHub org \`samotpravil\`
-2. Transfer \`dkanster/samotpravil-mcp\` → \`${target.githubRepo}\`
+2. Transfer \`dkanster/samotpravil-api-mcp\` → \`${target.githubRepo}\`
 3. \`node scripts/apply-org-migration.mjs --write\`
 4. \`npm test\` + \`npm run pre-publish-check\`
 5. Первый publish \`${target.npmPackage}\`

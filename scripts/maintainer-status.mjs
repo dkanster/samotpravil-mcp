@@ -34,7 +34,7 @@ try {
 } catch {
   console.log("- Promo materials need update (npm run check-promo-versions)");
 }
-console.log("- Docs issue: https://github.com/dkanster/samotpravil-mcp/issues/51");
+console.log("- Docs issue: https://github.com/dkanster/samotpravil-api-mcp/issues/51");
 
 console.log("\n## Org migration");
 try {

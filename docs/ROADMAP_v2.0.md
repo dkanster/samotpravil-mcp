@@ -3,7 +3,7 @@
 Опциональный milestone после **v1.9.0** — Python SDK MCP и bridge.
 
 **Базовая версия:** 1.9.0 (после release)  
-**Трек:** [PYTHON_SDK_TRACK.md](./PYTHON_SDK_TRACK.md) · PR [#22](https://github.com/dkanster/samotpravil-mcp/pull/22)
+**Трек:** [PYTHON_SDK_TRACK.md](./PYTHON_SDK_TRACK.md) · PR [#22](https://github.com/dkanster/samotpravil-api-mcp/pull/22)
 
 ---
 

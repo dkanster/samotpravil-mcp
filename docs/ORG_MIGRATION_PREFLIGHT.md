@@ -31,4 +31,4 @@ npm run pre-publish-check
 
 Issue template: **Org migration tracking** (`.github/ISSUE_TEMPLATE/org_migration.yml`)
 
-Tracking issue: [#65](https://github.com/dkanster/samotpravil-mcp/issues/65)
+Tracking issue: [#65](https://github.com/dkanster/samotpravil-api-mcp/issues/65)

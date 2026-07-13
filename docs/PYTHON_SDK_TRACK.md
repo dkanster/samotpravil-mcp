@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **PR** | [#22](https://github.com/dkanster/samotpravil-mcp/pull/22) (DRAFT) |
+| **PR** | [#22](https://github.com/dkanster/samotpravil-api-mcp/pull/22) (DRAFT) |
 | **Ветка** | `cursor/python-sdk-integration-4ad4` |
 | **Пакет** | [samotpravil==1.0.0rc1](https://pypi.org/project/samotpravil/1.0.0rc1/) |
 | **Roadmap** | [ROADMAP_v2.0.md](./ROADMAP_v2.0.md) |

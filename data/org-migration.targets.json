@@ -1,11 +1,11 @@
 {
   "decision": {
-    "variant": "C",
-    "label": "org migration — samotpravil/samotpravil-mcp",
+    "variant": "B",
+    "label": "rename API — dkanster/samotpravil-api-mcp",
     "decidedAt": "2026-07-13",
-    "rejected": ["B"],
+    "rejected": ["A"],
     "doc": "docs/REPO_NAMING.md",
-    "trackingIssue": "https://github.com/dkanster/samotpravil-mcp/issues/65"
+    "trackingIssue": "https://github.com/dkanster/samotpravil-api-mcp/issues/65"
   },
   "interim": {
     "githubOwner": "dkanster",
