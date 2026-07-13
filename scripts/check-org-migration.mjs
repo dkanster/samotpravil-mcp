@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TARGETS_PATH = join(ROOT, "data", "org-migration.targets.json");
-const { interim, target } = JSON.parse(readFileSync(TARGETS_PATH, "utf8"));
+const { interim, target, renameAlternative } = JSON.parse(readFileSync(TARGETS_PATH, "utf8"));
 const postMigration = process.argv.includes("--target");
 const expected = postMigration ? target : interim;
 
@@ -43,13 +43,20 @@ const actionablePatterns = [
   `"name": "${target.npmPackage}"`,
 ];
 
+const renamePatterns = renameAlternative
+  ? [renameAlternative.githubRepo, renameAlternative.mcpRegistryName, renameAlternative.githubUrl]
+  : [];
+
 const allowedTargetMentions = new Set([
   "mcp.json.example.org",
   "data/org-migration.targets.json",
   "docs/ORG_MIGRATION.md",
   "docs/ORG_MIGRATION_RUNBOOK.md",
+  "docs/ORG_MIGRATION_PREFLIGHT.md",
+  "docs/REPO_NAMING.md",
   "docs/ROADMAP_v1.4.md",
   "docs/ROADMAP_v1.6.md",
+  "docs/ROADMAP_v1.9.md",
   "docs/MIGRATION_V1_TO_V2.md",
   "docs/official/PROMO_CHECKLIST.md",
 ]);
@@ -69,6 +76,14 @@ for (const file of ["README.md", "package.json", "server.json", "smithery.yaml",
   for (const pattern of actionablePatterns) {
     if (text.includes(pattern)) {
       fail(`${file} contains post-migration install pattern: ${pattern}`);
+    }
+  }
+
+  for (const pattern of renamePatterns) {
+    if (text.includes(pattern)) {
+      fail(
+        `${file} contains rename-alternative pattern (${pattern}) — see docs/REPO_NAMING.md`,
+      );
     }
   }
 }

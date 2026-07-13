@@ -22,10 +22,11 @@
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | GitHub org transfer | ⏳ [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
-| 2 | `apply-org-migration --write` | ⏳ `npm run org-migration-preflight` |
-| 3 | `@samotpravil/mcp` npm scope | ⏳ |
-| 4 | Branch protection on `main` | ⏳ `npm run check-branch-protection` |
+| 1 | Решение по именованию (A/B/C) | ⏳ [REPO_NAMING.md](./REPO_NAMING.md) · PR [#64](https://github.com/dkanster/samotpravil-mcp/pull/64) |
+| 2 | GitHub org transfer | ⏳ [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
+| 3 | `apply-org-migration --write` | ⏳ `npm run org-migration-preflight` |
+| 4 | `@samotpravil/mcp` npm scope | ⏳ |
+| 5 | Branch protection on `main` | ⏳ `npm run check-branch-protection` |
 
 Runbook: [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
 

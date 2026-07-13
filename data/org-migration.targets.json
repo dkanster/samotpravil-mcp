@@ -17,6 +17,15 @@
     "mcpRegistryName": "io.github.samotpravil/samotpravil-mcp",
     "npxPackage": "@samotpravil/mcp@latest"
   },
+  "renameAlternative": {
+    "description": "Draft PR #64 — GitHub rename only, npm unchanged",
+    "githubRepo": "dkanster/samotpravil-api-mcp",
+    "githubUrl": "https://github.com/dkanster/samotpravil-api-mcp",
+    "mcpRegistryName": "io.github.dkanster/samotpravil-api-mcp",
+    "docusaurusBaseUrl": "/samotpravil-api-mcp/",
+    "npmPackage": "samotpravil-mcp",
+    "doc": "docs/REPO_NAMING.md"
+  },
   "replaceInFiles": [
     "README.md",
     "package.json",
