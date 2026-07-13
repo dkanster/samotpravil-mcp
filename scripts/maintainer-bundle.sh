@@ -17,6 +17,10 @@ npm run promo-handoff -- --write || true
 npm run org-handoff -- --write || true
 echo ""
 
+echo "--- Release PR body ---"
+npm run release-pr-body -- --write || true
+echo ""
+
 echo "--- Release Please ---"
 node scripts/check-release-please.mjs || true
 echo ""

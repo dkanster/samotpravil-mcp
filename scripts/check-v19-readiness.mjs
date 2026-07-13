@@ -167,6 +167,35 @@ criteria.push({
   blocking: true,
 });
 
+// 8. Release Please PR
+let releasePrStatus = "pending";
+let releasePrDetail = "npm run check-release-please";
+try {
+  let rpExit = 0;
+  try {
+    execSync("node scripts/check-release-please.mjs", {
+      cwd: ROOT,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+  } catch (error) {
+    rpExit = error.status ?? 1;
+    releasePrDetail = error.stdout?.toString().includes("ACTION")
+      ? "release PR missing — npm run release-pr-body -- --write"
+      : "npm run check-release-please";
+  }
+  releasePrStatus = rpExit === 0 ? "done" : "pending";
+} catch {
+  releasePrStatus = "pending";
+}
+criteria.push({
+  id: "release_pr",
+  label: "Release Please PR open",
+  status: releasePrStatus,
+  detail: releasePrDetail,
+  blocking: false,
+});
+
 const blockingPending = criteria.filter((c) => c.blocking && c.status !== "done");
 const allDone = criteria.every((c) => c.status === "done");
 

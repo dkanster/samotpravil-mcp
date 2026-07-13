@@ -67,7 +67,7 @@ if (openPr) {
   console.log("Maintainer (local gh auth):");
   console.log(`  gh pr create --base main --head ${RP_BRANCH} \\`);
   console.log(`    --title "chore(main): release ${rpVersion}" \\`);
-  console.log('    --body "Release Please — see CHANGELOG on branch. Gate: npm run check-v19-readiness"');
+  console.log('    --body-file artifacts/release-pr-body.md  # npm run release-pr-body -- --write');
 } else if (rpVersion === mainVersion) {
   console.log("\nOK: release-please branch matches main version (no pending release PR needed)");
 } else {
