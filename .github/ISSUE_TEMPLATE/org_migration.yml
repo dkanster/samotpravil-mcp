@@ -1,0 +1,43 @@
+name: Org migration tracking
+description: Трекинг переноса репозитория в org Samotpravil
+title: "[Org migration] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Runbook: [ORG_MIGRATION_RUNBOOK.md](../blob/main/docs/ORG_MIGRATION_RUNBOOK.md)
+        Pre-flight: `npm run org-migration-preflight`
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Фаза
+      options:
+        - Подготовка (pre-flight)
+        - GitHub org + repo transfer
+        - npm scope @samotpravil
+        - MCP Registry rename
+        - Post-migration verify
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: Чеклист
+      options:
+        - label: "npm run org-migration-preflight — green"
+        - label: GitHub org создан / repo transferred
+        - label: apply-org-migration --write выполнен
+        - label: npm publish @samotpravil/mcp
+        - label: MCP Registry обновлён
+        - label: Branch protection на main
+        - label: Secrets (NPM_TOKEN) обновлены
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Заметки
+      description: Ссылки на org, npm team, дата transfer, блокеры
+    validations:
+      required: false

@@ -1,0 +1,47 @@
+name: Docusaurus smoke
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/collection.snapshot.json'
+      - 'docusaurus/**'
+      - 'scripts/generate-docusaurus-content.mjs'
+      - 'scripts/lib/**'
+      - 'scripts/check-docusaurus.mjs'
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/docusaurus-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            docusaurus/package-lock.json
+
+      - run: npm ci
+      - run: npm ci --prefix docusaurus
+
+      - name: Build Docusaurus (smoke)
+        env:
+          DOCUSAURUS_URL: https://dkanster.github.io
+          DOCUSAURUS_BASE_URL: /samotpravil-mcp/
+        run: npm run docusaurus:build
+
+      - name: Verify build artifacts
+        run: |
+          test -f docusaurus/build/index.html
+          test -d docusaurus/build/assets
+          echo "OK: Docusaurus smoke build"

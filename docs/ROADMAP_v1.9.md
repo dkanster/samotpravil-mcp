@@ -50,7 +50,7 @@ Scaffolds: [scaffolds/](../scaffolds/) · Watch: `upstream-wishlist-watch.yml`
 |---|--------|--------|
 | 1 | Scalar 0.9 visual QA | ⏳ build OK |
 | 2 | dev-tools group (#57) | ⏳ |
-| 3 | Docusaurus deploy smoke | ⏳ |
+| 3 | Docusaurus deploy smoke | ✅ weekly + PR workflow |
 
 ---
 

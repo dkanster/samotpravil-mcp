@@ -26,3 +26,5 @@ npm run pre-publish-check
 ```
 
 Полный runbook: [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
+
+Issue template: **Org migration tracking** (`.github/ISSUE_TEMPLATE/org_migration.yml`)
