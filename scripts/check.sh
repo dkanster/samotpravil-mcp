@@ -38,6 +38,9 @@ echo "OK: snapshot age"
 node "$ROOT/scripts/check-org-migration.mjs"
 echo "OK: org migration interim state"
 
+node "$ROOT/scripts/check-promo-versions.mjs"
+echo "OK: promo version alignment"
+
 node "$ROOT/scripts/check-sdk-parity.mjs"
 echo "OK: SDK parity"
 

@@ -36,6 +36,10 @@ npx -y samotpravil-mcp@1.8.0
 
 ## После publish
 
-- [ ] Обновить [MCP_INSTALL_BLOCK.html](./official/MCP_INSTALL_BLOCK.html) на documenter (1.8.0+)
-- [ ] [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) — docs team promo
-- [ ] `bash scripts/maintainer-pr-cleanup.sh` — закрыть superseded PR
+- [x] GitHub Release `v1.8.0` создан
+- [x] npm `samotpravil-mcp@1.8.0` опубликован
+- [x] MCP Registry обновлён
+- [ ] Обновить documenter — [#51](https://github.com/dkanster/samotpravil-mcp/issues/51)
+- [ ] `bash scripts/maintainer-pr-cleanup.sh` — superseded PR
+
+Следующий milestone: [ROADMAP_v1.9.md](./ROADMAP_v1.9.md)

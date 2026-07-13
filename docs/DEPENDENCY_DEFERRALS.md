@@ -6,8 +6,8 @@
 |---------|---------|----------|-----|-------------------|
 | `zod` | 4.x | — | #47 close | ✅ Migrated — `z.record(key, value)` two-arg form; ToolCallback casts for MCP SDK |
 | `@eslint/js` | 10.x | — | #48 close | ✅ ESLint 10.7 + typescript-eslint 8.63 |
-| `@scalar/api-reference-react` | 0.8.x | 0.9.x | #44 | Docusaurus-only; needs visual QA on API reference page |
-| `dev-tools` group | mixed | latest | #45 | Re-check after #48 close — may overlap |
+| `@scalar/api-reference-react` | 0.9.x | — | #44 close | ✅ Build OK — visual QA on live reference page |
+| `dev-tools` group | mixed | latest | #57 | Re-check tsx/types minor bumps |
 
 ## Safe to merge (consolidated)
 

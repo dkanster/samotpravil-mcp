@@ -14,7 +14,7 @@
 | 1 | Merge unified PR #38 (squash) | ✅ |
 | 2 | Tag `v1.7.0` + npm publish | ✅ |
 | 3 | `verify-publish` workflow | ✅ |
-| 4 | Promo HTML v1.7.0 в documenter | ⏳ [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
+| 4 | Promo HTML v1.8.0 в documenter | ⏳ [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
 | 5 | Закрыть superseded PR #23–#25, #37 | ⏳ `bash scripts/maintainer-pr-cleanup.sh` |
 
 ---
@@ -49,6 +49,6 @@ Wishlist: [API_WISHLIST.md](./API_WISHLIST.md) · Tracking: `npm run check-upstr
 
 - [x] `samotpravil-mcp@1.7.0` на npm (или 1.8.0 patch)
 - [x] MCP Registry verified
-- [ ] `samotpravil-mcp@1.8.0` publish
+- [x] `samotpravil-mcp@1.8.0` publish
 - [ ] Documenter HTML block live
 - [ ] Org migration started OR promo complete без org
