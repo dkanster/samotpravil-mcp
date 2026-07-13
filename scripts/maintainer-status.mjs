@@ -91,7 +91,15 @@ try {
   console.log("- Run: npm run check-v19-readiness");
 }
 
+console.log("\n## Release Please");
+try {
+  execSync("node scripts/check-release-please.mjs", { cwd: ROOT, stdio: "inherit" });
+} catch {
+  console.log("- Run: npm run check-release-please");
+}
+
 console.log("\n## Manual");
+console.log("- Full bundle: npm run maintainer-bundle");
 console.log("- Close superseded PR: bash scripts/maintainer-pr-cleanup.sh | grep '^gh pr' | bash");
 console.log("- Org transfer: docs/ORG_MIGRATION_RUNBOOK.md");
 console.log("- Branch protection: docs/BRANCH_PROTECTION.md");

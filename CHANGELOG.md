@@ -16,7 +16,8 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Naming decision recorded: variant C in `data/org-migration.targets.json`
 - `npm run check-v19-readiness` — aggregate v1.9 release criteria
 - `npm run check-promo-checklist` — promo checklist automation
-- CI informational v1.9 readiness on every PR
+- `npm run check-release-please` — detect missing release PR (v1.9.0 ready on branch)
+- `npm run maintainer-bundle` — one-shot maintainer workflow
 
 ## [1.8.0] - 2026-07-13
 

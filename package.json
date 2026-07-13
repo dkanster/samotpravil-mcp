@@ -40,6 +40,8 @@
     "check-scaffolds": "node scripts/check-scaffolds.mjs",
     "check-scaffold-ship": "node scripts/check-scaffold-ship.mjs",
     "check-v19-readiness": "node scripts/check-v19-readiness.mjs",
+    "check-release-please": "node scripts/check-release-please.mjs",
+    "maintainer-bundle": "bash scripts/maintainer-bundle.sh",
     "check-scalar-build": "node scripts/check-scalar-build.mjs",
     "maintainer-status": "node scripts/maintainer-status.mjs",
     "plan-org-migration": "node scripts/plan-org-migration.mjs",
