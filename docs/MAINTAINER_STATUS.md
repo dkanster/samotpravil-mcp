@@ -17,8 +17,8 @@ npm run maintainer-status
 
 | Команда | Назначение |
 |---------|------------|
-| `npm run release-prepare` | Pre-flight перед tag |
 | `npm run org-migration-preflight` | Полный org dry-run |
+| `npm run release-prepare` | Pre-flight перед tag (v1.9: [RELEASE_v1.9.0.md](./RELEASE_v1.9.0.md)) |
 | `bash scripts/maintainer-pr-cleanup.sh` | Закрыть superseded PR |
 | `npm run plan-rename` | Dry-run rename (вариант B, PR #64) |
 | `npm run plan-org-migration` | Dry-run org transfer (вариант C) |
