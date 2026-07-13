@@ -6,6 +6,8 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TARGETS_PATH = join(ROOT, "data", "org-migration.targets.json");
 const { interim, target } = JSON.parse(readFileSync(TARGETS_PATH, "utf8"));
+const postMigration = process.argv.includes("--target");
+const expected = postMigration ? target : interim;
 
 let failed = false;
 
@@ -17,16 +19,22 @@ function fail(message) {
 const pkg = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8"));
 const server = JSON.parse(readFileSync(join(ROOT, "server.json"), "utf8"));
 
-if (pkg.name !== interim.npmPackage) {
-  fail(`package.json name expected ${interim.npmPackage}, got ${pkg.name}`);
+if (pkg.name !== expected.npmPackage) {
+  fail(`package.json name expected ${expected.npmPackage}, got ${pkg.name}`);
 }
 
-if (server.name !== interim.mcpRegistryName) {
-  fail(`server.json name expected ${interim.mcpRegistryName}, got ${server.name}`);
+if (server.name !== expected.mcpRegistryName) {
+  fail(`server.json name expected ${expected.mcpRegistryName}, got ${server.name}`);
 }
 
-if (server.packages?.[0]?.identifier !== interim.npmPackage) {
-  fail(`server.json npm identifier expected ${interim.npmPackage}`);
+if (server.packages?.[0]?.identifier !== expected.npmPackage) {
+  fail(`server.json npm identifier expected ${expected.npmPackage}`);
+}
+
+if (postMigration) {
+  if (failed) process.exit(1);
+  console.log(`OK: target org state (${target.githubRepo}, ${target.npmPackage})`);
+  process.exit(0);
 }
 
 const actionablePatterns = [
