@@ -12,7 +12,7 @@
 |---|--------|-------|--------|
 | 1 | HTML-блок `MCP_INSTALL_BLOCK.html` актуален (версия, npm, safety) | maintainer | ✅ |
 | 2 | `npm test` green на `main` | maintainer | ✅ |
-| 3 | npm publish актуальной версии | maintainer | ⏳ |
+| 3 | npm publish актуальной версии | maintainer | ✅ 1.7.0 |
 | 4 | MCP Registry entry visible | maintainer | ✅ |
 | 5 | Issue/запрос в docs team ([REQUEST_FOR_DOCS_TEAM.md](./REQUEST_FOR_DOCS_TEAM.md)) | maintainer | ⏳ |
 
