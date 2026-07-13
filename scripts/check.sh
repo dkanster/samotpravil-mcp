@@ -47,6 +47,9 @@ echo "OK: SDK parity"
 node "$ROOT/scripts/check-upstream-wishlist.mjs"
 echo "OK: upstream wishlist tracking"
 
+node "$ROOT/scripts/check-scaffolds.mjs"
+echo "OK: upstream scaffolds"
+
 node "$ROOT/scripts/check-tool-catalog.mjs"
 echo "OK: tool catalog"
 

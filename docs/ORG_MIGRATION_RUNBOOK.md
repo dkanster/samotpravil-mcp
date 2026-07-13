@@ -15,7 +15,7 @@
 
 ```bash
 npm test
-npm run plan-org-migration
+npm run org-migration-preflight
 npm run check-org-migration
 ```
 
