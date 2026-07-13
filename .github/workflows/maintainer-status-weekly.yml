@@ -28,3 +28,22 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: npm run check-superseded-prs
         continue-on-error: true
+
+      - name: v1.9 readiness
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npm run check-v19-readiness -- --warn-only
+        continue-on-error: true
+
+      - name: Generate handoff artifacts
+        run: |
+          npm run promo-handoff -- --write
+          npm run org-handoff -- --write
+        continue-on-error: true
+
+      - name: Upload handoff artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: maintainer-handoff
+          path: artifacts/
+          if-no-files-found: ignore

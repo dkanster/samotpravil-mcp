@@ -56,6 +56,7 @@ Scaffolds: [scaffolds/](../scaffolds/) · Watch: `upstream-wishlist-watch.yml`
 | 3 | Docusaurus deploy smoke | ✅ weekly + PR workflow |
 | 4 | Org preflight weekly | ✅ workflow |
 | 5 | Maintainer status weekly | ✅ workflow |
+| 6 | `check-v19-readiness` aggregator | ✅ |
 
 ---
 
