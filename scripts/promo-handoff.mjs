@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 /**
  * Generate copy-paste handoff for docs team (issue #51).
- * Usage: npm run promo-handoff
+ * Usage: npm run promo-handoff [-- --write]
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const writeMode = process.argv.includes("--write");
 const version = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8")).version;
 const blockPath = join(ROOT, "docs/official/MCP_INSTALL_BLOCK.html");
 const block = readFileSync(blockPath, "utf8");
@@ -43,10 +44,25 @@ npm run verify-publish -- ${version}
 
 Обновите заголовок issue на \`[Docs promo] v${version} MCP block\` после republish.`;
 
-console.log("# Promo handoff — issue #51\n");
-console.log("Copy-paste (requires maintainer gh auth):\n");
-console.log("gh issue comment 51 --body-file - <<'EOF'");
-console.log(body);
-console.log("EOF");
-console.log("\nOptional title update:");
-console.log(`gh issue edit 51 --title "[Docs promo] v${version} MCP block для documentation.samotpravil.ru"`);
+const ghBlock = `# Promo handoff — issue #51
+
+Copy-paste (requires maintainer gh auth):
+
+gh issue comment 51 --body-file - <<'EOF'
+${body}
+EOF
+
+Optional title update:
+gh issue edit 51 --title "[Docs promo] v${version} MCP block для documentation.samotpravil.ru"`;
+
+if (writeMode) {
+  const dir = join(ROOT, "artifacts");
+  mkdirSync(dir, { recursive: true });
+  const outPath = join(dir, "promo-handoff-issue-51.md");
+  writeFileSync(outPath, body, "utf8");
+  console.log(`Wrote ${outPath}`);
+  console.log(`\ngh issue comment 51 --body-file ${outPath}`);
+  console.log(`gh issue edit 51 --title "[Docs promo] v${version} MCP block для documentation.samotpravil.ru"`);
+} else {
+  console.log(ghBlock);
+}

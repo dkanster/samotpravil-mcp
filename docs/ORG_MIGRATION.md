@@ -56,7 +56,9 @@ npm run plan-org-migration    # dry-run замен (вариант C — org)
 npm run plan-rename           # dry-run rename (вариант B — PR #64)
 ```
 
-**Именование репозитория:** перед transfer выберите стратегию A/B/C — см. **[REPO_NAMING.md](./REPO_NAMING.md)** (конфликт PR [#64](https://github.com/dkanster/samotpravil-mcp/pull/64) vs org [#65](https://github.com/dkanster/samotpravil-mcp/issues/65)).
+- `npm run org-handoff` — handoff comment для [#65](https://github.com/dkanster/samotpravil-mcp/issues/65)
+
+**Именование:** принят **вариант C** (org) — см. **[REPO_NAMING.md](./REPO_NAMING.md)**. PR #64 закрыт.
 
 Runbook: **[ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)** · будущий MCP config: [`mcp.json.example.org`](../mcp.json.example.org)
 

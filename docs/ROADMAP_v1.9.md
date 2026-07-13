@@ -24,7 +24,7 @@
 | # | Задача | Статус |
 |---|--------|--------|
 | 1 | Maintainer tooling (naming, tracker) | ✅ [#67](https://github.com/dkanster/samotpravil-mcp/pull/67) [#68](https://github.com/dkanster/samotpravil-mcp/pull/68) |
-| 2 | Решение по именованию (A/B/C) | ⏳ [REPO_NAMING.md](./REPO_NAMING.md) · PR [#64](https://github.com/dkanster/samotpravil-mcp/pull/64) |
+| 2 | Решение по именованию (A/B/C) | ✅ variant C · [REPO_NAMING.md](./REPO_NAMING.md) |
 | 3 | GitHub org transfer | ⏳ [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
 | 4 | `apply-org-migration --write` | ⏳ `npm run org-migration-preflight` |
 | 5 | `@samotpravil/mcp` npm scope | ⏳ |

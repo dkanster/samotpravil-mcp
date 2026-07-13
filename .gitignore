@@ -16,3 +16,4 @@ docusaurus/src/generated/
 docusaurus/static/openapi.yaml
 docusaurus/docs/overview.mdx
 .DS_Store
+artifacts/

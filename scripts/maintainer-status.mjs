@@ -56,18 +56,16 @@ try {
 } catch {
   console.log("- Missing wishlist scaffolds");
 }
-
-console.log("\n## Naming (PR #64 vs org)");
 try {
-  const renamePlan = execSync("node scripts/plan-rename.mjs", { cwd: ROOT, encoding: "utf8" });
-  const renameMatch = renamePlan.match(/Total: (\d+) replacements/);
-  if (renameMatch) {
-    console.log(`- Rename dry-run (B): ${renameMatch[1]} replacements if PR #64 merged`);
-  }
+  execSync("node scripts/check-scaffold-ship.mjs", { cwd: ROOT, stdio: "pipe" });
+  console.log("- Scaffold ship readiness OK");
 } catch {
-  console.log("- Rename plan unavailable (npm run plan-rename)");
+  console.log("- Shipped endpoints need typed tools (npm run check-scaffold-ship)");
 }
-console.log("- Decision doc: docs/REPO_NAMING.md");
+
+console.log("\n## Naming");
+console.log("- Decision: variant C (org) — docs/REPO_NAMING.md");
+console.log("- Issue #65: npm run org-handoff");
 
 console.log("\n## Superseded PRs");
 try {
@@ -77,7 +75,7 @@ try {
 }
 
 console.log("\n## Promo handoff");
-console.log("- Issue #51: npm run promo-handoff");
+console.log("- Issue #51: npm run promo-handoff -- --write");
 
 console.log("\n## Manual");
 console.log("- Close superseded PR: bash scripts/maintainer-pr-cleanup.sh | grep '^gh pr' | bash");

@@ -33,6 +33,7 @@
     "check-promo-versions": "node scripts/check-promo-versions.mjs",
     "check-superseded-prs": "node scripts/check-superseded-prs.mjs",
     "promo-handoff": "node scripts/promo-handoff.mjs",
+    "org-handoff": "node scripts/org-handoff.mjs",
     "check-org-migration": "node scripts/check-org-migration.mjs",
     "check-branch-protection": "node scripts/check-branch-protection.mjs",
     "check-scaffolds": "node scripts/check-scaffolds.mjs",

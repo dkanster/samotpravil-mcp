@@ -1,48 +1,48 @@
 # Repo naming strategy
 
-Три варианта имени GitHub-репозитория и MCP Registry. **Выберите один до transfer и republish MCP Registry.**
+Три варианта имени GitHub-репозитория и MCP Registry.
 
-| Вариант | GitHub repo | MCP Registry | npm (сейчас) | Статус |
-|---------|-------------|--------------|--------------|--------|
-| **A. Текущий** | `dkanster/samotpravil-mcp` | `io.github.dkanster/samotpravil-mcp` | `samotpravil-mcp` | ✅ production |
-| **B. Rename API** | `dkanster/samotpravil-api-mcp` | `io.github.dkanster/samotpravil-api-mcp` | `samotpravil-mcp` (без изменений) | Draft [PR #64](https://github.com/dkanster/samotpravil-mcp/pull/64) |
-| **C. Org (runbook)** | `samotpravil/samotpravil-mcp` | `io.github.samotpravil/samotpravil-mcp` | `@samotpravil/mcp` | [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
+## Принятое решение (2026-07-13)
 
-## Рекомендация
+**Вариант C — org migration.** PR [#64](https://github.com/dkanster/samotpravil-mcp/pull/64) закрыт.
 
-1. **Не мержить B и C одновременно** — разные имена репозитория (`samotpravil-api-mcp` vs `samotpravil-mcp`).
-2. Если нужен суффикс `-api-` в URL GitHub → **B**, затем org transfer с сохранением имени `samotpravil-api-mcp`.
-3. Если приоритет — единый бренд `samotpravil-mcp` → **C** (org runbook), закрыть [PR #64](https://github.com/dkanster/samotpravil-mcp/pull/64).
+| Ресурс | Целевое значение |
+|--------|------------------|
+| GitHub | `samotpravil/samotpravil-mcp` |
+| npm | `@samotpravil/mcp` |
+| MCP Registry | `io.github.samotpravil/samotpravil-mcp` |
 
-## Вариант B (PR #64)
+Трекинг: [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) · `npm run org-handoff`
 
-Меняет только **GitHub URL** и **MCP Registry name**. npm-пакет остаётся `samotpravil-mcp`.
+---
 
-```bash
-git fetch origin cursor/rename-repo-samotpravil-api-mcp-ef12
-npm run plan-rename   # dry-run после merge PR #64
-```
+## Сравнение вариантов (архив)
 
-После GitHub rename (Settings → Repository name):
+| Вариант | GitHub repo | MCP Registry | npm | Статус |
+|---------|-------------|--------------|-----|--------|
+| **A. Текущий** | `dkanster/samotpravil-mcp` | `io.github.dkanster/samotpravil-mcp` | `samotpravil-mcp` | interim (до transfer) |
+| **B. Rename API** | `dkanster/samotpravil-api-mcp` | `io.github.dkanster/samotpravil-api-mcp` | `samotpravil-mcp` | ❌ отклонён (PR #64 closed) |
+| **C. Org (runbook)** | `samotpravil/samotpravil-mcp` | `io.github.samotpravil/samotpravil-mcp` | `@samotpravil/mcp` | ✅ **принят** |
 
-- Обновить `server.json` → `io.github.dkanster/samotpravil-api-mcp`
-- Republish MCP Registry
-- Docusaurus `baseUrl` → `/samotpravil-api-mcp/`
+## Вариант B (архив)
 
-## Вариант C (org migration)
+`npm run plan-rename` остаётся для справки — **не применять** после решения C.
+
+## Вариант C (активный)
 
 См. [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md).
 
 ```bash
 npm run org-migration-preflight
+npm run org-handoff          # комментарий для issue #65
 node scripts/apply-org-migration.mjs --write
 ```
 
-## Проверка текущего состояния
+## Проверка
 
 ```bash
 npm run maintainer-status
 node scripts/check-org-migration.mjs
 ```
 
-Если в interim-файлах появится `samotpravil-api-mcp` без принятого решения — `check-org-migration` упадёт.
+Interim-файлы не должны содержать `samotpravil-api-mcp` — `check-org-migration` упадёт.
