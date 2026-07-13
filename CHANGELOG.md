@@ -12,6 +12,8 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Promo handoff (`npm run promo-handoff`) and superseded PR tracker (`npm run check-superseded-prs`)
 - Maintainer status weekly workflow
 - `npm run check-scaffold-ship` — readiness when upstream endpoints land in snapshot
+- `npm run org-handoff` — handoff comment for org migration issue #65
+- Naming decision recorded: variant C in `data/org-migration.targets.json`
 - [docs/RELEASE_v1.9.0.md](./docs/RELEASE_v1.9.0.md) release checklist
 
 ## [1.8.0] - 2026-07-13

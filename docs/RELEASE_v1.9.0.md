@@ -15,7 +15,7 @@
 | 2 | Typed tool для ≥1 shipped v2 endpoint | `npm run check-scaffold-ship` |
 | 3 | Promo checklist «Публикация на documenter» | [PROMO_CHECKLIST.md](./official/PROMO_CHECKLIST.md) |
 | 4 | Superseded PR закрыты | `npm run check-superseded-prs` → OK |
-| 5 | Решение по именованию A/B/C | [REPO_NAMING.md](./REPO_NAMING.md) |
+| 5 | Решение по именованию A/B/C | ✅ variant C — [REPO_NAMING.md](./REPO_NAMING.md) |
 
 ---
 

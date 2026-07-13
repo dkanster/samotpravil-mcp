@@ -1,4 +1,12 @@
 {
+  "decision": {
+    "variant": "C",
+    "label": "org migration — samotpravil/samotpravil-mcp",
+    "decidedAt": "2026-07-13",
+    "rejected": ["B"],
+    "doc": "docs/REPO_NAMING.md",
+    "trackingIssue": "https://github.com/dkanster/samotpravil-mcp/issues/65"
+  },
   "interim": {
     "githubOwner": "dkanster",
     "githubRepo": "dkanster/samotpravil-mcp",
