@@ -38,7 +38,7 @@ Runbook: [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Ship typed tools из `scaffolds/` когда endpoint в snapshot | 🔲 `check-scaffolds` ✅ |
+| 1 | Ship typed tools из `scaffolds/` когда endpoint в snapshot | 🔲 `check-scaffold-ship` ✅ |
 | 2 | Webhook/events tool | 🔲 |
 | 3 | Upstream watch → issue (shipped) | ✅ |
 | 4 | SDK_TYPED_TOOL_COUNT bump + release | 🔲 |

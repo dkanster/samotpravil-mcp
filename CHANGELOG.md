@@ -11,6 +11,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Repo naming strategy doc (`docs/REPO_NAMING.md`) and `npm run plan-rename`
 - Promo handoff (`npm run promo-handoff`) and superseded PR tracker (`npm run check-superseded-prs`)
 - Maintainer status weekly workflow
+- `npm run check-scaffold-ship` — readiness when upstream endpoints land in snapshot
 - [docs/RELEASE_v1.9.0.md](./docs/RELEASE_v1.9.0.md) release checklist
 
 ## [1.8.0] - 2026-07-13

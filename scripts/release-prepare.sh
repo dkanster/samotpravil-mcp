@@ -14,6 +14,12 @@ npm run pre-publish-check
 npm test
 
 echo ""
+echo "--- Maintainer warnings (non-blocking) ---"
+npm run check-superseded-prs || echo "WARN: superseded PRs still open"
+node scripts/check-scaffold-ship.mjs --warn-only || true
+node scripts/check-upstream-wishlist.mjs --fail-on-shipped || echo "WARN: shipped endpoints need typed tools"
+
+echo ""
 echo "Ready to publish:"
 echo "  git tag v${VERSION}"
 echo "  git push origin v${VERSION}"

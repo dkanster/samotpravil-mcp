@@ -12,6 +12,7 @@ npm run maintainer-status
 - Promo materials (`check-promo-versions`)
 - Org interim state + apply dry-run
 - Upstream scaffolds
+- Scaffold ship readiness (`check-scaffold-ship`)
 
 ## Связанные команды
 
@@ -22,6 +23,7 @@ npm run maintainer-status
 | `bash scripts/maintainer-pr-cleanup.sh` | Закрыть superseded PR |
 | `npm run plan-rename` | Dry-run rename (вариант B, PR #64) |
 | `npm run plan-org-migration` | Dry-run org transfer (вариант C) |
+| `npm run check-scaffold-ship` | Shipped upstream → sdkTyped readiness |
 | `npm run check-superseded-prs` | Открытые superseded PR |
 | `npm run promo-handoff` | Текст handoff для [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
 

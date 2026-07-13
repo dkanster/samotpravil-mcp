@@ -36,6 +36,7 @@
     "check-org-migration": "node scripts/check-org-migration.mjs",
     "check-branch-protection": "node scripts/check-branch-protection.mjs",
     "check-scaffolds": "node scripts/check-scaffolds.mjs",
+    "check-scaffold-ship": "node scripts/check-scaffold-ship.mjs",
     "check-scalar-build": "node scripts/check-scalar-build.mjs",
     "maintainer-status": "node scripts/maintainer-status.mjs",
     "plan-org-migration": "node scripts/plan-org-migration.mjs",
