@@ -6,6 +6,13 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Repo naming strategy doc (`docs/REPO_NAMING.md`) and `npm run plan-rename`
+- Promo handoff (`npm run promo-handoff`) and superseded PR tracker (`npm run check-superseded-prs`)
+- Maintainer status weekly workflow
+- [docs/RELEASE_v1.9.0.md](./docs/RELEASE_v1.9.0.md) release checklist
+
 ## [1.8.0] - 2026-07-13
 
 ### Added

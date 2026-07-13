@@ -15,6 +15,7 @@
 | 2 | get-access snippet (marketing) | ✅ [get-access-snippet.md](./official/get-access-snippet.md) |
 | 3 | Blog post (опционально) | ⏳ |
 | 4 | `check-promo-versions` в CI | ✅ |
+| 5 | `promo-handoff` tooling | ✅ [#68](https://github.com/dkanster/samotpravil-mcp/pull/68) |
 
 ---
 
@@ -22,11 +23,12 @@
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Решение по именованию (A/B/C) | ⏳ [REPO_NAMING.md](./REPO_NAMING.md) · PR [#64](https://github.com/dkanster/samotpravil-mcp/pull/64) |
-| 2 | GitHub org transfer | ⏳ [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
-| 3 | `apply-org-migration --write` | ⏳ `npm run org-migration-preflight` |
-| 4 | `@samotpravil/mcp` npm scope | ⏳ |
-| 5 | Branch protection on `main` | ⏳ `npm run check-branch-protection` |
+| 1 | Maintainer tooling (naming, tracker) | ✅ [#67](https://github.com/dkanster/samotpravil-mcp/pull/67) [#68](https://github.com/dkanster/samotpravil-mcp/pull/68) |
+| 2 | Решение по именованию (A/B/C) | ⏳ [REPO_NAMING.md](./REPO_NAMING.md) · PR [#64](https://github.com/dkanster/samotpravil-mcp/pull/64) |
+| 3 | GitHub org transfer | ⏳ [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
+| 4 | `apply-org-migration --write` | ⏳ `npm run org-migration-preflight` |
+| 5 | `@samotpravil/mcp` npm scope | ⏳ |
+| 6 | Branch protection on `main` | ⏳ `npm run check-branch-protection` |
 
 Runbook: [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
 

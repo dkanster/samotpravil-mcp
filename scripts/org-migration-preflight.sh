@@ -16,6 +16,15 @@ echo "--- Replacement plan (dry-run) ---"
 node scripts/apply-org-migration.mjs 2>&1 | tail -6
 echo ""
 
+echo "--- Naming decision ---"
+echo "See docs/REPO_NAMING.md — choose variant A/B/C before org transfer."
+node scripts/plan-rename.mjs 2>&1 | tail -3 || true
+echo ""
+
+echo "--- Superseded PRs (maintainer) ---"
+node scripts/check-superseded-prs.mjs || true
+echo ""
+
 echo "--- Branch protection ---"
 node scripts/check-branch-protection.mjs || true
 echo ""
