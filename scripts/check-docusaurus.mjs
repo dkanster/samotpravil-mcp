@@ -27,4 +27,6 @@ if (!existsSync(BUILD)) {
   process.exit(1);
 }
 
+execSync("node scripts/check-scalar-build.mjs", { cwd: ROOT, stdio: "inherit" });
+
 console.log("OK: Docusaurus build");

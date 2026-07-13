@@ -7,7 +7,7 @@
 | `zod` | 4.x | — | #47 close | ✅ Migrated — `z.record(key, value)` two-arg form; ToolCallback casts for MCP SDK |
 | `@eslint/js` | 10.x | — | #48 close | ✅ ESLint 10.7 + typescript-eslint 8.63 |
 | `@scalar/api-reference-react` | 0.9.x | — | #44 close | ✅ Build OK — visual QA on live reference page |
-| `dev-tools` group | mixed | latest | #57 | Re-check tsx/types minor bumps |
+| `dev-tools` group | mixed | latest | #60 | Deferred: typescript 7 + @types/node 26 — stay on TS 5.x |
 
 ## Safe to merge (consolidated)
 

@@ -43,5 +43,7 @@ jobs:
       - name: Verify build artifacts
         run: |
           test -f docusaurus/build/index.html
-          test -d docusaurus/build/assets
+          test -f docusaurus/build/reference/index.html
+          test -f docusaurus/build/openapi.yaml
+          node scripts/check-scalar-build.mjs
           echo "OK: Docusaurus smoke build"

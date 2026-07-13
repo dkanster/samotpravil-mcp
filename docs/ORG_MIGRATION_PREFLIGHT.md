@@ -6,6 +6,8 @@
 npm run org-migration-preflight
 ```
 
+Также: workflow **Org migration preflight** — по понедельникам (`.github/workflows/org-preflight-weekly.yml`).
+
 ## Что проверяется
 
 | Шаг | Скрипт |
