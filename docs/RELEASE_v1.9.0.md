@@ -40,24 +40,18 @@ npm run promo-handoff   # handoff для docs team (#51)
 
 ## Release Please / version bump
 
-Release Please создаёт PR с bump версии и CHANGELOG. Альтернатива — ручной bump:
-
 ```bash
-# после merge release-please PR или вручную:
-npm run sync-versions
-npm test
+npm run check-release-please
+npm run release-pr-body -- --write
+gh pr create --base main \
+  --head release-please--branches--main--components--samotpravil-mcp \
+  --title "chore(main): release 1.9.0" \
+  --body-file artifacts/release-pr-body.md
 ```
 
----
+**Gate:** `npm run check-v19-readiness` без blocking перед merge release PR.
 
-## Tag и publish
-
-```bash
-git tag v1.9.0
-git push origin v1.9.0
-```
-
-Workflows: `publish.yml` → `mcp-registry.yml` → `post-release.yml`
+После merge release PR:
 
 ---
 
