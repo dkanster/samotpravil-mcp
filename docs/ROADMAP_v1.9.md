@@ -12,7 +12,7 @@
 | # | Задача | Статус |
 |---|--------|--------|
 | 1 | Documenter HTML block live | ⏳ [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
-| 2 | get-access snippet (marketing) | ⏳ |
+| 2 | get-access snippet (marketing) | ✅ [get-access-snippet.md](./official/get-access-snippet.md) |
 | 3 | Blog post (опционально) | ⏳ |
 | 4 | `check-promo-versions` в CI | ✅ |
 
@@ -22,7 +22,7 @@
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | GitHub org transfer | ⏳ |
+| 1 | GitHub org transfer | ⏳ [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
 | 2 | `apply-org-migration --write` | ⏳ `npm run org-migration-preflight` |
 | 3 | `@samotpravil/mcp` npm scope | ⏳ |
 | 4 | Branch protection on `main` | ⏳ `npm run check-branch-protection` |
