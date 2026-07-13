@@ -1,0 +1,30 @@
+name: Maintainer status weekly
+
+on:
+  schedule:
+    # Monday 10:00 UTC — after org preflight (09:00)
+    - cron: "0 10 * * 1"
+  workflow_dispatch:
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Maintainer status report
+        run: npm run maintainer-status
+        continue-on-error: true
+
+      - name: Superseded PR tracker
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npm run check-superseded-prs
+        continue-on-error: true

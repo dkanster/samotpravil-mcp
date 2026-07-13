@@ -23,4 +23,10 @@
 
 Готовы скорректировать текст блока под стиль сайта.
 
+**Актуальная версия:** 1.8.0+ (npm + MCP Registry). Maintainer handoff:
+
+```bash
+npm run promo-handoff   # текст комментария для issue #51
+```
+
 Контакт по репозиторию: issues на GitHub — [Docs promo #51](https://github.com/dkanster/samotpravil-mcp/issues/51).

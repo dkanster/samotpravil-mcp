@@ -20,9 +20,14 @@ npm run maintainer-status
 | `npm run release-prepare` | Pre-flight перед tag |
 | `npm run org-migration-preflight` | Полный org dry-run |
 | `bash scripts/maintainer-pr-cleanup.sh` | Закрыть superseded PR |
+| `npm run plan-rename` | Dry-run rename (вариант B, PR #64) |
+| `npm run plan-org-migration` | Dry-run org transfer (вариант C) |
+| `npm run check-superseded-prs` | Открытые superseded PR |
+| `npm run promo-handoff` | Текст handoff для [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
 
 ## Открытые треки (v1.9)
 
-- [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) — documenter promo
-- Org transfer — [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
-- Superseded PR #23–#37 — `maintainer-pr-cleanup.sh`
+- [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) — documenter promo (`npm run promo-handoff`)
+- Именование A/B/C — [REPO_NAMING.md](./REPO_NAMING.md) · PR [#64](https://github.com/dkanster/samotpravil-mcp/pull/64)
+- Org transfer — [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) · [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
+- Superseded PR #23–#37, #60, #64 — `check-superseded-prs` + `maintainer-pr-cleanup.sh`
