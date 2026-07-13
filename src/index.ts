@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import type { z } from "zod";
 import { isHttpMode, resolveHttpPort, startHttpServer } from "./http.js";
@@ -52,11 +53,11 @@ export const CORE_MANUAL_TOOL_COUNT = 14;
 export const MANUAL_TOOL_COUNT = CORE_MANUAL_TOOL_COUNT + SDK_TYPED_TOOL_COUNT;
 
 function registerManualTools(server: McpServer): void {
-  const manualTool = <T extends z.ZodRawShape>(
+  const manualTool = <S extends z.ZodObject<z.ZodRawShape>>(
     name: string,
     description: string,
-    schema: z.ZodObject<T>,
-    handler: (params: z.infer<z.ZodObject<T>>) => Promise<string>,
+    schema: S,
+    handler: (params: z.infer<S>) => Promise<string>,
   ) => {
     server.registerTool(
       name,
@@ -65,9 +66,9 @@ function registerManualTools(server: McpServer): void {
         inputSchema: schema,
         annotations: annotationsForManualTool(name),
       },
-      async (params) => ({
+      (async (params: z.infer<S>) => ({
         content: [{ type: "text", text: await handler(params) }],
-      }),
+      })) as unknown as ToolCallback<S>,
     );
   };
 

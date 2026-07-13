@@ -1,4 +1,4 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { McpServer, ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { z } from "zod";
 import {
   createAuthkeySchema,
@@ -63,12 +63,12 @@ import { annotationsForSdkTool } from "./toolAnnotations.js";
 
 export { SDK_TYPED_TOOL_COUNT };
 
-function sdkTool<T extends z.ZodRawShape>(
+function sdkTool<S extends z.ZodObject<z.ZodRawShape>>(
   server: McpServer,
   name: string,
   description: string,
-  schema: z.ZodObject<T>,
-  handler: (params: z.infer<z.ZodObject<T>>) => Promise<string>,
+  schema: S,
+  handler: (params: z.infer<S>) => Promise<string>,
 ): void {
   server.registerTool(
     name,
@@ -77,9 +77,9 @@ function sdkTool<T extends z.ZodRawShape>(
       inputSchema: schema,
       annotations: annotationsForSdkTool(name),
     },
-    async (params) => ({
+    (async (params: z.infer<S>) => ({
       content: [{ type: "text", text: await handler(params) }],
-    }),
+    })) as unknown as ToolCallback<S>,
   );
 }
 

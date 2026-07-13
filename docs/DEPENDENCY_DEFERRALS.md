@@ -4,7 +4,7 @@
 
 | Package | Current | Proposed | PR | Причина отложения |
 |---------|---------|----------|-----|-------------------|
-| `zod` | 3.x | 4.x | #47 | Breaking API; MCP SDK + tool schemas need migration pass |
+| `zod` | 4.x | — | #47 close | ✅ Migrated — `z.record(key, value)` two-arg form; ToolCallback casts for MCP SDK |
 | `@eslint/js` | 9.x | 10.x | #48 | ESLint 10 flat config migration |
 | `@scalar/api-reference-react` | 0.8.x | 0.9.x | #44 | Docusaurus-only; needs visual QA on API reference page |
 | `dev-tools` group | mixed | latest | #45 | Includes eslint 10 — merge after ESLint migration |
@@ -16,5 +16,5 @@
 
 ## When to revisit
 
-- v1.8.0 milestone: dedicated `chore: zod 4 migration` branch with full `npm test`
+- v1.8.0 milestone: eslint 10 + dev-tools group (#45, #48)
 - After org migration: fewer moving parts on `main`
