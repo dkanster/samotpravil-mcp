@@ -48,9 +48,10 @@ Scaffolds: [scaffolds/](../scaffolds/) · Watch: `upstream-wishlist-watch.yml`
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Scalar 0.9 visual QA | ⏳ build OK |
-| 2 | dev-tools group (#57) | ⏳ |
+| 1 | Scalar 0.9 visual QA | ✅ CI checks reference/ + openapi.yaml |
+| 2 | dev-tools group (#60) | ⏳ deferred (typescript 7) |
 | 3 | Docusaurus deploy smoke | ✅ weekly + PR workflow |
+| 4 | Org preflight weekly | ✅ workflow |
 
 ---
 

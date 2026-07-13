@@ -1,0 +1,23 @@
+name: Org migration preflight
+
+on:
+  schedule:
+    # Monday 09:00 UTC — after sync-docs (06:00) and upstream watch (07:00)
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Org migration preflight
+        run: npm run org-migration-preflight
