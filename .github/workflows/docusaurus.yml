@@ -50,7 +50,7 @@ jobs:
           DOCUSAURUS_BASE_URL: /samotpravil-mcp/
         run: npm run docusaurus:build
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: docusaurus/build
 
