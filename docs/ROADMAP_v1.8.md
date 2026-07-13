@@ -38,7 +38,7 @@ Runbook: [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
 |---|--------|--------|
 | 1 | Typed tools для v2 package API (когда upstream ship) | 🔲 |
 | 2 | Webhook/events tools | 🔲 |
-| 3 | Авто-PR при `check-upstream-wishlist` → shipped | 🔲 |
+| 3 | Авто-issue при `check-upstream-wishlist` → shipped | ✅ workflow |
 | 4 | Codegen handlers из catalog (beyond scaffold) | 🔲 |
 
 Wishlist: [API_WISHLIST.md](./API_WISHLIST.md) · Tracking: `npm run check-upstream-wishlist`
