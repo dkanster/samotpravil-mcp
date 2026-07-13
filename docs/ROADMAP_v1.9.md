@@ -11,7 +11,7 @@
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Documenter HTML block live | ⏳ [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
+| 1 | Documenter HTML block live | ⏳ [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) · `npm run promo-handoff` |
 | 2 | get-access snippet (marketing) | ✅ [get-access-snippet.md](./official/get-access-snippet.md) |
 | 3 | Blog post (опционально) | ⏳ |
 | 4 | `check-promo-versions` в CI | ✅ |
@@ -53,6 +53,7 @@ Scaffolds: [scaffolds/](../scaffolds/) · Watch: `upstream-wishlist-watch.yml`
 | 2 | dev-tools group (#60) | ⏳ deferred (typescript 7) |
 | 3 | Docusaurus deploy smoke | ✅ weekly + PR workflow |
 | 4 | Org preflight weekly | ✅ workflow |
+| 5 | Maintainer status weekly | ✅ workflow |
 
 ---
 
@@ -61,4 +62,4 @@ Scaffolds: [scaffolds/](../scaffolds/) · Watch: `upstream-wishlist-watch.yml`
 - [ ] Documenter MCP block live OR org migration started
 - [ ] Typed tool для ≥1 shipped v2 endpoint
 - [ ] Promo checklist «Публикация на documenter» complete
-- [ ] Закрыты superseded PR (#23–#37)
+- [ ] Закрыты superseded PR (#23–#37, #60) — `npm run check-superseded-prs`
