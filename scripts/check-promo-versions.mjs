@@ -15,8 +15,12 @@ const files = [
     patterns: [`${version}+`, version],
   },
   {
+    path: "docs/official/get-access-snippet.md",
+    patterns: ["58 typed tools", "samotpravil-mcp@latest"],
+  },
+  {
     path: "docs/official/blog-draft.md",
-    patterns: ["58 MCP tools", "9 resources"],
+    patterns: ["58 MCP tools", "9 resources", "1.8.0"],
   },
 ];
 

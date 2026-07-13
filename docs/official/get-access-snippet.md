@@ -6,10 +6,10 @@
 
 ## MCP для разработчиков
 
-Подключите API СамОтправил к **Cursor**, **Claude Desktop** или **VS Code** через MCP-сервер — поиск документации, typed tools (включая parity с Python SDK `samotpravil`), offline-режим.
+Подключите API СамОтправил к **Cursor**, **Claude Desktop** или **VS Code** через MCP-сервер — **58 typed tools**, **9 resources**, offline-режим, safety flags.
 
 ```bash
-npx -y samotpravil-mcp@latest
+npx -y samotpravil-mcp@latest   # сейчас v1.8.0+
 ```
 
 - [Документация и примеры](https://github.com/dkanster/samotpravil-mcp/blob/main/docs/EXAMPLES.md)

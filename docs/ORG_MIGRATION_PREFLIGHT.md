@@ -30,3 +30,5 @@ npm run pre-publish-check
 Полный runbook: [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
 
 Issue template: **Org migration tracking** (`.github/ISSUE_TEMPLATE/org_migration.yml`)
+
+Tracking issue: [#65](https://github.com/dkanster/samotpravil-mcp/issues/65)

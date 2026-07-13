@@ -34,7 +34,7 @@
 
 | # | Задача | Owner | Статус |
 |---|--------|-------|--------|
-| 1 | Snippet из [get-access-snippet.md](./get-access-snippet.md) | marketing | ⏳ |
+| 1 | Snippet из [get-access-snippet.md](./get-access-snippet.md) | marketing | ✅ ready |
 | 2 | Ссылка на GitHub + npm | marketing | ⏳ |
 | 3 | (Опционально) blog post [blog-draft.md](./blog-draft.md) | marketing | ⏳ |
 

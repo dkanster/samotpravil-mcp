@@ -8,7 +8,7 @@
 
 Если вы подключаете SMTP или HTTP API СамОтправил, теперь не нужно вручную копировать эндпоинты из документации в чат с AI.
 
-Мы опубликовали **samotpravil-mcp** — MCP-сервер вокруг [documentation.samotpravil.ru](https://documentation.samotpravil.ru/).
+Мы опубликовали **samotpravil-mcp@1.8.0** — MCP-сервер вокруг [documentation.samotpravil.ru](https://documentation.samotpravil.ru/).
 
 ## Что умеет
 

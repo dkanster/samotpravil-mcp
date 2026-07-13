@@ -35,7 +35,7 @@
     "check-branch-protection": "node scripts/check-branch-protection.mjs",
     "check-scaffolds": "node scripts/check-scaffolds.mjs",
     "check-scalar-build": "node scripts/check-scalar-build.mjs",
-    "org-migration-preflight": "bash scripts/org-migration-preflight.sh",
+    "maintainer-status": "node scripts/maintainer-status.mjs",
     "plan-org-migration": "node scripts/plan-org-migration.mjs",
     "apply-org-migration": "node scripts/apply-org-migration.mjs",
     "check-upstream-wishlist": "npm run build && node scripts/check-upstream-wishlist.mjs",
