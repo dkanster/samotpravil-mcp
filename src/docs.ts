@@ -212,7 +212,7 @@ export async function loadDocumentation(): Promise<{ endpoints: EndpointDoc[]; o
     } catch (error) {
       lastError = error instanceof Error ? error : new Error(String(error));
       if (mode === "live") {
-        throw new Error(`Не удалось загрузить live-документацию: ${lastError.message}`);
+        throw new Error("Не удалось загрузить live-документацию", { cause: lastError });
       }
     }
   }
@@ -226,8 +226,8 @@ export async function loadDocumentation(): Promise<{ endpoints: EndpointDoc[]; o
     return result;
   } catch (error) {
     const snapshotError = error instanceof Error ? error : new Error(String(error));
-    const liveMsg = lastError ? ` Live: ${lastError.message}.` : "";
-    throw new Error(`Не удалось загрузить документацию.${liveMsg} Snapshot: ${snapshotError.message}`);
+    const detail = lastError ? " (live и snapshot недоступны)" : " (snapshot недоступен)";
+    throw new Error(`Не удалось загрузить документацию${detail}`, { cause: snapshotError });
   }
 }
 

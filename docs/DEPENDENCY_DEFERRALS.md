@@ -5,9 +5,9 @@
 | Package | Current | Proposed | PR | Причина отложения |
 |---------|---------|----------|-----|-------------------|
 | `zod` | 4.x | — | #47 close | ✅ Migrated — `z.record(key, value)` two-arg form; ToolCallback casts for MCP SDK |
-| `@eslint/js` | 9.x | 10.x | #48 | ESLint 10 flat config migration |
+| `@eslint/js` | 10.x | — | #48 close | ✅ ESLint 10.7 + typescript-eslint 8.63 |
 | `@scalar/api-reference-react` | 0.8.x | 0.9.x | #44 | Docusaurus-only; needs visual QA on API reference page |
-| `dev-tools` group | mixed | latest | #45 | Includes eslint 10 — merge after ESLint migration |
+| `dev-tools` group | mixed | latest | #45 | Re-check after #48 close — may overlap |
 
 ## Safe to merge (consolidated)
 
