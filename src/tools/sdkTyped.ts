@@ -440,4 +440,4 @@ export const SDK_TYPED_API_PATHS = [
   "/api/v2/authkey/create",
 ] as const;
 
-export const SDK_TYPED_TOOL_COUNT = 29;
+export const SDK_TYPED_TOOL_COUNT = 28;

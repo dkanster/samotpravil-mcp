@@ -2,7 +2,9 @@
 
 Материалы для публикации на [documentation.samotpravil.ru](https://documentation.samotpravil.ru/) и samotpravil.ru.
 
-**Статус:** материалы готовы в репозитории (v1.2.1 опубликован в npm и MCP Registry). Публикация HTML на documenter — задача команды Samotpravil.
+**Статус:** материалы готовы (v1.6+). Публикация HTML на documenter — задача команды Samotpravil.
+
+**Чеклист:** [PROMO_CHECKLIST.md](./PROMO_CHECKLIST.md)
 
 Общая схема: Postman → documenter → snapshot → MCP/OpenAPI — **[../ECOSYSTEM.md](../ECOSYSTEM.md)**.
 

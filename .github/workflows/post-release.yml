@@ -1,0 +1,33 @@
+name: Post-release verify
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Package version to verify (e.g. 1.7.0)
+        required: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify npm and MCP Registry
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+          MANUAL_VERSION: ${{ inputs.version }}
+        run: |
+          if [ -n "$TAG" ]; then
+            VER="${TAG#v}"
+          else
+            VER="${MANUAL_VERSION#v}"
+          fi
+          node scripts/verify-publish.mjs "$VER"
+        continue-on-error: true

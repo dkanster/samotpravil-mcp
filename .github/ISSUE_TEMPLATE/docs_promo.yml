@@ -1,0 +1,42 @@
+name: Docs promo tracking
+description: Координация публикации MCP в official documentation
+title: "[Docs promo] "
+labels:
+  - docs-promo
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Чеклист: [docs/official/PROMO_CHECKLIST.md](../blob/main/docs/official/PROMO_CHECKLIST.md)
+        Материалы: [docs/official/](../tree/main/docs/official)
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Фаза
+      options:
+        - До публикации на documenter
+        - Публикация на documentation.samotpravil.ru
+        - samotpravil.ru / get-access
+        - После org migration
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: tasks
+    attributes:
+      label: Задачи
+      options:
+        - label: HTML-блок вставлен в Postman collection
+        - label: Documenter republished
+        - label: Блок виден на live site
+        - label: sync-docs выполнен
+        - label: get-access snippet опубликован
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Заметки / ссылки
+      description: publishDate из snapshot.meta.json, скриншоты, контакт docs team
+    validations:
+      required: false
