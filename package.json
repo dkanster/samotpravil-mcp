@@ -87,7 +87,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "mcpName": "io.github.dkanster/samotpravil-mcp",
+  "mcpName": "io.github.dkanster/samotpravil-api-mcp",
   "keywords": [
     "mcp",
     "mcp-server",
@@ -99,7 +99,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dkanster/samotpravil-mcp.git"
+    "url": "https://github.com/dkanster/samotpravil-api-mcp.git"
   },
-  "homepage": "https://github.com/dkanster/samotpravil-mcp#readme"
+  "homepage": "https://github.com/dkanster/samotpravil-api-mcp#readme"
 }

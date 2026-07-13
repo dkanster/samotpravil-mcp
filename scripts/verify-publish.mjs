@@ -27,7 +27,7 @@ if (!npmRes.ok) {
 }
 
 const registryRes = await fetch(
-  "https://registry.modelcontextprotocol.io/v0.1/servers?search=samotpravil-mcp",
+  "https://registry.modelcontextprotocol.io/v0.1/servers?search=samotpravil-api-mcp",
 );
 if (!registryRes.ok) {
   fail(`MCP Registry search failed (HTTP ${registryRes.status})`);

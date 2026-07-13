@@ -12,10 +12,10 @@
 npx -y samotpravil-mcp@latest   # сейчас v1.8.0+
 ```
 
-- [Документация и примеры](https://github.com/dkanster/samotpravil-mcp/blob/main/docs/EXAMPLES.md)
-- [GitHub](https://github.com/dkanster/samotpravil-mcp)
+- [Документация и примеры](https://github.com/dkanster/samotpravil-api-mcp/blob/main/docs/EXAMPLES.md)
+- [GitHub](https://github.com/dkanster/samotpravil-api-mcp)
 - [npm](https://www.npmjs.com/package/samotpravil-mcp)
-- [MCP Registry](https://registry.modelcontextprotocol.io) — `io.github.dkanster/samotpravil-mcp`
+- [MCP Registry](https://registry.modelcontextprotocol.io) — `io.github.dkanster/samotpravil-api-mcp`
 - [Полная API-документация](https://documentation.samotpravil.ru/)
 
 После получения API-ключа добавьте его в конфиг MCP как `SAMOTPRAVIL_API_KEY`.

@@ -39,7 +39,7 @@ npx -y samotpravil-mcp@1.8.0
 - [x] GitHub Release `v1.8.0` создан
 - [x] npm `samotpravil-mcp@1.8.0` опубликован
 - [x] MCP Registry обновлён
-- [ ] Обновить documenter — [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) · `npm run promo-handoff`
+- [ ] Обновить documenter — [#51](https://github.com/dkanster/samotpravil-api-mcp/issues/51) · `npm run promo-handoff`
 - [ ] `npm run check-superseded-prs` — superseded PR
 
 Следующий milestone: [ROADMAP_v1.9.md](./ROADMAP_v1.9.md) · [RELEASE_v1.9.0.md](./RELEASE_v1.9.0.md)

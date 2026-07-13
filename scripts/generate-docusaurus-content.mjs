@@ -26,7 +26,7 @@ function extractBodyHtml(html) {
 
 function resolveOfficialDocsUrl() {
   const url = (process.env.DOCUSAURUS_URL ?? "https://dkanster.github.io").replace(/\/$/, "");
-  const base = process.env.DOCUSAURUS_BASE_URL ?? "/samotpravil-mcp/";
+  const base = process.env.DOCUSAURUS_BASE_URL ?? "/samotpravil-api-mcp/";
   if (base === "/") return `${url}/`;
   return `${url}${base.startsWith("/") ? base : `/${base}`}`;
 }

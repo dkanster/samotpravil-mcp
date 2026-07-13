@@ -27,22 +27,22 @@
 
 ## Ссылки для публикации
 
-- GitHub: https://github.com/dkanster/samotpravil-mcp
+- GitHub: https://github.com/dkanster/samotpravil-api-mcp
 - npm: https://www.npmjs.com/package/samotpravil-mcp
-- Примеры: https://github.com/dkanster/samotpravil-mcp/blob/main/docs/EXAMPLES.md
+- Примеры: https://github.com/dkanster/samotpravil-api-mcp/blob/main/docs/EXAMPLES.md
 
 > После создания org Samotpravil обновить URL на `github.com/samotpravil/samotpravil-mcp` и `@samotpravil/mcp`.
 
 ## Контакты для координации
 
 - Поддержка: support@samotpravil.ru
-- Issue в репо: https://github.com/dkanster/samotpravil-mcp/issues/13
+- Issue в репо: https://github.com/dkanster/samotpravil-api-mcp/issues/13
 
 ## Чеклист публикации
 
 - [x] HTML-блок подготовлен (`MCP_INSTALL_BLOCK.html`, v1.2.1+)
 - [x] npm `samotpravil-mcp@1.2.1` опубликован
-- [x] MCP Registry: `io.github.dkanster/samotpravil-mcp`
+- [x] MCP Registry: `io.github.dkanster/samotpravil-api-mcp`
 - [ ] HTML-блок вставлен в Postman collection description
 - [ ] Republish documenter
 - [ ] Упоминание на samotpravil.ru/get-access (или blog)

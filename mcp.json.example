@@ -13,7 +13,7 @@
     },
     "swagger-mcp": {
       "command": "node",
-      "args": ["/absolute/path/to/samotpravil-mcp/scripts/swagger-mcp-launcher.mjs"]
+      "args": ["/absolute/path/to/samotpravil-api-mcp/scripts/swagger-mcp-launcher.mjs"]
     },
     "postman": {
       "command": "npx",

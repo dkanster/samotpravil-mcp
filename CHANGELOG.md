@@ -234,10 +234,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Initial release: docs tools + `api_request`
 - Postman collection loader from documentation.samotpravil.ru
 
-[1.1.0]: https://github.com/dkanster/samotpravil-mcp/compare/v1.0.5...v1.1.0
-[1.0.5]: https://github.com/dkanster/samotpravil-mcp/compare/v1.0.4...v1.0.5
-[1.0.4]: https://github.com/dkanster/samotpravil-mcp/compare/v1.0.3...v1.0.4
-[1.0.3]: https://github.com/dkanster/samotpravil-mcp/compare/v1.0.2...v1.0.3
-[1.0.2]: https://github.com/dkanster/samotpravil-mcp/compare/v1.0.1...v1.0.2
-[1.0.1]: https://github.com/dkanster/samotpravil-mcp/compare/v1.0.0...v1.0.1
-[1.0.0]: https://github.com/dkanster/samotpravil-mcp/releases/tag/v1.0.0
+[1.1.0]: https://github.com/dkanster/samotpravil-api-mcp/compare/v1.0.5...v1.1.0
+[1.0.5]: https://github.com/dkanster/samotpravil-api-mcp/compare/v1.0.4...v1.0.5
+[1.0.4]: https://github.com/dkanster/samotpravil-api-mcp/compare/v1.0.3...v1.0.4
+[1.0.3]: https://github.com/dkanster/samotpravil-api-mcp/compare/v1.0.2...v1.0.3
+[1.0.2]: https://github.com/dkanster/samotpravil-api-mcp/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/dkanster/samotpravil-api-mcp/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/dkanster/samotpravil-api-mcp/releases/tag/v1.0.0

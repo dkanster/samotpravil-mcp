@@ -15,7 +15,7 @@ const strict = process.argv.includes("--strict");
 const pkg = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8"));
 const repoUrl = pkg.repository?.url ?? "";
 const match = repoUrl.match(/github\.com[:/](.+?)(?:\.git)?$/);
-const repo = match?.[1] ?? "dkanster/samotpravil-mcp";
+const repo = match?.[1] ?? "dkanster/samotpravil-api-mcp";
 
 let status = "unknown";
 let contexts = [];

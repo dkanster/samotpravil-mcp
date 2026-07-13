@@ -2,7 +2,7 @@
 
 Шаблон: [.github/branch-protection.example.json](../.github/branch-protection.example.json)
 
-Применить **после** org transfer или сразу на `dkanster/samotpravil-mcp`, если репозиторий публичный.
+Применить **после** org transfer или сразу на `dkanster/samotpravil-api-mcp`, если репозиторий публичный.
 
 ## GitHub UI
 
@@ -18,7 +18,7 @@
 ## gh CLI (admin)
 
 ```bash
-gh api repos/dkanster/samotpravil-mcp/branches/main/protection \
+gh api repos/dkanster/samotpravil-api-mcp/branches/main/protection \
   --method PUT \
   --input .github/branch-protection.example.json
 ```
@@ -28,7 +28,7 @@ gh api repos/dkanster/samotpravil-mcp/branches/main/protection \
 ## Проверка
 
 ```bash
-gh api repos/dkanster/samotpravil-mcp/branches/main/protection --jq '.required_status_checks.contexts'
+gh api repos/dkanster/samotpravil-api-mcp/branches/main/protection --jq '.required_status_checks.contexts'
 # Ожидается: ["check"]
 ```
 

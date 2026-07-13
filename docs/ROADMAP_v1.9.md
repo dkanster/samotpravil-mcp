@@ -11,11 +11,11 @@
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Documenter HTML block live | ⏳ [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) · `npm run promo-handoff` |
+| 1 | Documenter HTML block live | ⏳ [#51](https://github.com/dkanster/samotpravil-api-mcp/issues/51) · `npm run promo-handoff` |
 | 2 | get-access snippet (marketing) | ✅ [get-access-snippet.md](./official/get-access-snippet.md) |
 | 3 | Blog post (опционально) | ⏳ |
 | 4 | `check-promo-versions` в CI | ✅ |
-| 5 | `promo-handoff` tooling | ✅ [#68](https://github.com/dkanster/samotpravil-mcp/pull/68) |
+| 5 | `promo-handoff` tooling | ✅ [#68](https://github.com/dkanster/samotpravil-api-mcp/pull/68) |
 | 6 | `check-promo-checklist` | ✅ |
 
 ---
@@ -24,9 +24,9 @@
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Maintainer tooling (naming, tracker) | ✅ [#67](https://github.com/dkanster/samotpravil-mcp/pull/67) [#68](https://github.com/dkanster/samotpravil-mcp/pull/68) |
+| 1 | Maintainer tooling (naming, tracker) | ✅ [#67](https://github.com/dkanster/samotpravil-api-mcp/pull/67) [#68](https://github.com/dkanster/samotpravil-api-mcp/pull/68) |
 | 2 | Решение по именованию (A/B/C) | ✅ variant C · [REPO_NAMING.md](./REPO_NAMING.md) |
-| 3 | GitHub org transfer | ⏳ [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
+| 3 | GitHub org transfer | ⏳ [#65](https://github.com/dkanster/samotpravil-api-mcp/issues/65) |
 | 4 | `apply-org-migration --write` | ⏳ `npm run org-migration-preflight` |
 | 5 | `@samotpravil/mcp` npm scope | ⏳ |
 | 6 | Branch protection on `main` | ⏳ `npm run check-branch-protection` |
@@ -75,7 +75,7 @@ Scaffolds: [scaffolds/](../scaffolds/) · Watch: `upstream-wishlist-watch.yml`
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Python MCP server + bridge ([PR #22](https://github.com/dkanster/samotpravil-mcp/pull/22)) | DRAFT · [PYTHON_SDK_TRACK.md](./PYTHON_SDK_TRACK.md) |
+| 1 | Python MCP server + bridge ([PR #22](https://github.com/dkanster/samotpravil-api-mcp/pull/22)) | DRAFT · [PYTHON_SDK_TRACK.md](./PYTHON_SDK_TRACK.md) |
 | 2 | Node SDK parity (typed tools) | ✅ v1.3+ |
 | 3 | `check-python-sdk-pr` tooling | ✅ |
 

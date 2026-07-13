@@ -9,11 +9,11 @@
   },
   "interim": {
     "githubOwner": "dkanster",
-    "githubRepo": "dkanster/samotpravil-mcp",
-    "githubUrl": "https://github.com/dkanster/samotpravil-mcp",
+    "githubRepo": "dkanster/samotpravil-api-mcp",
+    "githubUrl": "https://github.com/dkanster/samotpravil-api-mcp",
     "npmPackage": "samotpravil-mcp",
     "npmUrl": "https://www.npmjs.com/package/samotpravil-mcp",
-    "mcpRegistryName": "io.github.dkanster/samotpravil-mcp",
+    "mcpRegistryName": "io.github.dkanster/samotpravil-api-mcp",
     "npxPackage": "samotpravil-mcp@latest"
   },
   "target": {

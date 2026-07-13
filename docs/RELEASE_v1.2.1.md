@@ -2,7 +2,7 @@
 
 **Дата:** 2026-07-11  
 **npm:** [samotpravil-mcp@1.2.1](https://www.npmjs.com/package/samotpravil-mcp/v/1.2.1)  
-**MCP Registry:** `io.github.dkanster/samotpravil-mcp`
+**MCP Registry:** `io.github.dkanster/samotpravil-api-mcp`
 
 ## Highlights
 

@@ -1,12 +1,12 @@
 # Contributing to samotpravil-mcp
 
-Спасибо за интерес к проекту. Репозиторий временно под [dkanster/samotpravil-mcp](https://github.com/dkanster/samotpravil-mcp); после создания org Samotpravil переедет — см. [docs/ORG_MIGRATION.md](./docs/ORG_MIGRATION.md).
+Спасибо за интерес к проекту. Репозиторий временно под [dkanster/samotpravil-api-mcp](https://github.com/dkanster/samotpravil-api-mcp); после создания org Samotpravil переедет — см. [docs/ORG_MIGRATION.md](./docs/ORG_MIGRATION.md).
 
 ## Быстрый старт
 
 ```bash
-git clone https://github.com/dkanster/samotpravil-mcp.git
-cd samotpravil-mcp
+git clone https://github.com/dkanster/samotpravil-api-mcp.git
+cd samotpravil-api-mcp
 npm install
 npm test
 npm run dev
@@ -135,4 +135,4 @@ npm run release-prepare           # pre-flight перед npm tag
 
 - API СамОтправил: https://documentation.samotpravil.ru/
 - Доступ к SMTP/API: https://samotpravil.ru/get-access
-- Issues: https://github.com/dkanster/samotpravil-mcp/issues
+- Issues: https://github.com/dkanster/samotpravil-api-mcp/issues

@@ -18,7 +18,7 @@ execSync("npm run build --prefix docusaurus", {
   env: {
     ...process.env,
     DOCUSAURUS_URL: "https://dkanster.github.io",
-    DOCUSAURUS_BASE_URL: "/samotpravil-mcp/",
+    DOCUSAURUS_BASE_URL: "/samotpravil-api-mcp/",
   },
 });
 

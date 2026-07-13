@@ -81,5 +81,5 @@
 
 ## Связанные milestones
 
-- [Future](https://github.com/dkanster/samotpravil-mcp/milestone/9) — org migration
+- [Future](https://github.com/dkanster/samotpravil-api-mcp/milestone/9) — org migration
 - Создать milestone **v1.4.0** для оставшихся publish-задач

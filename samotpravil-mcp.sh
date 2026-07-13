@@ -64,7 +64,7 @@ run_samotpravil_mcp() {
 
   echo "Samotpravil MCP: не найден dist/index.js." >&2
   echo "  Запустите setup.sh из репозитория samotpravil-mcp или соберите проект:" >&2
-  echo "  cd samotpravil-mcp && npm install && npm run build" >&2
+  echo "  cd samotpravil-api-mcp && npm install && npm run build" >&2
   exit 1
 }
 

@@ -2,7 +2,7 @@
 
 Статический preview документации **без Postman Documenter**: генерируется из `data/collection.snapshot.json` в репозитории.
 
-**Production preview (Docusaurus):** https://dkanster.github.io/samotpravil-mcp/
+**Production preview (Docusaurus):** https://dkanster.github.io/samotpravil-api-mcp/
 
 ---
 
@@ -59,7 +59,7 @@ git push                       # → автодеплой на GitHub Pages
 
 | | Postman Documenter | Docusaurus (GitHub Pages) | `site/` (Scalar HTML) |
 |--|-------------------|---------------------------|----------------------|
-| URL | documentation.samotpravil.ru | dkanster.github.io/samotpravil-mcp | локально |
+| URL | documentation.samotpravil.ru | dkanster.github.io/samotpravil-api-mcp | локально |
 | Хостинг | Postman | GitHub Pages | любой static host |
 | Редактирование | Postman UI | Postman → sync → push | Postman → sync → rebuild |
 | Примеры ответов | ✅ богатые | ⚠️ OpenAPI (summary) | ⚠️ OpenAPI (summary) |
@@ -86,7 +86,7 @@ Workflow: [.github/workflows/docusaurus.yml](../.github/workflows/docusaurus.yml
 
 ```bash
 DOCUSAURUS_URL=https://dkanster.github.io \
-DOCUSAURUS_BASE_URL=/samotpravil-mcp/ \
+DOCUSAURUS_BASE_URL=/samotpravil-api-mcp/ \
 npm run docusaurus:build
 # артефакт: docusaurus/build/
 ```

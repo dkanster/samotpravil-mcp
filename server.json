@@ -1,11 +1,11 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.dkanster/samotpravil-mcp",
+  "name": "io.github.dkanster/samotpravil-api-mcp",
   "title": "Samotpravil MCP",
   "description": "MCP server for Samotpravil API — docs, typed tools, Python SDK parity, safety flags.",
-  "websiteUrl": "https://github.com/dkanster/samotpravil-mcp",
+  "websiteUrl": "https://github.com/dkanster/samotpravil-api-mcp",
   "repository": {
-    "url": "https://github.com/dkanster/samotpravil-mcp",
+    "url": "https://github.com/dkanster/samotpravil-api-mcp",
     "source": "github"
   },
   "version": "1.8.0",
