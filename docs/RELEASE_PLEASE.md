@@ -27,6 +27,26 @@ release-please failed: GitHub Actions is not permitted to create or approve pull
 
 ## Ручное создание release PR
 
+Ветка `release-please--branches--main--components--samotpravil-mcp` уже на **1.9.0**, но PR может отсутствовать:
+
+```bash
+npm run check-release-please
+```
+
+Если скрипт выводит `ACTION: release PR missing`:
+
+```bash
+gh pr create \
+  --base main \
+  --head release-please--branches--main--components--samotpravil-mcp \
+  --title "chore(main): release 1.9.0" \
+  --body "Release Please — gate: npm run check-v19-readiness. See docs/RELEASE_v1.9.0.md"
+```
+
+**Не мержить** release PR пока `npm run check-v19-readiness` показывает blocking (superseded PR).
+
+## Ручное создание release PR (generic)
+
 Если workflow не смог открыть PR:
 
 ```bash

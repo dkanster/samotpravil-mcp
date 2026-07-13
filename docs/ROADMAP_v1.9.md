@@ -67,3 +67,14 @@ Scaffolds: [scaffolds/](../scaffolds/) · Watch: `upstream-wishlist-watch.yml`
 - [ ] Typed tool для ≥1 shipped v2 endpoint
 - [ ] Promo checklist «Публикация на documenter» complete
 - [ ] Закрыты superseded PR (#23–#37, #60) — `npm run check-superseded-prs`
+
+---
+
+## Phase 10 — Python MCP (v2.0, optional)
+
+| # | Задача | Статус |
+|---|--------|--------|
+| 1 | Python MCP server + bridge ([PR #22](https://github.com/dkanster/samotpravil-mcp/pull/22)) | DRAFT · отдельно от v1.9 |
+| 2 | Node SDK parity (typed tools) | ✅ v1.3+ |
+
+Node `samotpravil-mcp` уже покрывает Python SDK через typed tools; отдельный Python MCP — опциональный трек v2.0.

@@ -29,6 +29,8 @@ npm run maintainer-status
 | `npm run org-handoff` | Текст handoff для [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
 | `npm run check-promo-checklist` | Promo checklist (maintainer + documenter status) |
 | `npm run check-v19-readiness` | Агрегатор критериев v1.9.0 |
+| `npm run check-release-please` | Release Please branch / missing PR |
+| `npm run maintainer-bundle` | Полный maintainer workflow |
 
 ## Открытые треки (v1.9)
 
