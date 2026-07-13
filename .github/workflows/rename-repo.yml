@@ -1,9 +1,13 @@
 name: Rename repository
 
-# One-shot workflow: rename samotpravil-mcp → samotpravil-api-mcp.
-# Trigger manually after merging reference updates to main.
+# Auto-runs once when .github/rename-repo.trigger is pushed to main.
+# Uses GITHUB_TOKEN with administration:write (repo Settings → Actions → General:
+# "Read and write permissions" must be enabled for administration scope).
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/rename-repo.trigger
 
 permissions:
   administration: write
