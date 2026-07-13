@@ -84,6 +84,13 @@ try {
   console.log("- Run: npm run check-promo-checklist");
 }
 
+console.log("\n## Python SDK (v2.0)");
+try {
+  execSync("node scripts/check-python-sdk-pr.mjs", { cwd: ROOT, stdio: "inherit" });
+} catch {
+  console.log("- PR #22: npm run check-python-sdk-pr · docs/PYTHON_SDK_TRACK.md");
+}
+
 console.log("\n## v1.9 readiness");
 try {
   execSync("node scripts/check-v19-readiness.mjs --warn-only", { cwd: ROOT, stdio: "inherit" });

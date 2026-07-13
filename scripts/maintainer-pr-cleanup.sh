@@ -36,5 +36,10 @@ echo "=== Tracker ==="
 echo "npm run check-superseded-prs"
 
 echo ""
+echo "=== Python SDK v2.0 (NOT superseded — keep PR #22 open) ==="
+echo "npm run check-python-sdk-pr"
+echo "# Rebase plan: docs/PYTHON_SDK_TRACK.md"
+
+echo ""
 echo "Copy-paste gh pr close lines:"
 echo "  bash scripts/maintainer-pr-cleanup.sh | grep '^gh pr' | bash"

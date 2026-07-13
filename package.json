@@ -43,6 +43,7 @@
     "check-release-please": "node scripts/check-release-please.mjs",
     "maintainer-bundle": "bash scripts/maintainer-bundle.sh",
     "release-pr-body": "node scripts/release-pr-body.mjs",
+    "check-python-sdk-pr": "node scripts/check-python-sdk-pr.mjs",
     "check-scalar-build": "node scripts/check-scalar-build.mjs",
     "maintainer-status": "node scripts/maintainer-status.mjs",
     "plan-org-migration": "node scripts/plan-org-migration.mjs",

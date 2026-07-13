@@ -17,7 +17,8 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `npm run check-v19-readiness` — aggregate v1.9 release criteria
 - `npm run check-promo-checklist` — promo checklist automation
 - `npm run release-pr-body` — release PR body with readiness snapshot
-- `npm run maintainer-bundle` — one-shot maintainer workflow
+- `npm run check-python-sdk-pr` — PR #22 v2.0 track status
+- [docs/ROADMAP_v2.0.md](./docs/ROADMAP_v2.0.md) Python MCP milestone
 
 ## [1.8.0] - 2026-07-13
 

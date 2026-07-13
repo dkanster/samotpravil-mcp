@@ -1,0 +1,24 @@
+{
+  "pr": 22,
+  "branch": "cursor/python-sdk-integration-4ad4",
+  "targetMilestone": "v2.0.0",
+  "pythonPackage": "samotpravil==1.0.0rc1",
+  "toolPrefix": "py_",
+  "estimatedTools": 35,
+  "mergeBlockers": [
+    "Rebase on main required (~10 file conflicts)",
+    "Separate from v1.9 release criteria",
+    "Optional: Node already has SDK parity via typed tools"
+  ],
+  "paths": {
+    "doc": "docs/PYTHON_SDK_TRACK.md",
+    "roadmap": "docs/ROADMAP_v2.0.md",
+    "prBranchDoc": "docs/PYTHON_SDK.md"
+  },
+  "components": [
+    "python/ MCP server package",
+    "src/pythonBridge.ts + registerPythonSdkTools.ts",
+    "scripts/check-python.mjs",
+    "samotpravil-mcp-python.sh"
+  ]
+}

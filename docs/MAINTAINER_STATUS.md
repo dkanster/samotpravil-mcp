@@ -31,6 +31,7 @@ npm run maintainer-status
 | `npm run check-v19-readiness` | Агрегатор критериев v1.9.0 |
 | `npm run check-release-please` | Release Please branch / missing PR |
 | `npm run release-pr-body` | Body для release PR с readiness snapshot |
+| `npm run check-python-sdk-pr` | PR #22 rebase status (v2.0) |
 | `npm run maintainer-bundle` | Полный maintainer workflow |
 
 ## Открытые треки (v1.9)
