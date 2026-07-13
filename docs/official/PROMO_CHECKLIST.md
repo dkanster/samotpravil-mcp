@@ -4,6 +4,8 @@
 
 **Материалы:** [docs/official/](./official/) · **Runbook org:** [ORG_MIGRATION_RUNBOOK.md](../ORG_MIGRATION_RUNBOOK.md)
 
+**Проверка (maintainer):** `npm run check-promo-checklist` · handoff: `npm run promo-handoff -- --write`
+
 ---
 
 ## До публикации на documenter

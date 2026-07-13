@@ -31,6 +31,7 @@
     "release-prepare": "bash scripts/release-prepare.sh",
     "probe-endpoints": "npm run build && node scripts/probe-endpoints.mjs",
     "check-promo-versions": "node scripts/check-promo-versions.mjs",
+    "check-promo-checklist": "node scripts/check-promo-checklist.mjs",
     "check-superseded-prs": "node scripts/check-superseded-prs.mjs",
     "promo-handoff": "node scripts/promo-handoff.mjs",
     "org-handoff": "node scripts/org-handoff.mjs",
