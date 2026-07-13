@@ -27,7 +27,7 @@ npm run check-org-migration
 
 1. Создать org `samotpravil` (или согласованный slug).
 2. Добавить maintainers с ролью Owner/Admin.
-3. **Transfer repository:** `dkanster/samotpravil-mcp` → `samotpravil/samotpravil-mcp`.
+3. **Transfer repository:** `dkanster/samotpravil-api-mcp` → `samotpravil/samotpravil-mcp`.
 4. Применить branch protection — см. `.github/branch-protection.example.json`.
 5. Обновить secrets (`NPM_TOKEN`, `SAMOTPRAVIL_API_KEY` для probe).
 
@@ -39,9 +39,9 @@ npm run check-org-migration
 
 | Interim | Target |
 |---------|--------|
-| `dkanster/samotpravil-mcp` | `samotpravil/samotpravil-mcp` |
+| `dkanster/samotpravil-api-mcp` | `samotpravil/samotpravil-mcp` |
 | `samotpravil-mcp` | `@samotpravil/mcp` |
-| `io.github.dkanster/samotpravil-mcp` | `io.github.samotpravil/samotpravil-mcp` |
+| `io.github.dkanster/samotpravil-api-mcp` | `io.github.samotpravil/samotpravil-mcp` |
 
 **Критичные файлы:** `package.json`, `server.json`, `smithery.yaml`, `README.md`, `docs/official/*`.
 

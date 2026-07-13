@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
   - name: Roadmap v1.9
-    url: https://github.com/dkanster/samotpravil-mcp/blob/main/docs/ROADMAP_v1.9.md
+    url: https://github.com/dkanster/samotpravil-api-mcp/blob/main/docs/ROADMAP_v1.9.md
     about: Текущий план v1.9
   - name: Org migration pre-flight
-    url: https://github.com/dkanster/samotpravil-mcp/blob/main/docs/ORG_MIGRATION_PREFLIGHT.md
+    url: https://github.com/dkanster/samotpravil-api-mcp/blob/main/docs/ORG_MIGRATION_PREFLIGHT.md
     about: Проверка готовности к transfer
   - name: Contributing guide
-    url: https://github.com/dkanster/samotpravil-mcp/blob/main/CONTRIBUTING.md
+    url: https://github.com/dkanster/samotpravil-api-mcp/blob/main/CONTRIBUTING.md
     about: Как разрабатывать и отправлять PR

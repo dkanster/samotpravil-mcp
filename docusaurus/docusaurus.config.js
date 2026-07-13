@@ -15,7 +15,7 @@ const config = {
   baseUrl: process.env.DOCUSAURUS_BASE_URL ?? '/',
 
   organizationName: 'dkanster',
-  projectName: 'samotpravil-mcp',
+  projectName: 'samotpravil-api-mcp',
 
   onBrokenLinks: 'throw',
 
@@ -72,7 +72,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/dkanster/samotpravil-mcp',
+            href: 'https://github.com/dkanster/samotpravil-api-mcp',
             label: 'GitHub',
             position: 'right',
           },
@@ -98,7 +98,7 @@ const config = {
           {
             title: 'Репозиторий',
             items: [
-              { label: 'samotpravil-mcp', href: 'https://github.com/dkanster/samotpravil-mcp' },
+              { label: 'samotpravil-mcp', href: 'https://github.com/dkanster/samotpravil-api-mcp' },
               { label: 'npm', href: 'https://www.npmjs.com/package/samotpravil-mcp' },
             ],
           },

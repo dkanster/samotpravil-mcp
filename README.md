@@ -1,19 +1,19 @@
 # Samotpravil MCP
 
-[![CI](https://github.com/dkanster/samotpravil-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/dkanster/samotpravil-mcp/actions/workflows/ci.yml)
+[![CI](https://github.com/dkanster/samotpravil-api-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/dkanster/samotpravil-api-mcp/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/samotpravil-mcp.svg)](https://www.npmjs.com/package/samotpravil-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 MCP-сервер вокруг [документации API СамОтправил](https://documentation.samotpravil.ru/) и HTTP API `api.samotpravil.ru`.
 
-**Версия:** 1.7.0 · **npm:** [`samotpravil-mcp`](https://www.npmjs.com/package/samotpravil-mcp) · **MCP Registry:** `io.github.dkanster/samotpravil-mcp` · **Smithery:** [`smithery.yaml`](./smithery.yaml)
+**Версия:** 1.7.0 · **npm:** [`samotpravil-mcp`](https://www.npmjs.com/package/samotpravil-mcp) · **MCP Registry:** `io.github.dkanster/samotpravil-api-mcp` · **Smithery:** [`smithery.yaml`](./smithery.yaml)
 
-> **Хостинг:** репозиторий временно в [dkanster/samotpravil-mcp](https://github.com/dkanster/samotpravil-mcp).  
+> **Хостинг:** репозиторий временно в [dkanster/samotpravil-api-mcp](https://github.com/dkanster/samotpravil-api-mcp).  
 > **Планируется:** переезд в org **Samotpravil** → `@samotpravil/mcp` — [docs/ORG_MIGRATION.md](./docs/ORG_MIGRATION.md).
 
 Сервер подтягивает Postman-коллекцию с documenter (live + offline snapshot) и даёт агенту tools для поиска методов, вызова API и безопасных пресетов (`READ_ONLY`, `dry_run`). Имена typed tools совпадают с [Python SDK `samotpravil`](https://pypi.org/project/samotpravil/).
 
-**Экосистема:** Postman → snapshot → MCP / OpenAPI / Docusaurus — [docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md) · live preview: **https://dkanster.github.io/samotpravil-mcp/**
+**Экосистема:** Postman → snapshot → MCP / OpenAPI / Docusaurus — [docs/ECOSYSTEM.md](./docs/ECOSYSTEM.md) · live preview: **https://dkanster.github.io/samotpravil-api-mcp/**
 
 ---
 
@@ -182,7 +182,7 @@ npm run prepare-swagger-mcp   # Vizioz/Swagger-MCP
 npm run docusaurus:install && npm run docusaurus:start
 ```
 
-Live: **https://dkanster.github.io/samotpravil-mcp/** · [docs/DOCS_SITE.md](./docs/DOCS_SITE.md)
+Live: **https://dkanster.github.io/samotpravil-api-mcp/** · [docs/DOCS_SITE.md](./docs/DOCS_SITE.md)
 
 ### Discovery
 
@@ -214,8 +214,8 @@ SAMOTPRAVIL_API_KEY=your_key_here
 ## Разработка
 
 ```bash
-git clone https://github.com/dkanster/samotpravil-mcp.git
-cd samotpravil-mcp
+git clone https://github.com/dkanster/samotpravil-api-mcp.git
+cd samotpravil-api-mcp
 npm install && npm test && npm run dev
 npm run setup-hooks   # optional: pre-commit (lint + test)
 npm run lint          # ESLint
@@ -244,7 +244,7 @@ npm run scaffold-typed-tool send_package
 ### Из git clone в свой проект
 
 ```bash
-/path/to/samotpravil-mcp/setup.sh .
+/path/to/samotpravil-api-mcp/setup.sh .
 ```
 
 ---

@@ -37,7 +37,7 @@ jobs:
       - name: Build Docusaurus (smoke)
         env:
           DOCUSAURUS_URL: https://dkanster.github.io
-          DOCUSAURUS_BASE_URL: /samotpravil-mcp/
+          DOCUSAURUS_BASE_URL: /samotpravil-api-mcp/
         run: npm run docusaurus:build
 
       - name: Verify build artifacts

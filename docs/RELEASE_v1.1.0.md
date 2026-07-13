@@ -39,5 +39,5 @@
 
 ## Links
 
-- https://github.com/dkanster/samotpravil-mcp
+- https://github.com/dkanster/samotpravil-api-mcp
 - https://documentation.samotpravil.ru/

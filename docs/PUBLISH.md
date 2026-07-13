@@ -62,7 +62,7 @@ npx -y samotpravil-mcp@latest --help 2>&1 | head -1
 Ручной запуск registry:
 
 ```bash
-gh workflow run "Publish MCP Registry" --repo dkanster/samotpravil-mcp
+gh workflow run "Publish MCP Registry" --repo dkanster/samotpravil-api-mcp
 ```
 
 ### Smithery
@@ -81,5 +81,5 @@ mcp-publisher publish server.json
 ### Проверка
 
 ```bash
-curl -s "https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.dkanster/samotpravil-mcp" | head -c 500
+curl -s "https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.dkanster/samotpravil-api-mcp" | head -c 500
 ```

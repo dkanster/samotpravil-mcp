@@ -2,7 +2,7 @@
 
 Статический сайт на [Docusaurus 3](https://docusaurus.io/) из Postman snapshot.
 
-**Live:** https://dkanster.github.io/samotpravil-mcp/
+**Live:** https://dkanster.github.io/samotpravil-api-mcp/
 
 ---
 
@@ -47,7 +47,7 @@ npm run docusaurus:start
 | Переменная | Default (local) | CI / GitHub Pages |
 |------------|-----------------|-------------------|
 | `DOCUSAURUS_URL` | `http://localhost:3000` | `https://dkanster.github.io` |
-| `DOCUSAURUS_BASE_URL` | `/` | `/samotpravil-mcp/` |
+| `DOCUSAURUS_BASE_URL` | `/` | `/samotpravil-api-mcp/` |
 
 Файл: `docusaurus.config.js`.
 

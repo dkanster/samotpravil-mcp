@@ -2,7 +2,7 @@
 
 План улучшений MCP для внешних разработчиков и внутренней команды Mailganer/Samotpravil.
 
-**Текущий хостинг:** [dkanster/samotpravil-mcp](https://github.com/dkanster/samotpravil-mcp)  
+**Текущий хостинг:** [dkanster/samotpravil-api-mcp](https://github.com/dkanster/samotpravil-api-mcp)  
 **Целевой хостинг:** org `Samotpravil` на GitHub + npm scope `@samotpravil` (org ещё не создан — см. [ORG_MIGRATION.md](./ORG_MIGRATION.md))
 
 **Релиз:** v1.1.0 · горизонт 1–2 недели
@@ -13,15 +13,15 @@
 
 | Milestone | Срок | Issues |
 |-----------|------|--------|
-| [Phase 0](https://github.com/dkanster/samotpravil-mcp/milestone/1) | 2026-06-23 | Подготовка, roadmap, interim hosting |
-| [Phase 1](https://github.com/dkanster/samotpravil-mcp/milestone/2) | 2026-06-26 | npm + npx + конфиги IDE |
-| [Phase 2](https://github.com/dkanster/samotpravil-mcp/milestone/3) | 2026-06-27 | Snapshot + offline fallback |
-| [Phase 3](https://github.com/dkanster/samotpravil-mcp/milestone/4) | 2026-06-30 | Typed tools + safety |
-| [Phase 4](https://github.com/dkanster/samotpravil-mcp/milestone/5) | 2026-07-01 | MCP Resources |
-| [Phase 5](https://github.com/dkanster/samotpravil-mcp/milestone/6) | 2026-07-02 | CONTRIBUTING, EXAMPLES |
-| [Phase 6](https://github.com/dkanster/samotpravil-mcp/milestone/7) | 2026-07-05 | Ссылка в official docs |
-| [v1.1.0](https://github.com/dkanster/samotpravil-mcp/milestone/8) | 2026-07-05 | Релиз |
-| [Future](https://github.com/dkanster/samotpravil-mcp/milestone/9) | — | Org migration, v1.2 |
+| [Phase 0](https://github.com/dkanster/samotpravil-api-mcp/milestone/1) | 2026-06-23 | Подготовка, roadmap, interim hosting |
+| [Phase 1](https://github.com/dkanster/samotpravil-api-mcp/milestone/2) | 2026-06-26 | npm + npx + конфиги IDE |
+| [Phase 2](https://github.com/dkanster/samotpravil-api-mcp/milestone/3) | 2026-06-27 | Snapshot + offline fallback |
+| [Phase 3](https://github.com/dkanster/samotpravil-api-mcp/milestone/4) | 2026-06-30 | Typed tools + safety |
+| [Phase 4](https://github.com/dkanster/samotpravil-api-mcp/milestone/5) | 2026-07-01 | MCP Resources |
+| [Phase 5](https://github.com/dkanster/samotpravil-api-mcp/milestone/6) | 2026-07-02 | CONTRIBUTING, EXAMPLES |
+| [Phase 6](https://github.com/dkanster/samotpravil-api-mcp/milestone/7) | 2026-07-05 | Ссылка в official docs |
+| [v1.1.0](https://github.com/dkanster/samotpravil-api-mcp/milestone/8) | 2026-07-05 | Релиз |
+| [Future](https://github.com/dkanster/samotpravil-api-mcp/milestone/9) | — | Org migration, v1.2 |
 
 ### GitHub Project
 
@@ -37,15 +37,15 @@ gh project create --owner dkanster --title "Samotpravil MCP v1.1"
 
 | Phase | Issues |
 |-------|--------|
-| 0 | [#1](https://github.com/dkanster/samotpravil-mcp/issues/1), [#5](https://github.com/dkanster/samotpravil-mcp/issues/5) |
-| 1 | [#6](https://github.com/dkanster/samotpravil-mcp/issues/6), [#7](https://github.com/dkanster/samotpravil-mcp/issues/7) |
-| 2 | [#8](https://github.com/dkanster/samotpravil-mcp/issues/8) |
-| 3 | [#9](https://github.com/dkanster/samotpravil-mcp/issues/9), [#10](https://github.com/dkanster/samotpravil-mcp/issues/10) |
-| 4 | [#11](https://github.com/dkanster/samotpravil-mcp/issues/11) |
-| 5 | [#12](https://github.com/dkanster/samotpravil-mcp/issues/12) |
-| 6 | [#13](https://github.com/dkanster/samotpravil-mcp/issues/13) |
-| v1.1.0 | [#14](https://github.com/dkanster/samotpravil-mcp/issues/14) |
-| Future / org | [#2](https://github.com/dkanster/samotpravil-mcp/issues/2), [#3](https://github.com/dkanster/samotpravil-mcp/issues/3), [#4](https://github.com/dkanster/samotpravil-mcp/issues/4) |
+| 0 | [#1](https://github.com/dkanster/samotpravil-api-mcp/issues/1), [#5](https://github.com/dkanster/samotpravil-api-mcp/issues/5) |
+| 1 | [#6](https://github.com/dkanster/samotpravil-api-mcp/issues/6), [#7](https://github.com/dkanster/samotpravil-api-mcp/issues/7) |
+| 2 | [#8](https://github.com/dkanster/samotpravil-api-mcp/issues/8) |
+| 3 | [#9](https://github.com/dkanster/samotpravil-api-mcp/issues/9), [#10](https://github.com/dkanster/samotpravil-api-mcp/issues/10) |
+| 4 | [#11](https://github.com/dkanster/samotpravil-api-mcp/issues/11) |
+| 5 | [#12](https://github.com/dkanster/samotpravil-api-mcp/issues/12) |
+| 6 | [#13](https://github.com/dkanster/samotpravil-api-mcp/issues/13) |
+| v1.1.0 | [#14](https://github.com/dkanster/samotpravil-api-mcp/issues/14) |
+| Future / org | [#2](https://github.com/dkanster/samotpravil-api-mcp/issues/2), [#3](https://github.com/dkanster/samotpravil-api-mcp/issues/3), [#4](https://github.com/dkanster/samotpravil-api-mcp/issues/4) |
 
 ---
 

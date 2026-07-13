@@ -36,7 +36,7 @@ function pageShell({ title, active, body }) {
   <main>${body}</main>
   <footer class="footer">
     Статический preview из Postman snapshot ·
-    <a href="https://github.com/dkanster/samotpravil-mcp">samotpravil-mcp</a>
+    <a href="https://github.com/dkanster/samotpravil-api-mcp">samotpravil-mcp</a>
   </footer>
 </body>
 </html>`;
@@ -48,7 +48,7 @@ const mcpBlock = existsSync(MCP_BLOCK) ? readFileSync(MCP_BLOCK, "utf8") : "";
 
 const { yaml, operationCount, tagCount, overview } = buildOpenApiFromSnapshot(SNAPSHOT, collection, {
   fullDescriptions: true,
-  officialDocsUrl: "https://github.com/dkanster/samotpravil-mcp/tree/main/site",
+  officialDocsUrl: "https://github.com/dkanster/samotpravil-api-mcp/tree/main/site",
 });
 
 mkdirSync(join(SITE, "assets"), { recursive: true });

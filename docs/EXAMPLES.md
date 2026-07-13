@@ -227,7 +227,7 @@ Typed tools с **теми же именами**, что в [Python SDK `samotpra
   "mcpServers": {
     "samotpravil": {
       "command": "node",
-      "args": ["/absolute/path/to/samotpravil-mcp/dist/index.js"],
+      "args": ["/absolute/path/to/samotpravil-api-mcp/dist/index.js"],
       "env": {
         "SAMOTPRAVIL_API_KEY": "your_api_key_here",
         "SAMOTPRAVIL_DOCS_MODE": "snapshot"

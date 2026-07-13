@@ -11,7 +11,7 @@
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Documenter HTML block live | ⏳ [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
+| 1 | Documenter HTML block live | ⏳ [#51](https://github.com/dkanster/samotpravil-api-mcp/issues/51) |
 | 2 | get-access snippet (marketing) | ⏳ |
 | 3 | Blog post (опционально) | ⏳ |
 | 4 | `check-promo-versions` в CI | ✅ |

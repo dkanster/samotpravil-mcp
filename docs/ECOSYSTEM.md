@@ -17,7 +17,7 @@ flowchart TB
 
   subgraph publish ["Публикация"]
     DOC["documentation.samotpravil.ru<br/>(Postman Documenter)"]
-    PAGES["dkanster.github.io/samotpravil-mcp<br/>(Docusaurus / GitHub Pages)"]
+    PAGES["dkanster.github.io/samotpravil-api-mcp<br/>(Docusaurus / GitHub Pages)"]
   end
 
   subgraph repo ["Репозиторий samotpravil-mcp"]
@@ -56,7 +56,7 @@ flowchart TB
 |------|-----|------------|
 | **Канон** | Postman-коллекция в workspace | Команда документации / API в Postman |
 | **Публичный сайт** | [documentation.samotpravil.ru](https://documentation.samotpravil.ru/) | Republish Documenter из Postman |
-| **Preview (Docusaurus)** | [dkanster.github.io/samotpravil-mcp](https://dkanster.github.io/samotpravil-mcp/) | push в `main` → GitHub Actions |
+| **Preview (Docusaurus)** | [dkanster.github.io/samotpravil-api-mcp](https://dkanster.github.io/samotpravil-api-mcp/) | push в `main` → GitHub Actions |
 | **Snapshot в репо** | `data/collection.snapshot.json` | `npm run sync-docs` после публикации documenter |
 | **OpenAPI** | `data/openapi.yaml` | `npm run export-openapi` из snapshot |
 | **SwaggerHub** | [mailganer/samotpravil-smtp-api](https://app.swaggerhub.com/apis/mailganer/samotpravil-smtp-api/1.0.0) | `npm run upload-swaggerhub` |

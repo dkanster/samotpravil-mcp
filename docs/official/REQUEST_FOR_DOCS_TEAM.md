@@ -6,7 +6,7 @@
 
 Коллеги, подготовлен MCP-сервер для разработчиков, использующих API СамОтправил из Cursor / Claude / VS Code.
 
-**Репозиторий:** https://github.com/dkanster/samotpravil-mcp  
+**Репозиторий:** https://github.com/dkanster/samotpravil-api-mcp  
 **npm:** https://www.npmjs.com/package/samotpravil-mcp
 
 ## Просьба
@@ -23,4 +23,4 @@
 
 Готовы скорректировать текст блока под стиль сайта.
 
-Контакт по репозиторию: issues на GitHub — [Docs promo #51](https://github.com/dkanster/samotpravil-mcp/issues/51).
+Контакт по репозиторию: issues на GitHub — [Docs promo #51](https://github.com/dkanster/samotpravil-api-mcp/issues/51).

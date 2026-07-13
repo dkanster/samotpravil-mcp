@@ -36,7 +36,7 @@
 
 ## Ссылки
 
-- GitHub: https://github.com/dkanster/samotpravil-mcp
+- GitHub: https://github.com/dkanster/samotpravil-api-mcp
 - npm: https://www.npmjs.com/package/samotpravil-mcp
 - Получить API-ключ: https://samotpravil.ru/get-access
 
