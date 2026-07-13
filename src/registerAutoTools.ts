@@ -17,7 +17,7 @@ import { annotationsForEndpoint } from "./toolAnnotations.js";
 const dryRunField = z.boolean().optional().describe("Показать запрос без отправки на API");
 
 function buildToolSchema(endpoint: EndpointDoc): z.ZodObject<z.ZodRawShape> {
-  const shape: z.ZodRawShape = { dry_run: dryRunField };
+  const shape: Record<string, z.ZodTypeAny> = { dry_run: dryRunField };
 
   for (const [key, example] of Object.entries(queryParamsFromUrl(endpoint.url))) {
     shape[key] = z.string().optional().describe(`Query-параметр (пример: ${example})`);
@@ -31,13 +31,13 @@ function buildToolSchema(endpoint: EndpointDoc): z.ZodObject<z.ZodRawShape> {
         shape[key] = z.unknown().optional().describe(`Поле тела (пример: ${JSON.stringify(example[key])})`);
       }
     } catch {
-      shape.body = z.record(z.unknown()).optional().describe("JSON-тело запроса");
+      shape.body = z.record(z.string(), z.unknown()).optional().describe("JSON-тело запроса");
     }
   } else if (["POST", "PUT", "PATCH"].includes(endpoint.method.toUpperCase())) {
-    shape.body = z.record(z.unknown()).optional().describe("JSON-тело запроса");
+    shape.body = z.record(z.string(), z.unknown()).optional().describe("JSON-тело запроса");
   }
 
-  return z.object(shape);
+  return z.object(shape as z.ZodRawShape);
 }
 
 function splitToolParams(

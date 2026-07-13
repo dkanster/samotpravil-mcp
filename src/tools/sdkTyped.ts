@@ -20,7 +20,7 @@ export const sendPackageSchema = dryRunSchema.extend({
   subject: z.string(),
   message_text: z.string(),
   users: z
-    .array(z.record(z.unknown()))
+    .array(z.record(z.string(), z.unknown()))
     .min(1)
     .describe("Список получателей; каждый объект должен содержать emailto"),
   message_text_amp: z.string().optional(),
@@ -29,7 +29,7 @@ export const sendPackageSchema = dryRunSchema.extend({
   track_open: z.boolean().optional(),
   track_click: z.boolean().optional(),
   track_domain: z.string().optional(),
-  headers: z.record(z.string()).optional(),
+  headers: z.record(z.string(), z.string()).optional(),
   is_moderate: z.boolean().optional(),
   html_prettify: z.boolean().optional(),
 });
