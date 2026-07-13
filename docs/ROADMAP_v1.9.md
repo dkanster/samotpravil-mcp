@@ -75,7 +75,8 @@ Scaffolds: [scaffolds/](../scaffolds/) · Watch: `upstream-wishlist-watch.yml`
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Python MCP server + bridge ([PR #22](https://github.com/dkanster/samotpravil-mcp/pull/22)) | DRAFT · отдельно от v1.9 |
+| 1 | Python MCP server + bridge ([PR #22](https://github.com/dkanster/samotpravil-mcp/pull/22)) | DRAFT · [PYTHON_SDK_TRACK.md](./PYTHON_SDK_TRACK.md) |
 | 2 | Node SDK parity (typed tools) | ✅ v1.3+ |
+| 3 | `check-python-sdk-pr` tooling | ✅ |
 
-Node `samotpravil-mcp` уже покрывает Python SDK через typed tools; отдельный Python MCP — опциональный трек v2.0.
+Node `samotpravil-mcp` уже покрывает Python SDK через typed tools; отдельный Python MCP — [ROADMAP_v2.0.md](./ROADMAP_v2.0.md).
