@@ -11,11 +11,11 @@
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Merge unified PR #38 (squash) | ⏳ |
-| 2 | Tag `v1.7.0` + npm publish | ⏳ |
+| 1 | Merge unified PR #38 (squash) | ✅ |
+| 2 | Tag `v1.7.0` + npm publish | ✅ |
 | 3 | `verify-publish` workflow | ✅ |
 | 4 | Promo HTML v1.7.0 в documenter | ⏳ docs team |
-| 5 | Закрыть superseded PR #23–#25, #37 | ⏳ |
+| 5 | Закрыть superseded PR #23–#25, #37 | ⏳ maintainer (вручную) |
 
 ---
 
@@ -47,7 +47,7 @@ Wishlist: [API_WISHLIST.md](./API_WISHLIST.md) · Tracking: `npm run check-upstr
 
 ## Критерии v1.8.0
 
-- [ ] `samotpravil-mcp@1.7.0` на npm (или 1.8.0 patch)
-- [ ] MCP Registry verified
+- [x] `samotpravil-mcp@1.7.0` на npm (или 1.8.0 patch)
+- [x] MCP Registry verified
 - [ ] Documenter HTML block live
 - [ ] Org migration started OR promo complete без org

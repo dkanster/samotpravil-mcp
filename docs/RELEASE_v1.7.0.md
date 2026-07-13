@@ -46,8 +46,12 @@ curl -s "https://registry.modelcontextprotocol.io/v0.1/servers?search=samotpravi
 
 ## После publish
 
-- [ ] Обновить [PROMO_CHECKLIST.md](./official/PROMO_CHECKLIST.md) (npm version)
+- [x] GitHub Release `v1.7.0` создан
+- [x] npm `samotpravil-mcp@1.7.0` опубликован
+- [x] MCP Registry обновлён
+- [ ] Обновить [PROMO_CHECKLIST.md](./official/PROMO_CHECKLIST.md) (npm version) — docs team promo
 - [ ] Smithery rebuild (если подключён)
+- [ ] Закрыть superseded PR #23, #24, #25, #37
 - [ ] Закрыть milestone v1.7.0 issues
 
 ## Цепочка PR перед release
