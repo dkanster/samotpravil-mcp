@@ -18,6 +18,7 @@ echo "--- Maintainer warnings (non-blocking) ---"
 npm run check-superseded-prs || echo "WARN: superseded PRs still open"
 node scripts/check-scaffold-ship.mjs --warn-only || true
 node scripts/check-upstream-wishlist.mjs --fail-on-shipped || echo "WARN: shipped endpoints need typed tools"
+node scripts/check-v19-readiness.mjs --warn-only || echo "WARN: v1.9 blocking criteria pending"
 
 echo ""
 echo "Ready to publish:"

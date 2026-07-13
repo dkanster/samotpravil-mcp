@@ -77,6 +77,13 @@ try {
 console.log("\n## Promo handoff");
 console.log("- Issue #51: npm run promo-handoff -- --write");
 
+console.log("\n## v1.9 readiness");
+try {
+  execSync("node scripts/check-v19-readiness.mjs --warn-only", { cwd: ROOT, stdio: "inherit" });
+} catch {
+  console.log("- Run: npm run check-v19-readiness");
+}
+
 console.log("\n## Manual");
 console.log("- Close superseded PR: bash scripts/maintainer-pr-cleanup.sh | grep '^gh pr' | bash");
 console.log("- Org transfer: docs/ORG_MIGRATION_RUNBOOK.md");

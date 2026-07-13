@@ -27,6 +27,7 @@ npm run maintainer-status
 | `npm run check-superseded-prs` | Открытые superseded PR |
 | `npm run promo-handoff` | Текст handoff для [#51](https://github.com/dkanster/samotpravil-mcp/issues/51) |
 | `npm run org-handoff` | Текст handoff для [#65](https://github.com/dkanster/samotpravil-mcp/issues/65) |
+| `npm run check-v19-readiness` | Агрегатор критериев v1.9.0 |
 
 ## Открытые треки (v1.9)
 

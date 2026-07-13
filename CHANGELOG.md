@@ -14,6 +14,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `npm run check-scaffold-ship` — readiness when upstream endpoints land in snapshot
 - `npm run org-handoff` — handoff comment for org migration issue #65
 - Naming decision recorded: variant C in `data/org-migration.targets.json`
+- `npm run check-v19-readiness` — aggregate v1.9 release criteria
 - [docs/RELEASE_v1.9.0.md](./docs/RELEASE_v1.9.0.md) release checklist
 
 ## [1.8.0] - 2026-07-13

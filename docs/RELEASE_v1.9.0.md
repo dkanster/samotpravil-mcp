@@ -26,6 +26,7 @@ npm run maintainer-status
 npm run release-prepare
 npm run check-superseded-prs
 npm run org-migration-preflight
+npm run check-v19-readiness
 ```
 
 Maintainer cleanup (если `check-superseded-prs` падает):
