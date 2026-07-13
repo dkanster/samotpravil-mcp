@@ -23,9 +23,9 @@
 | # | Задача | Статус |
 |---|--------|--------|
 | 1 | GitHub org transfer | ⏳ |
-| 2 | `apply-org-migration --write` | ⏳ ready |
+| 2 | `apply-org-migration --write` | ⏳ `npm run org-migration-preflight` |
 | 3 | `@samotpravil/mcp` npm scope | ⏳ |
-| 4 | Branch protection on `main` | ⏳ |
+| 4 | Branch protection on `main` | ⏳ `npm run check-branch-protection` |
 
 Runbook: [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
 
@@ -35,7 +35,7 @@ Runbook: [ORG_MIGRATION_RUNBOOK.md](./ORG_MIGRATION_RUNBOOK.md)
 
 | # | Задача | Статус |
 |---|--------|--------|
-| 1 | Ship typed tools из `scaffolds/` когда endpoint в snapshot | 🔲 |
+| 1 | Ship typed tools из `scaffolds/` когда endpoint в snapshot | 🔲 `check-scaffolds` ✅ |
 | 2 | Webhook/events tool | 🔲 |
 | 3 | Upstream watch → issue (shipped) | ✅ |
 | 4 | SDK_TYPED_TOOL_COUNT bump + release | 🔲 |
