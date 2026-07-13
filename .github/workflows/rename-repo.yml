@@ -1,0 +1,27 @@
+name: Rename repository
+
+# One-shot workflow: rename samotpravil-mcp → samotpravil-api-mcp.
+# Trigger manually after merging reference updates to main.
+on:
+  workflow_dispatch:
+
+permissions:
+  administration: write
+  contents: read
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rename GitHub repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          CURRENT="${{ github.repository }}"
+          NEW_NAME="samotpravil-api-mcp"
+          if [ "${CURRENT##*/}" = "$NEW_NAME" ]; then
+            echo "Repository already named $NEW_NAME"
+            exit 0
+          fi
+          gh api -X PATCH "repos/${CURRENT}" -f name="${NEW_NAME}"
+          echo "Renamed ${CURRENT} → ${CURRENT%/*}/${NEW_NAME}"
