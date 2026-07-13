@@ -23,4 +23,4 @@
 
 Готовы скорректировать текст блока под стиль сайта.
 
-Контакт по репозиторию: issues на GitHub.
+Контакт по репозиторию: issues на GitHub — [Docs promo #51](https://github.com/dkanster/samotpravil-mcp/issues/51).
