@@ -48,6 +48,7 @@
     "maintainer-status": "node scripts/maintainer-status.mjs",
     "plan-org-migration": "node scripts/plan-org-migration.mjs",
     "plan-rename": "node scripts/plan-rename.mjs",
+    "rename-github-repo": "bash scripts/rename-github-repo.sh",
     "apply-org-migration": "node scripts/apply-org-migration.mjs",
     "check-upstream-wishlist": "npm run build && node scripts/check-upstream-wishlist.mjs",
     "pre-publish-check": "node scripts/pre-publish-check.mjs",

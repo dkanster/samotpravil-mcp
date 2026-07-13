@@ -43,9 +43,11 @@ const actionablePatterns = [
   `"name": "${target.npmPackage}"`,
 ];
 
-const renamePatterns = renameAlternative
-  ? [renameAlternative.githubRepo, renameAlternative.mcpRegistryName, renameAlternative.githubUrl]
-  : [];
+const renameApplied = renameAlternative && interim.githubRepo === renameAlternative.githubRepo;
+const renamePatterns =
+  renameAlternative && !renameApplied
+    ? [renameAlternative.githubRepo, renameAlternative.mcpRegistryName, renameAlternative.githubUrl]
+    : [];
 
 const allowedTargetMentions = new Set([
   "mcp.json.example.org",
